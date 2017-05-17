@@ -1,0 +1,12 @@
+
+<form:form method="post" modelAttribute="productForm">
+    <form:label path="name">Product name</form:label><br />
+    <form:input path="name" /><br />
+    <br />
+    <form:label path="description">Description:</form:label><br />
+    <form:input path="description" /><br />
+    <br />
+    <input type="submit" value="Save" />
+</form:form>
+
+

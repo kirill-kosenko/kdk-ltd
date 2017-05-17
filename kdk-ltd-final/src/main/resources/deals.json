@@ -1,0 +1,1550 @@
+[
+  {
+
+    "partner": "1",
+    "dateOfDocument": "2016-09-01",
+
+    "type": "PURCHASE",
+    "state": "COMPLETED",
+    "details":
+    [
+      {
+
+        "product": "1",
+        "quantity": "50",
+        "sum": "10750",
+        "storage": "4"
+      },
+      {
+
+        "product": "2",
+        "quantity": "10",
+        "sum": "1150",
+        "storage": "4"
+      }
+    ]
+  },
+  {
+
+    "partner": "14",
+    "dateOfDocument": "2016-09-01",
+
+    "type": "PURCHASE",
+    "state": "COMPLETED",
+    "details":
+    [
+      {
+
+        "product": "3",
+        "quantity": "12",
+        "sum": "2280",
+        "storage": "3"
+      },
+      {
+
+        "product": "4",
+        "quantity": "12",
+        "sum": "2280",
+        "storage": "3"
+      },
+      {
+
+        "product": "5",
+        "quantity": "16",
+        "sum": "3040",
+        "storage": "3"
+      },
+      {
+
+        "product": "6",
+        "quantity": "16",
+        "sum": "3040",
+        "storage": "3"
+      },
+      {
+
+        "product": "7",
+        "quantity": "12",
+        "sum": "2280",
+        "storage": "3"
+      }
+    ]
+  },
+  {
+    "partner": "13",
+    "dateOfDocument": "2016-09-01",
+
+    "type": "SELL",
+    "state": "COMPLETED",
+    "details":
+    [
+      {
+
+        "product": "1",
+        "quantity": 10,
+        "sum": "2500",
+        "storage": "4"
+      },
+      {
+
+        "product": "2",
+        "quantity": "2",
+        "sum": "340",
+        "storage": "4"
+      }
+    ]
+  },
+  {
+    "partner": "2",
+    "dateOfDocument": "2016-09-01",
+
+    "type": "SELL",
+    "state": "COMPLETED",
+    "details":
+    [
+      {
+
+        "product": "1",
+        "quantity": "3",
+        "sum": "960",
+        "storage": "4"
+      },
+      {
+
+        "product": "2",
+        "quantity": "2",
+        "sum": "360",
+        "storage": "4"
+      },
+      {
+
+        "product": "3",
+        "quantity": "1",
+        "sum": "280",
+        "storage": "3"
+      } ,
+      {
+
+        "product": "5",
+        "quantity": "1",
+        "sum": "280",
+        "storage": "3"
+      },
+      {
+
+        "product": "6",
+        "quantity": "1",
+        "sum": "280",
+        "storage": "3"
+      }
+    ]
+  },
+  {
+    "partner": "3",
+    "dateOfDocument": "2016-09-01",
+
+    "type": "SELL",
+    "state": "COMPLETED",
+    "details":
+    [
+      {
+
+        "product": "1",
+        "quantity": "2",
+        "sum": "640",
+        "storage": "4"
+      },
+      {
+
+        "product": "2",
+        "quantity": "1",
+        "sum": "180",
+        "storage": "4"
+      }
+    ]
+  },
+  {
+    "partner": "4",
+    "dateOfDocument": "2016-09-01",
+
+    "type": "SELL",
+    "state": "COMPLETED",
+    "details":
+    [
+      {
+
+        "product": "1",
+        "quantity": "1",
+        "sum": "300",
+        "storage": "4"
+      },
+      {
+
+        "product": "2",
+        "quantity": "1",
+        "sum": "180",
+        "storage": "4"
+      },
+      {
+        "product": "5",
+        "quantity": "1",
+        "sum": "280",
+        "storage": "3"
+      }
+    ]
+  },
+  {
+    "partner": "12",
+    "dateOfDocument": "2016-09-02",
+
+    "type": "SELL",
+    "state": "COMPLETED",
+    "details":
+    [
+      {
+
+        "product": "1",
+        "quantity": "5",
+        "sum": "1500",
+        "storage": "4"
+      },
+      {
+
+        "product": "7",
+        "quantity": "3",
+        "sum": "840",
+        "storage": "3"
+      }
+    ]
+  },
+  {
+    "partner": "5",
+    "dateOfDocument": "2016-09-02",
+
+    "type": "SELL",
+    "state": "COMPLETED",
+    "details":
+    [
+      {
+
+        "product": "1",
+        "quantity": "15",
+        "sum": "4350",
+        "storage": "4"
+      },
+      {
+
+        "product": "5",
+        "quantity": "4",
+        "sum": "1120",
+        "storage": "3"
+      }
+    ]
+  },
+  {
+    "partner": "11",
+    "dateOfDocument": "2016-09-03",
+
+    "type": "SELL",
+    "state": "COMPLETED",
+    "details":
+    [
+      {
+
+        "product": "1",
+        "quantity": "10",
+        "sum": "3200",
+        "storage": "4"
+      },
+      {
+        "product": "7",
+        "quantity": "4",
+        "sum": "1120",
+        "storage": "3"
+      }
+    ]
+  },
+  {
+    "partner": "2",
+    "dateOfDocument": "2016-09-03",
+
+    "type": "SELL",
+    "state": "COMPLETED",
+    "details":
+    [
+      {
+
+        "product": "1",
+        "quantity": "5",
+        "sum": "1600",
+        "storage": "4"
+      },
+      {
+
+        "product": "2",
+        "quantity": "2",
+        "sum": "360",
+        "storage": "4"
+      },
+      {
+        "product": "3",
+        "quantity": "2",
+        "sum": "560",
+        "storage": "3"
+      },
+      {
+        "product": "4",
+        "quantity": "2",
+        "sum": "560",
+        "storage": "3"
+      },
+      {
+        "product": "5",
+        "quantity": "2",
+        "sum": "560",
+        "storage": "3"
+      },
+      {
+        "product": "6",
+        "quantity": "2",
+        "sum": "560",
+        "storage": "3"
+      }
+    ]
+  },
+  {
+
+    "partner": "1",
+    "dateOfDocument": "2016-09-05",
+
+    "type": "PURCHASE",
+    "state": "COMPLETED",
+    "details":
+    [
+      {
+
+        "product": "1",
+        "quantity": "50",
+        "sum": "10750",
+        "storage": "4"
+      },
+      {
+
+        "product": "2",
+        "quantity": "10",
+        "sum": "1150",
+        "storage": "4"
+      }
+    ]
+  },
+  {
+
+    "partner": "7",
+    "dateOfDocument": "2016-09-05",
+
+    "type": "SELL",
+    "state": "COMPLETED",
+    "details":
+    [
+      {
+
+        "product": "1",
+        "quantity": "2",
+        "sum": "640",
+        "storage": "4"
+      }
+    ]
+  },
+  {
+
+    "partner": "10",
+    "dateOfDocument": "2016-09-05",
+
+    "type": "SELL",
+    "state": "COMPLETED",
+    "details":
+    [
+      {
+
+        "product": "1",
+        "quantity": "5",
+        "sum": "1500",
+        "storage": "4"
+      }
+    ]
+  },
+  {
+
+    "partner": "13",
+    "dateOfDocument": "2016-09-06",
+
+    "type": "SELL",
+    "state": "COMPLETED",
+    "details":
+    [
+      {
+
+        "product": "1",
+        "quantity": "10",
+        "sum": "2500",
+        "storage": "4"
+      },
+      {
+
+        "product": "2",
+        "quantity": "2",
+        "sum": "340",
+        "storage": "4"
+      }
+    ]
+  },
+  {
+    "partner": "2",
+    "dateOfDocument": "2016-09-06",
+    "type": "SELL",
+    "state": "COMPLETED",
+    "details": [
+      {
+        "product": "1",
+        "quantity": "2",
+        "sum": "640",
+        "storage": "4"
+      },
+      {
+        "product": "2",
+        "quantity": "1",
+        "sum": "180",
+        "storage": "4"
+      },
+      {
+        "product": "5",
+        "quantity": "1",
+        "sum": "280",
+        "storage": "3"
+      },
+      {
+        "product": "6",
+        "quantity": "1",
+        "sum": "280",
+        "storage": "3"
+      }
+    ]
+  },
+  {
+
+    "partner": "14",
+    "dateOfDocument": "2016-09-01",
+
+    "type": "PURCHASE",
+    "state": "COMPLETED",
+    "details":
+    [
+      {
+
+        "product": "3",
+        "quantity": "12",
+        "sum": "2280",
+        "storage": "3"
+      },
+      {
+
+        "product": "4",
+        "quantity": "12",
+        "sum": "2280",
+        "storage": "3"
+      },
+      {
+
+        "product": "5",
+        "quantity": "16",
+        "sum": "3040",
+        "storage": "3"
+      },
+      {
+
+        "product": "6",
+        "quantity": "16",
+        "sum": "3040",
+        "storage": "3"
+      },
+      {
+
+        "product": "7",
+        "quantity": "20",
+        "sum": "3800",
+        "storage": "3"
+      }
+    ]
+  },
+  {
+    "partner": "12",
+    "dateOfDocument": "2016-09-07",
+    "type": "SELL",
+    "state": "COMPLETED",
+    "details": [
+      {
+        "product": "1",
+        "quantity": "9",
+        "sum": "2700",
+        "storage": "4"
+      },
+      {
+        "product": "7",
+        "quantity": "8",
+        "sum": "2240",
+        "storage": "3"
+      }
+    ]
+  },
+  {
+    "partner": "3",
+    "dateOfDocument": "2016-09-08",
+
+    "type": "SELL",
+    "state": "COMPLETED",
+    "details":
+    [
+      {
+
+        "product": "1",
+        "quantity": "3",
+        "sum": "960",
+        "storage": "4"
+      },
+      {
+
+        "product": "2",
+        "quantity": "1",
+        "sum": "180",
+        "storage": "4"
+      },
+      {
+
+        "product": "5",
+        "quantity": "1",
+        "sum": "280",
+        "storage": "3"
+      }
+     ]
+  },
+  {
+    "partner": "4",
+    "dateOfDocument": "2016-09-08",
+    "type": "SELL",
+    "state": "COMPLETED",
+    "details": [
+      {
+        "product": "1",
+        "quantity": "1",
+        "sum": "300",
+        "storage": "4"
+      },
+      {
+        "product": "2",
+        "quantity": "1",
+        "sum": "180",
+        "storage": "4"
+      },
+      {
+        "product": "5",
+        "quantity": "1",
+        "sum": "280",
+        "storage": "3"
+      },
+      {
+        "product": "6",
+        "quantity": "1",
+        "sum": "280",
+        "storage": "3"
+      }
+    ]
+  },
+  {
+    "partner": "2",
+    "dateOfDocument": "2016-09-08",
+    "type": "SELL",
+    "state": "COMPLETED",
+    "details": [
+      {
+        "product": "1",
+        "quantity": "2",
+        "sum": "640",
+        "storage": "4"
+      },
+      {
+        "product": "2",
+        "quantity": "1",
+        "sum": "180",
+        "storage": "4"
+      },
+      {
+        "product": "4",
+        "quantity": "1",
+        "sum": "280",
+        "storage": "3"
+      },
+      {
+        "product": "5",
+        "quantity": "1",
+        "sum": "280",
+        "storage": "3"
+      }
+    ]
+  },
+  {
+    "partner": "3",
+    "dateOfDocument": "2016-09-09",
+    "type": "SELL",
+    "state": "COMPLETED",
+    "details": [
+      {
+        "product": "1",
+        "quantity": "2",
+        "sum": "640",
+        "storage": "4"
+      }
+    ]
+  },
+  {
+    "partner": "4",
+    "dateOfDocument": "2016-09-09",
+    "type": "SELL",
+    "state": "COMPLETED",
+    "details": [
+      {
+        "product": "1",
+        "quantity": "2",
+        "sum": "600",
+        "storage": "4"
+      },
+      {
+        "product": "2",
+        "quantity": "1",
+        "sum": "180",
+        "storage": "4"
+      },
+      {
+        "product": "5",
+        "quantity": "1",
+        "sum": "280",
+        "storage": "3"
+      },
+      {
+        "product": "6",
+        "quantity": "1",
+        "sum": "280",
+        "storage": "3"
+      }
+    ]
+  },
+  {
+    "partner": "11",
+    "dateOfDocument": "2016-09-10",
+    "type": "SELL",
+    "state": "COMPLETED",
+    "details": [
+      {
+        "product": "1",
+        "quantity": "7",
+        "sum": "2240",
+        "storage": "4"
+      },
+      {
+        "product": "7",
+        "quantity": "3",
+        "sum": "840",
+        "storage": "3"
+      }
+    ]
+  },
+  {
+  "partner": "2",
+  "dateOfDocument": "2016-09-06",
+  "type": "SELL",
+  "state": "COMPLETED",
+  "details": [
+    {
+      "product": "1",
+      "quantity": "5",
+      "sum": "1600",
+      "storage": "4"
+    },
+    {
+      "product": "2",
+      "quantity": "2",
+      "sum": "360",
+      "storage": "4"
+    },
+    {
+      "product": "3",
+      "quantity": "2",
+      "sum": "560",
+      "storage": "3"
+    },
+    {
+      "product": "4",
+      "quantity": "2",
+      "sum": "560",
+      "storage": "3"
+    },
+    {
+      "product": "5",
+      "quantity": "2",
+      "sum": "560",
+      "storage": "3"
+    },
+    {
+      "product": "6",
+      "quantity": "2",
+      "sum": "560",
+      "storage": "3"
+    }
+  ]
+},
+  {
+
+    "partner": "1",
+    "dateOfDocument": "2016-09-12",
+
+    "type": "PURCHASE",
+    "state": "COMPLETED",
+    "details":
+    [
+      {
+
+        "product": "1",
+        "quantity": "50",
+        "sum": "10750",
+        "storage": "4"
+      },
+      {
+
+        "product": "2",
+        "quantity": "10",
+        "sum": "1150",
+        "storage": "4"
+      }
+    ]
+  },
+  {
+    "partner": "5",
+    "dateOfDocument": "2016-09-12",
+    "type": "SELL",
+    "state": "COMPLETED",
+    "details": [
+      {
+        "product": "1",
+        "quantity": "10",
+        "sum": "2900",
+        "storage": "4"
+      },
+      {
+        "product": "5",
+        "quantity": "5",
+        "sum": "1400",
+        "storage": "3"
+      }
+    ]
+  },
+  {
+    "partner": "13",
+    "dateOfDocument": "2016-09-13",
+    "type": "SELL",
+    "state": "COMPLETED",
+    "details": [
+      {
+        "product": "1",
+        "quantity": "10",
+        "sum": "2500",
+        "storage": "4"
+      },
+      {
+        "product": "2",
+        "quantity": "2",
+        "sum": "340",
+        "storage": "4"
+      }
+    ]
+  },
+  {
+    "partner": "3",
+    "dateOfDocument": "2016-09-13",
+    "type": "SELL",
+    "state": "COMPLETED",
+    "details": [
+      {
+        "product": "1",
+        "quantity": "3",
+        "sum": "960",
+        "storage": "4"
+      },
+      {
+        "product": "2",
+        "quantity": "1",
+        "sum": "180",
+        "storage": "4"
+      },
+      {
+        "product": "5",
+        "quantity": "1",
+        "sum": "280",
+        "storage": "3"
+      }
+    ]
+  },
+  {
+    "partner": "4",
+    "dateOfDocument": "2016-09-14",
+    "type": "SELL",
+    "state": "COMPLETED",
+    "details": [
+      {
+        "product": "1",
+        "quantity": "2",
+        "sum": "600",
+        "storage": "4"
+      },
+      {
+        "product": "2",
+        "quantity": "1",
+        "sum": "180",
+        "storage": "4"
+      },
+      {
+        "product": "5",
+        "quantity": "1",
+        "sum": "280",
+        "storage": "3"
+      },
+      {
+        "product": "6",
+        "quantity": "1",
+        "sum": "180",
+        "storage": "3"
+      }
+    ]
+  },
+  {
+
+    "partner": "7",
+    "dateOfDocument": "2016-09-15",
+
+    "type": "SELL",
+    "state": "COMPLETED",
+    "details":
+    [
+      {
+
+        "product": "1",
+        "quantity": "2",
+        "sum": "640",
+        "storage": "4"
+      }
+    ]
+  },
+  {
+
+    "partner": "10",
+    "dateOfDocument": "2016-09-15",
+
+    "type": "SELL",
+    "state": "COMPLETED",
+    "details":
+    [
+      {
+
+        "product": "1",
+        "quantity": "5",
+        "sum": "1500",
+        "storage": "4"
+      }
+    ]
+  },
+  {
+
+      "partner": "12",
+      "dateOfDocument": "2016-09-16",
+
+      "type": "SELL",
+      "state": "COMPLETED",
+    "details":
+    [
+      {
+
+        "product": "1",
+        "quantity": "7",
+        "sum": "2100",
+        "storage": "4"
+      },
+      {
+
+        "product": "7",
+        "quantity": "4",
+        "sum": "1120",
+        "storage": "3"
+      }
+    ]
+  },
+  {
+    "partner": "11",
+    "dateOfDocument": "2016-09-17",
+
+    "type": "SELL",
+    "state": "COMPLETED",
+    "details":
+    [
+      {
+
+        "product": "1",
+        "quantity": "8",
+        "sum": "2560",
+        "storage": "4"
+      },
+      {
+
+        "product": "7",
+        "quantity": "5",
+        "sum": "1400",
+        "storage": "3"
+      }
+    ]
+  },
+  {
+
+    "partner": "1",
+    "dateOfDocument": "2016-09-16",
+
+    "type": "PURCHASE",
+    "state": "COMPLETED",
+    "details":
+    [
+      {
+
+        "product": "1",
+        "quantity": "50",
+        "sum": "10750",
+        "storage": "4"
+      },
+      {
+
+        "product": "2",
+        "quantity": "10",
+        "sum": "1150",
+        "storage": "4"
+      }
+    ]
+  },
+  {
+    "partner": "2",
+    "dateOfDocument": "2016-09-17",
+    "type": "SELL",
+    "state": "COMPLETED",
+    "details": [
+      {
+        "product": "1",
+        "quantity": "6",
+        "sum": "1800",
+        "storage": "4"
+      },
+      {
+        "product": "2",
+        "quantity": "2",
+        "sum": "360",
+        "storage": "4"
+      },
+      {
+        "product": "3",
+        "quantity": "2",
+        "sum": "560",
+        "storage": "3"
+      },
+      {
+        "product": "4",
+        "quantity": "2",
+        "sum": "560",
+        "storage": "3"
+      },
+      {
+        "product": "5",
+        "quantity": "2",
+        "sum": "560",
+        "storage": "3"
+      },
+      {
+        "product": "6",
+        "quantity": "2",
+        "sum": "560",
+        "storage": "3"
+      }
+    ]
+  },
+  {
+    "partner": "3",
+    "dateOfDocument": "2016-09-19",
+    "type": "SELL",
+    "state": "COMPLETED",
+    "details": [
+      {
+        "product": "1",
+        "quantity": "3",
+        "sum": "960",
+        "storage": "4"
+      },
+      {
+        "product": "2",
+        "quantity": "1",
+        "sum": "180",
+        "storage": "4"
+      },
+      {
+        "product": "5",
+        "quantity": "1",
+        "sum": "280",
+        "storage": "3"
+      }
+    ]
+  },
+  {
+    "partner": "4",
+    "dateOfDocument": "2016-09-19",
+    "type": "SELL",
+    "state": "COMPLETED",
+    "details": [
+      {
+        "product": "1",
+        "quantity": "2",
+        "sum": "600",
+        "storage": "4"
+      },
+      {
+        "product": "2",
+        "quantity": "1",
+        "sum": "180",
+        "storage": "4"
+      },
+      {
+        "product": "5",
+        "quantity": "1",
+        "sum": "280",
+        "storage": "3"
+      },
+      {
+        "product": "6",
+        "quantity": "1",
+        "sum": "280",
+        "storage": "3"
+      }
+    ]
+  },
+  {
+    "partner": "13",
+    "dateOfDocument": "2016-09-20",
+    "type": "SELL",
+    "state": "COMPLETED",
+    "details": [
+      {
+        "product": "1",
+        "quantity": "10",
+        "sum": "2500",
+        "storage": "4"
+      },
+      {
+        "product": "2",
+        "quantity": "2",
+        "sum": "340",
+        "storage": "4"
+      }
+    ]
+  },
+  {
+    "partner": "12",
+    "dateOfDocument": "2016-09-21",
+    "type": "SELL",
+    "state": "COMPLETED",
+    "details": [
+      {
+        "product": "1",
+        "quantity": "5",
+        "sum": "1500",
+        "storage": "4"
+      },
+      {
+        "product": "7",
+        "quantity": "3",
+        "sum": "840",
+        "storage": "3"
+      }
+    ]
+  },
+  {
+    "partner": "2",
+    "dateOfDocument": "2016-09-21",
+    "type": "SELL",
+    "state": "COMPLETED",
+    "details": [
+      {
+        "product": "1",
+        "quantity": "3",
+        "sum": "960",
+        "storage": "4"
+      },
+      {
+        "product": "2",
+        "quantity": "2",
+        "sum": "180",
+        "storage": "4"
+      },
+      {
+        "product": "3",
+        "quantity": "1",
+        "sum": "280",
+        "storage": "3"
+      },
+      {
+        "product": "5",
+        "quantity": "1",
+        "sum": "280",
+        "storage": "3"
+      }
+    ]
+  },
+  {
+    "partner": "3",
+    "dateOfDocument": "2016-09-21",
+    "type": "SELL",
+    "state": "COMPLETED",
+    "details": [
+      {
+        "product": "1",
+        "quantity": "2",
+        "sum": "640",
+        "storage": "4"
+      },
+      {
+        "product": "2",
+        "quantity": "1",
+        "sum": "180",
+        "storage": "4"
+      }
+    ]
+  },
+  {
+
+    "partner": "7",
+    "dateOfDocument": "2016-09-22",
+
+    "type": "SELL",
+    "state": "COMPLETED",
+    "details":
+    [
+      {
+
+        "product": "1",
+        "quantity": "1",
+        "sum": "320",
+        "storage": "4"
+      }
+    ]
+  },
+  {
+
+    "partner": "10",
+    "dateOfDocument": "2016-09-22",
+
+    "type": "SELL",
+    "state": "COMPLETED",
+    "details":
+    [
+      {
+
+        "product": "1",
+        "quantity": "3",
+        "sum": "900",
+        "storage": "4"
+      }
+    ]
+  },
+  {
+
+    "partner": "4",
+    "dateOfDocument": "2016-09-23",
+
+    "type": "SELL",
+    "state": "COMPLETED",
+    "details":
+    [
+      {
+
+        "product": "1",
+        "quantity": "1",
+        "sum": "300",
+        "storage": "4"
+      }
+    ]
+  },
+  {
+
+    "partner": "14",
+    "dateOfDocument": "2016-09-23",
+
+    "type": "PURCHASE",
+    "state": "COMPLETED",
+    "details":
+    [
+      {
+
+        "product": "5",
+        "quantity": "20",
+        "sum": "3800",
+        "storage": "3"
+      },
+      {
+
+        "product": "7",
+        "quantity": "20",
+        "sum": "3800",
+        "storage": "3"
+      }
+    ]
+  },
+  {
+    "partner": "11",
+    "dateOfDocument": "2016-09-24",
+
+    "type": "SELL",
+    "state": "COMPLETED",
+    "details":
+    [
+      {
+
+        "product": "1",
+        "quantity": "7",
+        "sum": "2240",
+        "storage": "4"
+      },
+      {
+
+        "product": "7",
+        "quantity": "3",
+        "sum": "840",
+        "storage": "3"
+      }
+    ]
+  },
+
+  {
+    "partner": "2",
+    "dateOfDocument": "2016-09-24",
+    "type": "SELL",
+    "state": "COMPLETED",
+    "details": [
+      {
+        "product": "1",
+        "quantity": "6",
+        "sum": "1800",
+        "storage": "4"
+      },
+      {
+        "product": "2",
+        "quantity": "2",
+        "sum": "360",
+        "storage": "4"
+      },
+      {
+        "product": "3",
+        "quantity": "2",
+        "sum": "560",
+        "storage": "3"
+      },
+      {
+        "product": "4",
+        "quantity": "2",
+        "sum": "560",
+        "storage": "3"
+      },
+      {
+        "product": "5",
+        "quantity": "2",
+        "sum": "560",
+        "storage": "3"
+      },
+      {
+        "product": "6",
+        "quantity": "2",
+        "sum": "560",
+        "storage": "3"
+      }
+    ]
+  },
+  {
+
+    "partner": "1",
+    "dateOfDocument": "2016-09-26",
+
+    "type": "PURCHASE",
+    "state": "COMPLETED",
+    "details":
+    [
+      {
+
+        "product": "1",
+        "quantity": "50",
+        "sum": "10750",
+        "storage": "4"
+      },
+      {
+
+        "product": "2",
+        "quantity": "10",
+        "sum": "1150",
+        "storage": "4"
+      }
+    ]
+  },
+  {
+    "partner": "13",
+    "dateOfDocument": "2016-09-27",
+    "type": "SELL",
+    "state": "COMPLETED",
+    "details": [
+      {
+        "product": "1",
+        "quantity": "10",
+        "sum": "2550",
+        "storage": "4"
+      },
+      {
+        "product": "2",
+        "quantity": "2",
+        "sum": "340",
+        "storage": "4"
+      }
+    ]
+  },
+  {
+    "partner": "3",
+    "dateOfDocument": "2016-09-28",
+    "type": "SELL",
+    "state": "COMPLETED",
+    "details": [
+      {
+        "product": "1",
+        "quantity": "3",
+        "sum": "960",
+        "storage": "4"
+      },
+      {
+        "product": "2",
+        "quantity": "1",
+        "sum": "180",
+        "storage": "4"
+      },
+      {
+        "product": "5",
+        "quantity": "1",
+        "sum": "280",
+        "storage": "3"
+      }
+    ]
+  },
+  {
+    "partner": "4",
+    "dateOfDocument": "2016-09-28",
+    "type": "SELL",
+    "state": "COMPLETED",
+    "details": [
+      {
+        "product": "1",
+        "quantity": "2",
+        "sum": "600",
+        "storage": "4"
+      },
+      {
+        "product": "2",
+        "quantity": "1",
+        "sum": "180",
+        "storage": "4"
+      },
+      {
+        "product": "5",
+        "quantity": "1",
+        "sum": "280",
+        "storage": "3"
+      },
+      {
+        "product": "6",
+        "quantity": "1",
+        "sum": "280",
+        "storage": "3"
+      }
+    ]
+  },
+  {
+    "partner": "12",
+    "dateOfDocument": "2016-09-29",
+    "type": "SELL",
+    "state": "COMPLETED",
+    "details": [
+      {
+        "product": "1",
+        "quantity": "8",
+        "sum": "2400",
+        "storage": "4"
+      },
+      {
+        "product": "7",
+        "quantity": "5",
+        "sum": "1400",
+        "storage": "3"
+      }
+    ]
+  },
+  {
+    "partner": "5",
+    "dateOfDocument": "2016-09-30",
+    "type": "SELL",
+    "state": "COMPLETED",
+    "details": [
+      {
+        "product": "1",
+        "quantity": "10",
+        "sum": "2900",
+        "storage": "4"
+      },
+      {
+        "product": "5",
+        "quantity": "2",
+        "sum": "560",
+        "storage": "3"
+      }
+    ]
+  },
+  {
+    "partner": "11",
+    "dateOfDocument": "2016-10-01",
+
+    "type": "SELL",
+    "state": "COMPLETED",
+    "details":
+    [
+      {
+
+        "product": "1",
+        "quantity": "6",
+        "sum": "1920",
+        "storage": "4"
+      },
+      {
+
+        "product": "7",
+        "quantity": "4",
+        "sum": "1120",
+        "storage": "3"
+      }
+    ]
+  },
+
+  {
+    "partner": "2",
+    "dateOfDocument": "2016-10-01",
+    "type": "SELL",
+    "state": "COMPLETED",
+    "details": [
+      {
+        "product": "1",
+        "quantity": "6",
+        "sum": "1800",
+        "storage": "4"
+      },
+      {
+        "product": "2",
+        "quantity": "2",
+        "sum": "360",
+        "storage": "4"
+      },
+      {
+        "product": "3",
+        "quantity": "2",
+        "sum": "560",
+        "storage": "3"
+      },
+      {
+        "product": "4",
+        "quantity": "2",
+        "sum": "560",
+        "storage": "3"
+      },
+      {
+        "product": "5",
+        "quantity": "2",
+        "sum": "560",
+        "storage": "3"
+      },
+      {
+        "product": "6",
+        "quantity": "2",
+        "sum": "560",
+        "storage": "3"
+      }
+    ]
+  },
+  {
+    "partner": "3",
+    "dateOfDocument": "2016-10-03",
+    "type": "SELL",
+    "state": "COMPLETED",
+    "details": [
+      {
+        "product": "1",
+        "quantity": "3",
+        "sum": "960",
+        "storage": "4"
+      },
+      {
+        "product": "2",
+        "quantity": "1",
+        "sum": "180",
+        "storage": "4"
+      },
+      {
+        "product": "5",
+        "quantity": "1",
+        "sum": "280",
+        "storage": "3"
+      }
+    ]
+  },
+  {
+    "partner": "4",
+    "dateOfDocument": "2016-10-03",
+    "type": "SELL",
+    "state": "COMPLETED",
+    "details": [
+      {
+        "product": "1",
+        "quantity": "2",
+        "sum": "600",
+        "storage": "4"
+      },
+      {
+        "product": "2",
+        "quantity": "1",
+        "sum": "180",
+        "storage": "4"
+      },
+      {
+        "product": "5",
+        "quantity": "1",
+        "sum": "280",
+        "storage": "3"
+      },
+      {
+        "product": "6",
+        "quantity": "1",
+        "sum": "280",
+        "storage": "3"
+      }
+    ]
+  }
+
+]

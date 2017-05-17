@@ -1,0 +1,8 @@
+body {
+    padding-top: 70px;
+}
+
+.errors {
+    color: #CC0000;
+    display: block;
+}

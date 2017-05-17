@@ -1,0 +1,38 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<!DOCTYPE html>
+<html>
+<head>
+    <title>${title}</title>
+</head>
+<body>
+<h1>${title}</h1>
+<form:form method="post" modelAttribute="partnerForm">
+    <form:label path="title">Title</form:label><br />
+    <form:input path="title" /><br />
+    <br />
+    <form:label path="firstname">First name:</form:label><br />
+    <form:input path="firstname" /><br />
+    <br />
+    <form:label path="lastname">Last name:</form:label><br />
+    <form:input path="lastname" /><br />
+    <br/>
+    <form:label path="fathername">Father name:</form:label><br />
+    <form:input path="fathername" /><br />
+    <br />
+
+    <form:label path="city">City:</form:label><br />
+    <form:input path="city" /><br />
+    <form:form modelAttribute="partnerForm.phones">
+        <c:forEach items="${partnerForm.phoneForms.phones}" var="phone" varStatus="i">
+            <form:input path="phones[${i.index}]"/>
+        </c:forEach>
+        <input type="submit" value="Save" />
+    </form:form>
+
+</form:form>
+
+
+</form>
+</body>
+</html>
