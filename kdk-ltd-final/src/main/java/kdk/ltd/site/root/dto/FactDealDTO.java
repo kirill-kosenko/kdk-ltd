@@ -37,7 +37,7 @@ public class FactDealDTO extends DealDTO {
     public static FactDealDTO build(FactDeal d) {
         FactDealDTO dto = new FactDealDTO(
                 d.getId(),
-                d.getPartner().getName(),
+                d.getPartner().getFullname(),
                 d.getDateOfDeal(),
                 d.getUsername(),
                 d.getState().name(),
