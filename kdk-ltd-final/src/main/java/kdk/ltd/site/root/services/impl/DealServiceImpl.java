@@ -33,8 +33,6 @@ public class DealServiceImpl implements DealService<FactDeal, FactDealDTO> {
     @Inject
     private DealSearchService<FactDeal> searchService;
 
-
-
     protected JpaRepository<FactDeal, Long> getRepository() {
         return this.factDealRepository;
     }
@@ -66,20 +64,19 @@ public class DealServiceImpl implements DealService<FactDeal, FactDealDTO> {
     }
 
     @Override
-    public void save(FactDeal document) {
-        this.factDealRepository.save(document);
-        productInStockService.updateProductsInStock(document.getDetails());
+    public void save(FactDeal d) {
+        this.factDealRepository.save(d);
+        productInStockService.updateProductsInStock(d.getDetails());
     }
 
     @Transactional
-    public void save(List<FactDeal> documents) {
-        for (FactDeal d: documents) {
+    @Override
+    public void save(List<FactDeal> deals) {
+        for (FactDeal d: deals) {
             factDealRepository.save(d);
             productInStockService.updateProductsInStock(d.getDetails());
         }
     }
-
-
 
     @Override
     public Page<FactDealDTO> search(DealSearchCriteria criteria, Pageable pageable) {
