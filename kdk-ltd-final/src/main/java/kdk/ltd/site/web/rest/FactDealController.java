@@ -1,15 +1,14 @@
 package kdk.ltd.site.web.rest;
 
-import kdk.ltd.site.root.dto.FactDealDTO;
 import kdk.ltd.site.root.dto.DealSearchCriteria;
+import kdk.ltd.site.root.dto.FactDealDTO;
+import kdk.ltd.site.root.entities.FactDeal;
 import kdk.ltd.site.root.services.DealService;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
-import kdk.ltd.site.root.entities.FactDeal;
-
 
 import javax.inject.Inject;
 import java.util.List;
@@ -17,7 +16,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("deals")
-public class FactDealController extends KDKInterceptor {
+public class FactDealController {
 
     @Inject
     private DealService<FactDeal, FactDealDTO> dealService;

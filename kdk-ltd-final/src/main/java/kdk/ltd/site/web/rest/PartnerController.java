@@ -12,7 +12,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping(value = "partners", produces = "application/json")
-public class PartnerController extends KDKInterceptor {
+public class PartnerController {
 
     @Inject
     private PartnerRepository repository;

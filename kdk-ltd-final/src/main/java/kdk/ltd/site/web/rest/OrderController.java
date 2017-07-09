@@ -15,7 +15,7 @@ import javax.inject.Inject;
 
 @RestController
 @RequestMapping("orders")
-public class OrderController extends KDKInterceptor {
+public class OrderController {
 
     @Inject
     private DealService<Order, OrderDTO> orderService;
