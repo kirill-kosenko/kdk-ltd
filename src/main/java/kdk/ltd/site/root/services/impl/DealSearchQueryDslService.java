@@ -2,17 +2,17 @@ package kdk.ltd.site.root.services.impl;
 
 
 import com.mysema.query.BooleanBuilder;
+import kdk.ltd.site.root.dto.DealCriteria;
 import kdk.ltd.site.root.dto.DealSearchCriteria;
+import kdk.ltd.site.root.dto.DetailCriteria;
 import kdk.ltd.site.root.entities.Deal;
+import kdk.ltd.site.root.entities.QDeal;
 import kdk.ltd.site.root.entities.QDealDetail;
-import kdk.ltd.site.root.entities.QFactDeal;
 import kdk.ltd.site.root.repositories.DealRepository;
 import kdk.ltd.site.root.services.DealSearchService;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
-import kdk.ltd.site.root.dto.DealCriteria;
-import kdk.ltd.site.root.dto.DetailCriteria;
 
 import javax.inject.Inject;
 import java.util.List;
@@ -51,7 +51,7 @@ public class DealSearchQueryDslService implements DealSearchService<Deal> {
 
         if (criteria == null) return;
 
-        QFactDeal deal = QFactDeal.factDeal;
+        QDeal deal = QDeal.deal;
 
         if ( criteria.getDealTypes().size() > 0) {
             builder.and(
