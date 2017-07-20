@@ -1,7 +1,7 @@
 package kdk.ltd.site.web.rest;
 
 import kdk.ltd.site.root.dto.DealSearchCriteria;
-import kdk.ltd.site.root.dto.FactDealDTO;
+import kdk.ltd.site.root.dto.DealDTO;
 import kdk.ltd.site.root.entities.Deal;
 import kdk.ltd.site.root.services.DealService;
 import org.springframework.data.domain.Page;
@@ -16,18 +16,18 @@ import java.util.List;
 
 @RestController
 @RequestMapping("deals")
-public class FactDealController {
+public class DealController {
 
     @Inject
-    private DealService<Deal, FactDealDTO> dealService;
+    private DealService<Deal, DealDTO> dealService;
 
     @RequestMapping(value = "{id}", method = RequestMethod.GET)
-    public FactDealDTO getOne(@PathVariable Long id) {
+    public DealDTO getOne(@PathVariable Long id) {
         return dealService.findDto(id);
     }
 
     @RequestMapping(method = RequestMethod.GET)
-    public Page<FactDealDTO> findPage(
+    public Page<DealDTO> findPage(
             @PageableDefault(size = 10, page = 0) Pageable pageable
     ) {
         return dealService.findAll(pageable);
@@ -46,7 +46,7 @@ public class FactDealController {
     }
 
     @RequestMapping(method = RequestMethod.GET, params = "search")
-    public Page<FactDealDTO> search(
+    public Page<DealDTO> search(
                                  @PageableDefault(size = 10, page = 0) Pageable pageable,
                                  @RequestBody DealSearchCriteria criteria) {
         return dealService.search(criteria, pageable);

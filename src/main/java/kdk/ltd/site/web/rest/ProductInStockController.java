@@ -28,11 +28,11 @@ public class ProductInStockController {
                                                     @RequestParam(value = "storage", required = false) Optional<Long> storageId) {
 
         if (productId.isPresent() && storageId.isPresent() )
-            return Collections.singletonList(repository.findByProductIdAndStorageId(productId.get(), storageId.get()).get());
+            return Collections.singletonList(repository.findByIdProductIdAndIdStorageId(productId.get(), storageId.get()).get());
         if (productId.isPresent())
-            return repository.findByProductId(productId.get());
+            return repository.findByIdProductId(productId.get());
         if (storageId.isPresent())
-            return repository.findByStorageId(storageId.get());
+            return repository.findByIdStorageId(storageId.get());
         return repository.findAll();
     }
 
