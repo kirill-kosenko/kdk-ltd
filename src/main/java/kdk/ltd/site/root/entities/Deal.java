@@ -18,7 +18,7 @@ public class Deal extends GenericDeal {
 
     private State state;
 
-    @OneToMany(mappedBy = "document", cascade = {CascadeType.ALL}, fetch = FetchType.EAGER, orphanRemoval = true)
+    @OneToMany(mappedBy = "document", orphanRemoval = true)
     private List<DealDetail> details = new ArrayList<>();
 
     public enum State {

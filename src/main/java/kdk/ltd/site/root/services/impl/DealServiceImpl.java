@@ -1,8 +1,9 @@
 package kdk.ltd.site.root.services.impl;
 
-import kdk.ltd.site.root.dto.FactDealDTO;
+import kdk.ltd.site.root.dto.DealDTO;
 import kdk.ltd.site.root.dto.DealSearchCriteria;
 import kdk.ltd.site.root.entities.Deal;
+import kdk.ltd.site.root.entities.DealDetail;
 import kdk.ltd.site.root.repositories.DealRepository;
 import kdk.ltd.site.root.services.DealSearchService;
 import kdk.ltd.site.root.services.DealService;
@@ -22,7 +23,7 @@ import java.util.List;
 
 @Transactional
 @Service
-public class DealServiceImpl implements DealService<Deal, FactDealDTO> {
+public class DealServiceImpl implements DealService<Deal, DealDTO> {
 
     @Inject
     private DealRepository dealRepository;
@@ -48,20 +49,20 @@ public class DealServiceImpl implements DealService<Deal, FactDealDTO> {
     }
 
     @Override
-    public FactDealDTO findDto(Long id) {
+    public DealDTO findDto(Long id) {
         Deal deal = dealRepository.findOne(id);
         return buildDTO(deal);
     }
 
     @Override
-    public Page<FactDealDTO> findAll(Pageable pageable) {
+    public Page<DealDTO> findAll(Pageable pageable) {
         Page<Deal> deals = dealRepository.findAll(pageable);
         return new PageImpl<>(transformDocumentsInDTOs(deals), pageable, deals.getTotalElements());
     }
 
 
-    protected List<FactDealDTO> transformDocumentsInDTOs(Iterable<Deal> documents) {
-        List<FactDealDTO> results = new LinkedList<>();
+    protected List<DealDTO> transformDocumentsInDTOs(Iterable<Deal> documents) {
+        List<DealDTO> results = new LinkedList<>();
         for (Deal document: documents) {
             results.add( buildDTO(document) );
         }
@@ -69,8 +70,8 @@ public class DealServiceImpl implements DealService<Deal, FactDealDTO> {
     }
 
 
-    protected FactDealDTO buildDTO(Deal document) {
-        return FactDealDTO.build(document);
+    protected DealDTO buildDTO(Deal document) {
+        return DealDTO.build(document);
     }
 
     @Override
@@ -82,14 +83,14 @@ public class DealServiceImpl implements DealService<Deal, FactDealDTO> {
     @Transactional
     @Override
     public void save(List<Deal> deals) {
-        for (Deal d: deals) {
-            dealRepository.save(d);
-            productInStockService.updateProductsInStock(d.getDetails());
-        }
+        List<DealDetail> details = new LinkedList<>();
+        dealRepository.saveBatch(deals);
+        deals.forEach(d -> details.addAll(d.getDetails()));
+        productInStockService.updateProductsInStock(details);
     }
 
     @Override
-    public Page<FactDealDTO> search(DealSearchCriteria criteria, Pageable pageable) {
+    public Page<DealDTO> search(DealSearchCriteria criteria, Pageable pageable) {
         Page<Deal> deals = searchService.search(criteria, pageable);
         return new PageImpl<>(transformDocumentsInDTOs(deals), pageable, deals.getTotalElements());
     }

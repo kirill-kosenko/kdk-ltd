@@ -12,7 +12,7 @@ public abstract class PersistableObjectAudit extends PersistableObject {
     @Column(name = "update_ts")
     private LocalDateTime updateTimestamp;
 
-    @Column(name = "user")
+    @Column(name = "user_name")
     private String username;
 
     @SuppressWarnings("unused")
