@@ -1,0 +1,5 @@
+<aspectj>
+    <weaver options="-showWeaveInfo">
+        <include within="kdk.ltd.site.root.services..*"/>
+    </weaver>
+</aspectj>

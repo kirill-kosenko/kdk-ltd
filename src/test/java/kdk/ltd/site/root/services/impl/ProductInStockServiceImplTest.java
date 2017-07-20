@@ -5,6 +5,7 @@ import kdk.ltd.config.RootContextConfiguration;
 import kdk.ltd.site.root.dto.DealDTO;
 import kdk.ltd.site.root.entities.Deal;
 import kdk.ltd.site.root.entities.DealDetail;
+import kdk.ltd.site.root.entities.InStockId;
 import kdk.ltd.site.root.entities.ProductInStock;
 import kdk.ltd.site.root.repositories.PartnerRepository;
 import kdk.ltd.site.root.repositories.ProductRepository;
@@ -53,27 +54,23 @@ public class ProductInStockServiceImplTest {
     @Inject
     StorageRepository storageRepository;
 
-    @Test
+    @Test                                      //TODO: add product and storage
     public void findOneTest() {
-        ProductInStock inStock = productInStockService.findOne(1L);
+        ProductInStock inStock = productInStockService.findOne(new InStockId());
         Assert.assertNotNull(inStock);
     }
 
-    @Test
-    public void findByTest() {
-        ProductInStock inStock = productInStockService.findBy(3L, 4L);
-        Assert.assertEquals(new Long(1), inStock.getId());
-    }
+
 
     @Test
     public void findByStorageTest() {
-        List<ProductInStock> list = productInStockService.findByStorage(4L);
+        List<ProductInStock> list = productInStockService.findByStorageId(4L);
         Assert.assertEquals(2, list.size());
     }
 
     @Test
     public void findByProductTest() {
-        List<ProductInStock> list = productInStockService.findByProduct(3L);
+        List<ProductInStock> list = productInStockService.findByProductId(3L);
         Assert.assertEquals(1L, list.size());
     }
 
@@ -86,7 +83,7 @@ public class ProductInStockServiceImplTest {
                 new DealDetail(productRepository.getOne(3L), -40, new BigDecimal(12000), storageRepository.getOne(4L));
         productInStockService.updateProductsInStock(Arrays.asList(detail1, detail2));
         em.flush();
-        ProductInStock inStock = productInStockService.findOne(1L);
+        ProductInStock inStock = productInStockService.findOne(new InStockId());
 
         Assert.assertEquals(new Integer(13), inStock.getQuantity());
         Assert.assertEquals(new BigDecimal(19200), inStock.getSum());

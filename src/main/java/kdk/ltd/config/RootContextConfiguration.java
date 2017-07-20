@@ -25,8 +25,7 @@ import java.util.Properties;
 
 @Configuration
 @EnableTransactionManagement(
-        mode = AdviceMode.PROXY, proxyTargetClass = true,
-        order = 2
+        mode = AdviceMode.ASPECTJ
 )
 @EnableJpaRepositories(
         basePackages = "kdk.ltd.site.root.repositories",
@@ -37,7 +36,7 @@ import java.util.Properties;
         basePackages = "kdk.ltd.site.root"
 )
 @Import(SecurityConfig.class)
-@PropertySource({ "classpath:persistence-${envTarget:mysql}.properties" })
+@PropertySource({ "classpath:persistence-${envTarget:postgresql}.properties" })
 public class RootContextConfiguration {
 
     @Inject
@@ -87,7 +86,13 @@ public class RootContextConfiguration {
         final Properties hibernateProperties = new Properties();
         hibernateProperties.setProperty("hibernate.hbm2ddl.auto", env.getProperty("hibernate.hbm2ddl.auto"));
         hibernateProperties.setProperty("hibernate.dialect", env.getProperty("hibernate.dialect"));
+
+        hibernateProperties.setProperty("hibernate.jdbc.batch_size", env.getProperty("hibernate.jdbc.batch_size"));
         hibernateProperties.setProperty("hibernate.show_sql", env.getProperty("hibernate.show_sql"));
+        hibernateProperties.setProperty("hibernate.order_inserts", env.getProperty("hibernate.order_inserts"));
+        hibernateProperties.setProperty("hibernate.order_updates", env.getProperty("hibernate.order_updates"));
+        hibernateProperties.setProperty("hibernate.jdbc.batch_versioned_data", env.getProperty("hibernate.jdbc.batch_versioned_data"));
+    //    hibernateProperties.setProperty("hibernate.connection.autocommit", "hibernate.connection.autocommit");
         return hibernateProperties;
     }
 

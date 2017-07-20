@@ -3,10 +3,7 @@ package kdk.ltd.site.root.services.impl;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import kdk.ltd.config.RootContextConfiguration;
 import kdk.ltd.site.root.dto.DealDTO;
-import kdk.ltd.site.root.entities.Deal;
-import kdk.ltd.site.root.entities.DealDetail;
-import kdk.ltd.site.root.entities.GenericDeal;
-import kdk.ltd.site.root.entities.ProductInStock;
+import kdk.ltd.site.root.entities.*;
 import kdk.ltd.site.root.repositories.*;
 import kdk.ltd.site.root.services.DealService;
 import org.junit.Assert;
@@ -132,10 +129,10 @@ public class DealServiceImplTest {
 
         service.save(deal);
 
-        ProductInStock inStock = productInStockRepository.findOne(1L);
+        ProductInStock inStock = productInStockRepository.findOne(new InStockId());
 
-        Assert.assertEquals(detail1.getStorage().getId(), inStock.getStorage().getId());
-        Assert.assertEquals(detail1.getProduct().getId(), inStock.getProduct().getId());
+        Assert.assertEquals(detail1.getStorage().getId(), inStock.getId().getStorage().getId());
+        Assert.assertEquals(detail1.getProduct().getId(), inStock.getId().getProduct().getId());
         Assert.assertEquals(new Integer(50), inStock.getQuantity());
         Assert.assertEquals(new BigDecimal(12000).negate(), inStock.getSum());
     }

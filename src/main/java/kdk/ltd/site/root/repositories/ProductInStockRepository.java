@@ -1,5 +1,6 @@
 package kdk.ltd.site.root.repositories;
 
+import kdk.ltd.site.root.entities.InStockId;
 import kdk.ltd.site.root.entities.Product;
 import kdk.ltd.site.root.entities.ProductInStock;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -13,16 +14,15 @@ import java.util.List;
 import java.util.Optional;
 
 
-public interface ProductInStockRepository extends JpaRepository<ProductInStock, Long> {
+public interface ProductInStockRepository extends JpaRepository<ProductInStock, InStockId> {
 
-    Optional<ProductInStock> findByProductIdAndStorageId(Long productId, Long storageId);
-    @Query("select new ProductInStock(r.id, r.restDate, r.storage, r.product, r.quantity, r.sum) from ProductInStock r where r.product = ?1 and r.storage = ?2 and r.restDate = ?3")
+    Optional<ProductInStock> findByIdProductIdAndIdStorageId(Long productId, Long storageId);
+    @Query("select r from ProductInStock r where r.id.product = ?1 and r.id.storage = ?2 and r.id.restDate = ?3")
     Optional<ProductInStock> findBy(Product product, Storage storage, LocalDate date);
-    ProductInStock findByProductAndStorageAndRestDate(Product product, Storage storage, LocalDate date);
 
-    List<ProductInStock> findByStorageId(Long storageId);
-    List<ProductInStock> findByProductId(Long productId);
-    @Query("select sum(r.quantity) from ProductInStock r where r.product.id = ?1")
+    List<ProductInStock> findByIdStorageId(Long storageId);
+    List<ProductInStock> findByIdProductId(Long productId);
+    @Query("select sum(r.quantity) from ProductInStock r where r.id.product.id = ?1")
     Integer findReamainingQuantityForProduct(Long productId);
 
     @Query("select new ProductInStock(dd.storage, dd.product, sum(dd.quantity), sum(dd.sum) ) " +
@@ -31,6 +31,6 @@ public interface ProductInStockRepository extends JpaRepository<ProductInStock, 
     List<ProductInStock> prepareNewPeriod(List<Long> docsIds);
     @Query("select sum(d.quantity) from DealDetail d where d.product.id = ?1 and d.storage.id = ?2")
     Long selectSum(Long productId, Long storageId);
-    @Query("select max(r.restDate) from ProductInStock r")
+    @Query("select max(r.id.restDate) from ProductInStock r")
     LocalDate findMaxDate();
 }
