@@ -7,7 +7,7 @@ import java.time.LocalDate;
 import java.util.List;
 
 
-public interface DealRepository extends GenericDealRepository<Deal> {
+public interface DealRepository extends GenericDealRepository<Deal>, DealRepositoryCustom {
     @Query("select d.id from Deal d where d.dateOfDeal between ?1 and ?2")
     List<Long> findIdsBetween(LocalDate from, LocalDate to);
 
