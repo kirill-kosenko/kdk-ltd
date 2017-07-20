@@ -7,7 +7,7 @@ import java.time.LocalDate;
 import java.util.List;
 
 
-public class OrderDTO extends DealDTO {
+public class OrderDTO extends GenericDealDTO {
 
     private LocalDate completionDate;
     private boolean active;
