@@ -292,7 +292,6 @@
             <groupId>org.hibernate</groupId>
             <artifactId>hibernate-entitymanager</artifactId>
             <version>4.3.6.Final</version>
-            <scope>provided</scope>
             <exclusions>
                 <exclusion>
                     <groupId>org.hibernate.javax.persistence</groupId>
@@ -335,6 +334,12 @@
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
             <version>5.1.35</version>
+        </dependency>
+        <dependency>
+            <groupId>org.postgresql</groupId>
+            <artifactId>postgresql</artifactId>
+            <version>9.4.1212</version>
+            <scope>runtime</scope>
         </dependency>
 
         <dependency>
@@ -422,7 +427,7 @@
                 <version>2.19.1</version>
                 <configuration>
                     <systemPropertyVariables>
-                        <envTarget>h2</envTarget>
+                        <envTarget>postgresql</envTarget>
                     </systemPropertyVariables>
                 </configuration>
             </plugin>
