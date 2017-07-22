@@ -92,7 +92,7 @@ public class RootContextConfiguration {
         hibernateProperties.setProperty("hibernate.order_inserts", env.getProperty("hibernate.order_inserts"));
         hibernateProperties.setProperty("hibernate.order_updates", env.getProperty("hibernate.order_updates"));
         hibernateProperties.setProperty("hibernate.jdbc.batch_versioned_data", env.getProperty("hibernate.jdbc.batch_versioned_data"));
-    //    hibernateProperties.setProperty("hibernate.connection.autocommit", "hibernate.connection.autocommit");
+        hibernateProperties.setProperty("hibernate.generate_statistics", env.getProperty("hibernate.generate_statistics"));
         return hibernateProperties;
     }
 

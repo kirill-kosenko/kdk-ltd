@@ -3,8 +3,9 @@ package kdk.ltd.site.root.entities;
 
 import javax.persistence.*;
 import java.util.ArrayList;
-import java.util.LinkedList;
+import java.util.LinkedHashSet;
 import java.util.List;
+import java.util.Set;
 
 
 @Entity
@@ -19,7 +20,7 @@ public class Partner extends PersistableObject {
 
 
     @OneToMany(mappedBy = "partner", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    private List<Phone> phones = new LinkedList<>();
+    private Set<Phone> phones = new LinkedHashSet<>();
 
     public Partner() {
     }
@@ -68,11 +69,11 @@ public class Partner extends PersistableObject {
         this.name = name;
     }
 
-    public List<Phone> getPhones() {
+    public Set<Phone> getPhones() {
         return phones;
     }
 
-    public void setPhones(List<Phone> phones) {
+    public void setPhones(Set<Phone> phones) {
         this.phones = phones;
     }
 
