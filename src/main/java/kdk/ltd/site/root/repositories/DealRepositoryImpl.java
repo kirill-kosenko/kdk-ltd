@@ -5,18 +5,16 @@ import kdk.ltd.site.root.entities.Deal;
 import javax.persistence.EntityManager;
 import javax.persistence.FlushModeType;
 import javax.persistence.PersistenceContext;
-import javax.transaction.Transactional;
 import java.util.List;
 
 public class DealRepositoryImpl implements DealRepositoryCustom {
 
-    private final static int BATCH_SIZE = 20;
+    private final static int BATCH_SIZE = 50;
 
     @PersistenceContext
     private EntityManager em;
 
     @Override
-    @Transactional
     public void saveBatch(List<Deal> deals) {
         em.setFlushMode(FlushModeType.COMMIT);
 

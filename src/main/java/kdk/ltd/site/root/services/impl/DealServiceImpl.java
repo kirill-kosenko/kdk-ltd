@@ -5,18 +5,18 @@ import kdk.ltd.site.root.dto.DealSearchCriteria;
 import kdk.ltd.site.root.entities.Deal;
 import kdk.ltd.site.root.entities.DealDetail;
 import kdk.ltd.site.root.repositories.DealRepository;
+import kdk.ltd.site.root.repositories.DetailRepository;
 import kdk.ltd.site.root.services.DealSearchService;
 import kdk.ltd.site.root.services.DealService;
+import kdk.ltd.site.root.services.ProductInStockService;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import kdk.ltd.site.root.services.ProductInStockService;
 
 import javax.inject.Inject;
-
 import java.util.LinkedList;
 import java.util.List;
 
@@ -27,6 +27,8 @@ public class DealServiceImpl implements DealService<Deal, DealDTO> {
 
     @Inject
     private DealRepository dealRepository;
+    @Inject
+    private DetailRepository detailRepository;
 
     @Inject
     private ProductInStockService productInStockService;
@@ -87,7 +89,13 @@ public class DealServiceImpl implements DealService<Deal, DealDTO> {
         dealRepository.saveBatch(deals);
         deals.forEach(d -> details.addAll(d.getDetails()));
         productInStockService.updateProductsInStock(details);
+    /*    List<DealDetail> details = new LinkedList<>();
+        dealRepository.saveBatch(deals);
+        deals.forEach(d -> details.addAll(d.getDetails()));
+        productInStockService.updateProductsInStock(details);   */
+
     }
+
 
     @Override
     public Page<DealDTO> search(DealSearchCriteria criteria, Pageable pageable) {

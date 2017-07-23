@@ -66,4 +66,9 @@ INSERT INTO products(
 INSERT INTO products(
   version, description, name, packing, unit_name, unit_value, parent_id) VALUES (0,NULL,'Чернослив','шт',NULL,NULL,2);
 
-SELECT setval('products_id_seq', (SELECT MAX(id) FROM products));
+INSERT INTO storages(version, name)  VALUES (0,'Тольяти 399');
+INSERT INTO storages(version, name) VALUES (0,'Космос');
+INSERT INTO storages(version, name) VALUES (0,'Тольяти 79');
+INSERT INTO storages(version, name) VALUES (0,'Сокол 36');
+INSERT INTO storages(version, name) VALUES (0,'Офис');
+

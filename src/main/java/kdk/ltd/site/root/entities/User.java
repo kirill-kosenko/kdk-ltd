@@ -1,5 +1,6 @@
 package kdk.ltd.site.root.entities;
 
+import org.hibernate.annotations.GenericGenerator;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
@@ -11,7 +12,25 @@ import java.util.Set;
 public class User implements UserDetails {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GenericGenerator(
+            name = "sequenceGenerator",
+            strategy = "enhanced-sequence",
+            parameters = {
+                    @org.hibernate.annotations.Parameter(
+                            name = "optimizer",
+                            value = "pooled-lo"),
+                    @org.hibernate.annotations.Parameter(
+                            name = "initial_value",
+                            value = "1"),
+                    @org.hibernate.annotations.Parameter(
+                            name = "increment_size",
+                            value = "50"
+                    )
+            }
+    )
+    @GeneratedValue(
+            strategy = GenerationType.SEQUENCE,
+            generator = "sequenceGenerator")
     private Long id;
 
     private String username;
