@@ -4,11 +4,12 @@ import org.springframework.data.jpa.repository.Query;
 import kdk.ltd.site.root.entities.Deal;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 
 
 public interface DealRepository extends GenericDealRepository<Deal>, DealRepositoryCustom {
-    @Query("select d.id from Deal d where d.dateOfDeal between ?1 and ?2")
-    List<Long> findIdsBetween(LocalDate from, LocalDate to);
+    @Query("select d.id from Deal d where d.dateTimeOfDeal between ?1 and ?2")
+    List<Long> findIdsBetween(LocalDateTime from, LocalDateTime to);
 
 }

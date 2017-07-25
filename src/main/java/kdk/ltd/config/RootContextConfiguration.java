@@ -20,6 +20,9 @@ import javax.inject.Inject;
 import javax.persistence.SharedCacheMode;
 import javax.persistence.ValidationMode;
 import javax.sql.DataSource;
+import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Properties;
 
 
@@ -123,5 +126,10 @@ public class RootContextConfiguration {
         mapper.configure(DeserializationFeature.ADJUST_DATES_TO_CONTEXT_TIME_ZONE,
                 false);
         return mapper;
+    }
+
+    @Bean
+    public LocalDateTime currentRemainingsDate() {
+        return LocalDateTime.of(2000, 1, 1, 0, 0);
     }
 }

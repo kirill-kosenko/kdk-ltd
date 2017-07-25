@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.*;
 import kdk.ltd.site.root.services.ProductInStockService;
 
 import javax.inject.Inject;
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
@@ -28,11 +28,11 @@ public class ProductInStockController {
                                                     @RequestParam(value = "storage", required = false) Optional<Long> storageId) {
 
         if (productId.isPresent() && storageId.isPresent() )
-            return Collections.singletonList(repository.findByIdProductIdAndIdStorageId(productId.get(), storageId.get()).get());
+            return Collections.singletonList(repository.findByIdProductStorageWrapperProductIdAndIdProductStorageWrapperStorageId(productId.get(), storageId.get()).get());
         if (productId.isPresent())
-            return repository.findByIdProductId(productId.get());
+            return repository.findByIdProductStorageWrapperProductId(productId.get());
         if (storageId.isPresent())
-            return repository.findByIdStorageId(storageId.get());
+            return repository.findByIdProductStorageWrapperStorageId(storageId.get());
         return repository.findAll();
     }
 
@@ -45,8 +45,8 @@ public class ProductInStockController {
     @ResponseStatus(HttpStatus.OK)
     @RequestMapping(value = "createNewPeriod", method = RequestMethod.GET)
     public void createNewPeriod(@RequestParam(value = "date", required = true)
-                                @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate date) {
-        this.service.createPeriod(date);
+                                @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime dateTime) {
+        this.service.createPeriod(dateTime);
     }
 }
 

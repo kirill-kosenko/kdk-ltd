@@ -1,55 +1,49 @@
 package kdk.ltd.site.root.entities;
 
-import javax.persistence.Embeddable;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
 import java.io.Serializable;
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @Embeddable
 public class InStockId implements Serializable {
 
-    @ManyToOne
-    @JoinColumn(name = "product_id")
-    private Product product;
+    @Embedded
+    private ProductStorageWrapper productStorageWrapper;
 
-    @ManyToOne
-    @JoinColumn(name = "storage_id")
-    private Storage storage;
-
-    private LocalDate restDate;
+    @Column(name = "restDate")
+    private LocalDateTime restDateTime;
 
     public InStockId() {
     }
 
-    public InStockId(Product product, Storage storage, LocalDate date) {
-        this.product = product;
-        this.storage = storage;
-        this.restDate = date;
+    public InStockId(Product product, Storage storage) {
+        this.productStorageWrapper = new ProductStorageWrapper(product, storage);
     }
 
-    public Product getProduct() {
-        return product;
+    public InStockId(ProductStorageWrapper productStorageWrapper, LocalDateTime restDateTime) {
+        this.productStorageWrapper = productStorageWrapper;
+        this.restDateTime = restDateTime;
     }
 
-    public void setProduct(Product product) {
-        this.product = product;
+    public InStockId(Product product, Storage storage, LocalDateTime dateTime) {
+        this.productStorageWrapper = new ProductStorageWrapper(product, storage);
+        this.restDateTime = dateTime;
     }
 
-    public Storage getStorage() {
-        return storage;
+    public ProductStorageWrapper getProductStorageWrapper() {
+        return productStorageWrapper;
     }
 
-    public void setStorage(Storage storage) {
-        this.storage = storage;
+    public void setProductStorageWrapper(ProductStorageWrapper productStorageWrapper) {
+        this.productStorageWrapper = productStorageWrapper;
     }
 
-    public LocalDate getRestDate() {
-        return restDate;
+    public LocalDateTime getRestDateTime() {
+        return restDateTime;
     }
 
-    public void setRestDate(LocalDate restDate) {
-        this.restDate = restDate;
+    public void setRestDateTime(LocalDateTime restDate) {
+        this.restDateTime = restDate;
     }
 
     @Override
@@ -59,26 +53,23 @@ public class InStockId implements Serializable {
 
         InStockId inStockId = (InStockId) o;
 
-        if (!product.getId().equals(inStockId.product.getId())) return false;
-        if (!storage.getId().equals(inStockId.storage.getId())) return false;
-        return restDate.equals(inStockId.restDate);
-
+        if (!productStorageWrapper.equals(inStockId.productStorageWrapper)) return false;
+        return restDateTime.equals(inStockId.restDateTime);
     }
 
     @Override
     public int hashCode() {
-        int result = product.getId().hashCode();
-        result = 31 * result + storage.getId().hashCode();
-        result = 31 * result + restDate.hashCode();
+        int result = productStorageWrapper.hashCode();
+        result = 31 * result + restDateTime.hashCode();
         return result;
     }
 
     @Override
     public String toString() {
         return "InStockId{" +
-                "product=" + product +
-                ", storage=" + storage +
-                ", restDate=" + restDate +
+                "product=" + productStorageWrapper.getProduct() +
+                ", storage=" + productStorageWrapper.getStorage() +
+                ", restDate=" + restDateTime +
                 '}';
     }
 }

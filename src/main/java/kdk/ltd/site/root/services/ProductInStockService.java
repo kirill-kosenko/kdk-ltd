@@ -5,6 +5,7 @@ import kdk.ltd.site.root.entities.InStockId;
 import kdk.ltd.site.root.entities.ProductInStock;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 
 
@@ -13,6 +14,7 @@ public interface ProductInStockService {
     List<ProductInStock> findByStorageId(Long storageId);
     List<ProductInStock> findByProductId(Long productId);
     void updateProductsInStock(List<DealDetail> details);
-    void createPeriod(LocalDate date);
+    void createPeriod(LocalDateTime date);
+    void createPeriod();
     void deleteAll();
 }

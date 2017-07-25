@@ -23,6 +23,7 @@ import javax.inject.Inject;
 import javax.transaction.Transactional;
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
@@ -46,7 +47,7 @@ public class OrderServiceImplTest {
 
     @Test
     public void saveOrderTest() {
-        Order order = new Order(GenericDeal.Type.PURCHASE, partnerRepository.getOne(1L), false, LocalDate.now(), false);
+        Order order = new Order(GenericDeal.Type.PURCHASE, partnerRepository.getOne(1L), false, LocalDateTime.now(), false);
         OrderDetail detail = new OrderDetail(productRepository.getOne(1L), 50, new BigDecimal(12000));
         order.add(detail);
         order.setUser(userRepository.getOne(1L));
@@ -89,7 +90,7 @@ public class OrderServiceImplTest {
                         GenericDeal.Type.PURCHASE,
                         partnerRepository.getOne(1L),
                         false,
-                        LocalDate.now(),
+                        LocalDateTime.now(),
                         true,
                         Arrays.asList(detail1, detail2));
         Order order2 =
@@ -97,7 +98,7 @@ public class OrderServiceImplTest {
                         GenericDeal.Type.SELL,
                         partnerRepository.getOne(2L),
                         true,
-                        LocalDate.now(),
+                        LocalDateTime.now(),
                         true,
                         Arrays.asList(detail3, detail4)
                 );
@@ -106,7 +107,7 @@ public class OrderServiceImplTest {
                         GenericDeal.Type.SELL,
                         partnerRepository.getOne(5L),
                         true,
-                        LocalDate.now(),
+                        LocalDateTime.now(),
                         true,
                         Collections.singletonList(detail5)
                 );

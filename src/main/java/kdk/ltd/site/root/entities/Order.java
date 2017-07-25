@@ -2,6 +2,7 @@ package kdk.ltd.site.root.entities;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
@@ -21,12 +22,12 @@ public class Order extends GenericDeal {
     public Order() {
     }
 
-    public Order(Type type, Partner partner, boolean paid, LocalDate dateOfDocument, boolean active) {
+    public Order(Type type, Partner partner, boolean paid, LocalDateTime dateOfDocument, boolean active) {
         super(type, partner, paid, dateOfDocument);
         this.active = active;
     }
 
-    public Order(Type type, Partner partner, boolean paid, LocalDate dateOfDocument, boolean active, List<OrderDetail> details) {
+    public Order(Type type, Partner partner, boolean paid, LocalDateTime dateOfDocument, boolean active, List<OrderDetail> details) {
         this(type, partner, paid, dateOfDocument, active);
         this.details = details;
     }

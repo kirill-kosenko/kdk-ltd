@@ -2,6 +2,7 @@ package kdk.ltd.site.root.entities;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
@@ -18,7 +19,7 @@ public class Deal extends GenericDeal {
 
     private State state;
 
-    @OneToMany(mappedBy = "document", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "deal", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<DealDetail> details = new ArrayList<>();
 
     public enum State {
@@ -28,11 +29,11 @@ public class Deal extends GenericDeal {
     public Deal() {
     }
 
-    public Deal(Type type, Partner partner, boolean paid, LocalDate dateOfDocument) {
+    public Deal(Type type, Partner partner, boolean paid, LocalDateTime dateOfDocument) {
         super(type, partner, paid, dateOfDocument);
     }
 
-    public Deal(Type type, Partner partner, boolean paid, LocalDate dateOfDocument, List<DealDetail> details) {
+    public Deal(Type type, Partner partner, boolean paid, LocalDateTime dateOfDocument, List<DealDetail> details) {
         this(type, partner, paid, dateOfDocument);
         this.details = details;
     }
@@ -55,12 +56,12 @@ public class Deal extends GenericDeal {
 
     public void addDetail(DealDetail detail) {
         this.details.add(detail);
-        detail.setDocument(this);
+        detail.setDeal(this);
     }
 
     public void addAllDetails(Collection<DealDetail> details) {
         for (DealDetail detail: details) {
-            detail.setDocument(this);
+            detail.setDeal(this);
         }
         this.getDetails().addAll(details);
     }
@@ -97,7 +98,7 @@ public class Deal extends GenericDeal {
 
 
     private void changeInOutDetails(Consumer<DealDetail> c) {
-        details.forEach(d -> {d.setDocument(this); c.accept(d); } );
+        details.forEach(d -> {d.setDeal(this); c.accept(d); } );
     }
 
     private void changeMoveDetails() {
@@ -107,6 +108,6 @@ public class Deal extends GenericDeal {
     private void changeMove(int i, DealDetail d) {
        if (i%2 == 0) d.negateQuantity();
        else d.negateSum();
-       d.setDocument(this);
+       d.setDeal(this);
     }
 }

@@ -1,11 +1,13 @@
 package kdk.ltd.site.root.entities;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import kdk.ltd.site.web.deserializers.PartnerDeserializer;
 import kdk.ltd.site.root.validation.Date;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 
 @MappedSuperclass
@@ -24,8 +26,9 @@ public abstract class GenericDeal extends PersistableObjectAudit {
     private boolean paid;
 
     @Date
-    @Column(name = "date_of")
-    private LocalDate dateOfDeal;
+    @Column(name = "date_time_of_deal")
+    @JsonProperty("dateOfDeal")
+    private LocalDateTime dateTimeOfDeal;
 
     @ManyToOne
     @JoinColumn(name = "user_login")
@@ -34,11 +37,11 @@ public abstract class GenericDeal extends PersistableObjectAudit {
     public GenericDeal() {
     }
 
-    public GenericDeal(Type type, Partner partner, boolean paid, LocalDate dateOfDeal) {
+    public GenericDeal(Type type, Partner partner, boolean paid, LocalDateTime dateTimeOfDeal) {
         this.type = type;
         this.partner = partner;
         this.paid = paid;
-        this.dateOfDeal = dateOfDeal;
+        this.dateTimeOfDeal = dateTimeOfDeal;
     }
 
     public enum Type {
@@ -69,12 +72,12 @@ public abstract class GenericDeal extends PersistableObjectAudit {
         this.paid = paid;
     }
 
-    public LocalDate getDateOfDeal() {
-        return dateOfDeal;
+    public LocalDateTime getDateTimeOfDeal() {
+        return dateTimeOfDeal;
     }
 
-    public void setDateOfDeal(LocalDate dateOfDocument) {
-        this.dateOfDeal = dateOfDocument;
+    public void setDateTimeOfDeal(LocalDateTime dateOfDocument) {
+        this.dateTimeOfDeal = dateOfDocument;
     }
 
     public User getUser() {

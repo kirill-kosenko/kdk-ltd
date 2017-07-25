@@ -4,13 +4,12 @@ import javax.persistence.*;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 
 @Entity
 @Table(name = "products_in_stock")
 public class ProductInStock implements Serializable {
-
-    public static final LocalDate CURRENT_REMAININGS_DATE = LocalDate.of(2000, 1, 1);
 
     @EmbeddedId
     private InStockId id;
@@ -24,14 +23,13 @@ public class ProductInStock implements Serializable {
         this.sum = sum;
     }
 
-    public ProductInStock(Storage storage, Product product, Long qnt, BigDecimal sum) {
-        if (qnt > Integer.MAX_VALUE) throw new IllegalArgumentException("Sum of quantity is out of Integer range");
-        this.id = new InStockId(product, storage, CURRENT_REMAININGS_DATE);
-        this.quantity = qnt.intValue();
+    public ProductInStock(Product product, Storage storage, Integer quantity, BigDecimal sum) {
+        this.id = new InStockId(product, storage);
+        this.quantity = quantity;
         this.sum = sum;
     }
 
-    public ProductInStock(LocalDate restDate, Storage storage, Product product, Integer quantity, BigDecimal sum) {
+    public ProductInStock(LocalDateTime restDate, Storage storage, Product product, Integer quantity, BigDecimal sum) {
         this.id = new InStockId(product, storage, restDate);
         this.quantity = quantity;
         this.sum = sum;
@@ -86,5 +84,22 @@ public class ProductInStock implements Serializable {
     public ProductInStock subSum(BigDecimal sum) {
         this.setSum(this.sum.subtract(sum));
         return this;
+    }
+
+    //delegation
+    public ProductStorageWrapper getProductStorageWrapper() {
+        return id.getProductStorageWrapper();
+    }
+
+    public void setProductStorageWrapper(ProductStorageWrapper productStorageWrapper) {
+        id.setProductStorageWrapper(productStorageWrapper);
+    }
+
+    public LocalDateTime getRestDateTime() {
+        return id.getRestDateTime();
+    }
+
+    public void setRestDateTime(LocalDateTime restDate) {
+        id.setRestDateTime(restDate);
     }
 }

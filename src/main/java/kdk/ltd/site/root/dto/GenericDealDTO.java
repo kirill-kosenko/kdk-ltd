@@ -4,20 +4,21 @@ import kdk.ltd.site.root.entities.GenericDeal;
 
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 
 public class GenericDealDTO implements Serializable {
 
 	private long id;
 	private String partner;
-	private LocalDate dateOfDocument;
+	private LocalDateTime dateOfDocument;
 	private String user;
 	private GenericDeal.Type type;
 
 	public GenericDealDTO() {
 	}
 
-	public GenericDealDTO(long id, String partner, LocalDate dateOfDocument, String user, GenericDeal.Type type) {
+	public GenericDealDTO(long id, String partner, LocalDateTime dateOfDocument, String user, GenericDeal.Type type) {
 		this.id = id;
 		this.partner = partner;
 		this.dateOfDocument = dateOfDocument;
@@ -41,11 +42,11 @@ public class GenericDealDTO implements Serializable {
 		this.partner = partner;
 	}
 
-	public LocalDate getDateOfDocument() {
+	public LocalDateTime getDateOfDocument() {
 		return dateOfDocument;
 	}
 
-	public void setDateOfDocument(LocalDate dateOfDocument) {
+	public void setDateOfDocument(LocalDateTime dateOfDocument) {
 		this.dateOfDocument = dateOfDocument;
 	}
 
@@ -69,7 +70,7 @@ public class GenericDealDTO implements Serializable {
 		GenericDealDTO dto = new GenericDealDTO(
 				d.getId(),
 				d.getPartner().getName(),
-				d.getDateOfDeal(),
+				d.getDateTimeOfDeal(),
 				d.getUser().getUsername(),
 				d.getType()
 		);

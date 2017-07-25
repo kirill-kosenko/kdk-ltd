@@ -4,6 +4,7 @@ import kdk.ltd.site.root.entities.GenericDeal;
 import kdk.ltd.site.root.entities.Order;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 
 
@@ -13,7 +14,7 @@ public class OrderDTO extends GenericDealDTO {
     private boolean active;
     private List<DetailDTO> details;
 
-    public OrderDTO(long id, String partner, LocalDate dateOf, String user, LocalDate completionDate, boolean active, GenericDeal.Type type, List<DetailDTO> details) {
+    public OrderDTO(long id, String partner, LocalDateTime dateOf, String user, LocalDate completionDate, boolean active, GenericDeal.Type type, List<DetailDTO> details) {
         super(id, partner, dateOf, user, type);
         this.completionDate = completionDate;
         this.active = active;
@@ -50,7 +51,7 @@ public class OrderDTO extends GenericDealDTO {
         OrderDTO dto = new OrderDTO(
                 o.getId(),
                 o.getPartner().getFullname(),
-                o.getDateOfDeal(),
+                o.getDateTimeOfDeal(),
                 o.getUser().getUsername(),
                 o.getCompletionDate(),
                 o.isActive(),

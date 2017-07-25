@@ -21,6 +21,7 @@ import javax.inject.Inject;
 import javax.transaction.Transactional;
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
@@ -64,7 +65,7 @@ public class DealServiceImplTest {
                         GenericDeal.Type.PURCHASE,
                         partnerRepository.getOne(1L),
                         true,
-                        LocalDate.now(),
+                        LocalDateTime.now(),
                         Arrays.asList(detail1, detail2)
                 );
     }
@@ -123,7 +124,7 @@ public class DealServiceImplTest {
                         GenericDeal.Type.PURCHASE,
                         partnerRepository.getOne(1L),
                         true,
-                        LocalDate.now(),
+                        LocalDateTime.now(),
                         Collections.singletonList(detail1)
                 );
 
@@ -131,8 +132,10 @@ public class DealServiceImplTest {
 
         ProductInStock inStock = productInStockRepository.findOne(new InStockId());
 
-        Assert.assertEquals(detail1.getStorage().getId(), inStock.getId().getStorage().getId());
-        Assert.assertEquals(detail1.getProduct().getId(), inStock.getId().getProduct().getId());
+        Assert.assertEquals(detail1.getStorage().getId(),
+                inStock.getId().getProductStorageWrapper().getStorage().getId());
+        Assert.assertEquals(detail1.getProduct().getId(),
+                inStock.getId().getProductStorageWrapper().getProduct().getId());
         Assert.assertEquals(new Integer(50), inStock.getQuantity());
         Assert.assertEquals(new BigDecimal(12000).negate(), inStock.getSum());
     }

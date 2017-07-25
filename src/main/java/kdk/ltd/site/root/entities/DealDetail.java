@@ -13,7 +13,7 @@ public class DealDetail extends Detail  {
 
     @ManyToOne
     @JoinColumn(name = "document_id")
-    private Deal document;
+    private Deal deal;
 
     @ManyToOne
     @JoinColumn(name = "storage_id")
@@ -32,18 +32,18 @@ public class DealDetail extends Detail  {
         this.storage = storage;
     }
 
-    public DealDetail(Product product, Integer quantity, BigDecimal sum, Storage storage, Deal document) {
+    public DealDetail(Product product, Integer quantity, BigDecimal sum, Storage storage, Deal deal) {
         this(product, quantity, sum);
         this.storage = storage;
-        this.document = document;
+        this.deal = deal;
     }
 
-    public Deal getDocument() {
-        return document;
+    public Deal getDeal() {
+        return deal;
     }
 
-    public void setDocument(Deal document) {
-        this.document = document;
+    public void setDeal(Deal deal) {
+        this.deal = deal;
     }
 
     public Storage getStorage() {

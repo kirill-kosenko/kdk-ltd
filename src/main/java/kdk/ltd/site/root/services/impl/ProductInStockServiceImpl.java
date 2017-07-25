@@ -1,8 +1,6 @@
 package kdk.ltd.site.root.services.impl;
 
-import kdk.ltd.site.root.entities.DealDetail;
-import kdk.ltd.site.root.entities.InStockId;
-import kdk.ltd.site.root.entities.ProductInStock;
+import kdk.ltd.site.root.entities.*;
 import kdk.ltd.site.root.repositories.DealRepository;
 import kdk.ltd.site.root.repositories.ProductInStockRepository;
 import kdk.ltd.site.root.repositories.ProductRepository;
@@ -11,31 +9,51 @@ import kdk.ltd.site.root.services.ProductInStockService;
 import kdk.ltd.site.root.services.exceptions.NegativeBalanceException;
 import org.hibernate.engine.spi.EntityEntry;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import java.time.LocalDate;
-import java.util.List;
-import java.util.Map;
+import java.math.BigDecimal;
+import java.time.LocalDateTime;
+import java.util.*;
+import java.util.stream.Collectors;
 
 
-@Transactional
 @Service
+@Transactional
 public class ProductInStockServiceImpl implements ProductInStockService {
 
-    @Inject
+
     private ProductInStockRepository productInStockRepository;
-    @Inject
+
     private StorageRepository storageRepository;
-    @Inject
+
     private ProductRepository productRepository;
-    @Inject
+
     private DealRepository dealRepository;
+
+    private LocalDateTime currnetRemainingsDate;
+
     @PersistenceContext
     private EntityManager em;
 
+    public ProductInStockServiceImpl() {
+    }
+
+    @Inject
+    public ProductInStockServiceImpl(ProductInStockRepository productInStockRepository,
+                                     StorageRepository storageRepository,
+                                     ProductRepository productRepository,
+                                     DealRepository dealRepository,
+                                     LocalDateTime currentRemainingsDate) {
+        this.productInStockRepository = productInStockRepository;
+        this.storageRepository = storageRepository;
+        this.productRepository = productRepository;
+        this.dealRepository = dealRepository;
+        this.currnetRemainingsDate = currentRemainingsDate;
+    }
 
     @Override
     public ProductInStock findOne(InStockId id) {
@@ -46,78 +64,109 @@ public class ProductInStockServiceImpl implements ProductInStockService {
     public ProductInStock findBy(Long productId, Long storageId) {
         //    Product product = productRepository.getOne(productId);
         //    Storage storage = storageRepository.getOne(storageId);
-        return productInStockRepository.findByIdProductIdAndIdStorageId(productId, storageId).get();
+        return productInStockRepository.findByIdProductStorageWrapperProductIdAndIdProductStorageWrapperStorageId(productId, storageId).get();
     }
 
     @Override
     public List<ProductInStock> findByStorageId(Long storageId) {
         //    Storage storage = storageRepository.getOne(storageId);
-        return productInStockRepository.findByIdStorageId(storageId);
+        return productInStockRepository.findByIdProductStorageWrapperStorageId(storageId);
     }
 
     @Override
     public List<ProductInStock> findByProductId(Long productId) {
         //   Product product = productRepository.getOne(productId);
-        return productInStockRepository.findByIdProductId(productId);
+        return productInStockRepository.findByIdProductStorageWrapperProductId(productId);
     }
 
 
     @Override
-    @Transactional
+    @Transactional(propagation = Propagation.MANDATORY)
     public void updateProductsInStock(List<DealDetail> details) {
-        for (DealDetail d : details) {
-            update(d);
-        }
+        details.forEach(this::update);
     }
 
     public void update(DealDetail d) {
         InStockId id = new InStockId(
                 d.getProduct(),
-                d.getStorage(),
-                ProductInStock.CURRENT_REMAININGS_DATE
+                    d.getStorage(),
+                        currnetRemainingsDate
         );
-        //   System.err.println("Before obtaining rem");
-        //   printAllManagedEntitiesInPersistenceContext();
 
-        ProductInStock inStock = productInStockRepository.
-                                            findOne(id);
+        ProductInStock inStock =
+                productInStockRepository.findOne(id);
+
         if (inStock == null) {
             if (d.getQuantity() < 0)
                 throw new NegativeBalanceException(
                         String.format("Record with id = %s does not exist", id)
                 );
+
             productInStockRepository.save(
                     new ProductInStock(
                             id, d.getQuantity(), d.getSum())
             );
-
         } else {
             int qnt = inStock.getQuantity() + d.getQuantity();
             if (qnt < 0)
                 throw new NegativeBalanceException(
-                        String.format("Product: %d Storage: %d", id.getProduct().getId(), id.getStorage().getId()));
+                        String.format("Product: %d Storage: %d",
+                                id.getProductStorageWrapper().getProduct().getId(),
+                                id.getProductStorageWrapper().getStorage().getId()));
             inStock.setQuantity(qnt);
             inStock.setSum(inStock.getSum().add(d.getSum()));
         }
-        //   System.err.println("After obtaining rem");
-        //   printAllManagedEntitiesInPersistenceContext();
     }
 
     @Override
-    public void createPeriod(LocalDate end) {
+    public void createPeriod() {
+        createPeriod(LocalDateTime.now());
+    }
 
-        LocalDate lastDate = productInStockRepository.findMaxDate();
-        if (lastDate.compareTo(end) > 0)
-            throw new IllegalArgumentException("Date is incorrect");
+    @Override
+    public void createPeriod(final LocalDateTime target) {
 
-        List<Long> docsIds = dealRepository.findIdsBetween(lastDate, end.minusDays(1));
+        final LocalDateTime prev = productInStockRepository.findMaxDate();
+        if (prev.compareTo(target) > 0)
+            throw new IllegalArgumentException("Specified date is before previous period date");
+        List<ProductInStock> newPeriod =
+                productInStockRepository.findAllForNewPeriod(prev, target);
 
-        if (docsIds.size() == 0)
-            throw new RuntimeException("There are no amounts to save");
+        if (!currnetRemainingsDate.equals(prev)) {
+            addPreviousPeriod(newPeriod, prev, target);
+        }
 
-        List<ProductInStock> rems = productInStockRepository.prepareNewPeriod(docsIds);
-        rems.forEach(r -> r.getId().setRestDate(end));
-        productInStockRepository.save(rems);
+        newPeriod.forEach(p -> p.setRestDateTime(target));
+        productInStockRepository.save(newPeriod);
+    }
+
+    private void addPreviousPeriod(List<ProductInStock> newPeriod, LocalDateTime last, LocalDateTime end) {
+        Set<ProductStorageWrapper> wrappers =
+                newPeriod.stream()
+                .map(ProductInStock::getProductStorageWrapper)
+                .collect(Collectors.toSet());
+
+        List<ProductInStock> lastMatched =
+                productInStockRepository
+                        .findByIdProductStorageWrapperInAndIdRestDateTime(wrappers, last);
+        List<ProductInStock> lastNotMatched =
+                productInStockRepository
+                        .findByIdProductStorageWrapperNotInAndIdRestDateTime(wrappers, last);
+
+        newPeriod.forEach(p -> lastMatched.forEach(
+                m -> changeProdInStock(p, m)
+        ));
+
+        lastNotMatched.forEach(p -> p.setRestDateTime(end));
+
+        newPeriod.addAll(lastNotMatched);
+    }
+
+    private void changeProdInStock(ProductInStock p, ProductInStock m) {
+        if (p.getProductStorageWrapper().equals(m.getProductStorageWrapper())) {
+            p.setQuantity(p.getQuantity() + m.getQuantity());
+            p.setSum(p.getSum().add(m.getSum()));
+        }
     }
 
     private void printAllManagedEntitiesInPersistenceContext() {
