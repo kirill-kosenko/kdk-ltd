@@ -97,7 +97,7 @@
                 docDetails.push(o);
             });
          //   doc['details'] = docDetails;
-            docForm["document"] = doc;
+            docForm["deal"] = doc;
             docForm["details"] = docDetails;
            // alert(JSON.stringify(docForm));
 

@@ -4,7 +4,7 @@
     </jsp:attribute>
     <jsp:attribute name="footerContent">
         <script type="text/javascript">
-            $(document).ready(function() {
+            $(deal).ready(function() {
                 var phones = $('#phones');
                 var phonesSize = phones.find('.phone').size();
 
@@ -50,7 +50,7 @@
                     docDetails.push(o);
                 });
                 //   doc['details'] = docDetails;
-                docForm["document"] = doc;
+                docForm["deal"] = doc;
                 docForm["details"] = docDetails;
                 // alert(JSON.stringify(docForm));
 

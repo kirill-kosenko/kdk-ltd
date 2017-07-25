@@ -4,7 +4,7 @@
     </jsp:attribute>
     <jsp:attribute name="footerContent">
         <script type="text/javascript">
-            $(document).ready(function() {
+            $(deal).ready(function() {
                 var phones = $('#phones');
                 var phonesSize = phones.find('.phone').size();
 

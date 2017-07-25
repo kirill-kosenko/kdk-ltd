@@ -27,7 +27,7 @@
   <input type="submit" value="Save" />
 </form>
 <script>
-//  $(document).on('ready', function() {
+//  $(deal).on('ready', function() {
 
     var i = ${fn:length(partner.phones)};
     var $phones = $('#phones');

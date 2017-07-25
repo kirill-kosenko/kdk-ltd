@@ -155,9 +155,9 @@
                             <div class="panel-heading"><c:out value="${date}"/></div>
                             <div class="panel-body">
 
-                            <c:forEach items="${documents}" var="document" varStatus="i">
-                                <c:if test="${!date.equals(document.dateOfDocument)}">
-                                    <c:set var="date" value="${document.dateOfDocument}"/>
+                            <c:forEach items="${documents}" var="deal" varStatus="i">
+                                <c:if test="${!date.equals(deal.dateOfDocument)}">
+                                    <c:set var="date" value="${deal.dateOfDocument}"/>
                                     </div></div>
                                     <div class="panel panel-default">
                                     <div class="panel-heading"><c:out value="${date}" /></div>
@@ -166,7 +166,7 @@
 
                                 <div class="row">
                                     <div class="col-xs-4">
-                                        <c:forEach items="${document.details}" var="detail">
+                                        <c:forEach items="${deal.details}" var="detail">
                                             <div class="row">
                                                 <div class="col-lg-4 center-block"><c:out value="${detail.product.name}"/></div>
                                                 <div class="col-lg-2 center-block"><c:out value="${detail.quantity}"/></div>

@@ -1,7 +1,7 @@
 <template:main htmlTitle="Новый заказ" bodyTitle="Новый заказ">
     <jsp:attribute name="content">
     <div class="container">
-        <form:form role="form" modelAttribute="document" id="documentForm">
+        <form:form role="form" modelAttribute="deal" id="documentForm">
             <div id="docHead">
                 <div class="row">
                     <div class="col-xs-4">
@@ -34,7 +34,7 @@
                     <div class="col-lg-4 col-xs-4">Количество</div>
                 </div>
 
-                <c:forEach items="${document.details}" varStatus="i" >
+                <c:forEach items="${deal.details}" varStatus="i" >
 
                     <div class="row data" id="dataRow${i.index}">
                         <div class="col-xs-3">

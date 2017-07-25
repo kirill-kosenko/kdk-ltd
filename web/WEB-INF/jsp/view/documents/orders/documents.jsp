@@ -15,12 +15,12 @@
                 <th>Контрагент</th>
             </tr>
 
-        <c:forEach items="${documents}" var="document">
+        <c:forEach items="${documents}" var="deal">
             <tr>
-                <td><c:out value="${document.id}"/></td>
-                <td><c:out value="${document.documentType}"/></td>
-                <td><c:out value="${document.insertTimestamp}"/></td>
-                <td><c:out value="${document.partner.lastname}"/></td>
+                <td><c:out value="${deal.id}"/></td>
+                <td><c:out value="${deal.documentType}"/></td>
+                <td><c:out value="${deal.insertTimestamp}"/></td>
+                <td><c:out value="${deal.partner.lastname}"/></td>
                 <table>
                          <tr>
                             <th># партии</th>
@@ -30,7 +30,7 @@
                             <th>Сумма</th>
                         </tr>
 
-                    <c:forEach items="${document.details}" var="detail">
+                    <c:forEach items="${deal.details}" var="detail">
                         <tr>
                             <td><c:out value="${detail.id}"/></td>
                             <td><c:out value="${detail.product.name}"/></td>

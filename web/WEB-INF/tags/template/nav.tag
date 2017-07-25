@@ -77,7 +77,7 @@
     </div>
 </nav>
 <script>
-    $(document).on('ready', function() {
+    $(deal).on('ready', function() {
         $("#partner-menu").on('click', 'a', function (event) {
             event.preventDefault();
             $.get($(this).attr("href"), function(data) {

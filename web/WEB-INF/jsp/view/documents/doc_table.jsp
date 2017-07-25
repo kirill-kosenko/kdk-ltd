@@ -156,9 +156,9 @@
                     <div class="panel-heading"><c:out value="${date}"/></div>
                     <div class="panel-body">
 
-                    <c:forEach items="${documents}" var="document" varStatus="i">
-                      <c:if test="${!date.equals(document.dateOfDocument)}">
-                        <c:set var="date" value="${document.dateOfDocument}"/>
+                    <c:forEach items="${documents}" var="deal" varStatus="i">
+                      <c:if test="${!date.equals(deal.dateOfDocument)}">
+                        <c:set var="date" value="${deal.dateOfDocument}"/>
                         </div></div>
                         <div class="panel panel-default">
                         <div class="panel-heading"><c:out value="${date}" /></div>
@@ -168,13 +168,13 @@
                       <div class="row">
                         <div class="col-xs-4">
                           <div class="row">
-                            <div class="col-xs-3 center-block"><c:out value="${document.partner.fullname}"/></div>
-                            <div class="col-xs-2 center-block"><c:out value="${document.documentType}" /> </div>
+                            <div class="col-xs-3 center-block"><c:out value="${deal.partner.fullname}"/></div>
+                            <div class="col-xs-2 center-block"><c:out value="${deal.documentType}" /> </div>
                           </div>
                         </div>
                         <div class="col-xs-4">
                           <c:set var="sum" value="${0}"/>
-                          <c:forEach items="${document.details}" var="detail">
+                          <c:forEach items="${deal.details}" var="detail">
                             <div class="row">
                               <div class="col-lg-4 center-block"><c:out value="${detail.product.name}"/></div>
                               <div class="col-lg-2 center-block"><c:out value="${detail.quantity}"/></div>
@@ -186,8 +186,8 @@
                         </div>
                         <div class="col-xs-2"><c:out value="${sum}"/></div>
                         <div class="col-xs-1">
-                          <c:if test="${!document.status}">
-                            <form action="<c:out value="${document.id}" />/todocument" method="post">
+                          <c:if test="${!deal.status}">
+                            <form action="<c:out value="${deal.id}" />/todocument" method="post">
                               <button class="btn btn-primary">Провести</button>
                             </form>
                           </c:if>
