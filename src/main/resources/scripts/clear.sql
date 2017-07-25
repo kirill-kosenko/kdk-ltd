@@ -7,6 +7,7 @@ DELETE FROM deals;
 
 DELETE FROM storages;
 
+DELETE FROM products WHERE id > 2;
 DELETE FROM products;
 
 DELETE FROM partners;

@@ -32,7 +32,7 @@ INSERT INTO products VALUES (6,0,NULL,'Вишня','шт',NULL,NULL,2);
 INSERT INTO products VALUES (7,0,NULL,'Шоколад','шт',NULL,NULL,2);
 INSERT INTO products VALUES (8,0,NULL,'Миндаль','шт',NULL,NULL,2);
 INSERT INTO products VALUES (9,0,NULL,'Классик','шт',NULL,NULL,2);
-INSERT INTO products VALUES (10,NULL,'Чернослив','шт',NULL,NULL,2);
+INSERT INTO products VALUES (10,0,NULL,'Чернослив','шт',NULL,NULL,2);
 
 INSERT INTO storages  VALUES (1,0,'Тольяти 399');
 INSERT INTO storages  VALUES (2,0,'Космос');

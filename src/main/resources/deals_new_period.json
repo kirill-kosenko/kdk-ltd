@@ -1,0 +1,91 @@
+[
+  {
+
+    "partner": "1",
+    "dateOfDeal": "2017-07-20T00:00",
+
+    "type": "PURCHASE",
+    "state": "COMPLETED",
+    "details":
+    [
+      {
+
+        "product": "3",
+        "quantity": "100",
+        "sum": "10750",
+        "storage": "4"
+      }
+
+    ]
+  },
+  {
+
+    "partner": "14",
+    "dateOfDeal": "2017-07-21T00:00",
+
+    "type": "PURCHASE",
+    "state": "COMPLETED",
+    "details":
+    [
+      {
+
+        "product": "5",
+        "quantity": "12",
+        "sum": "2280",
+        "storage": "3"
+      },
+      {
+
+        "product": "6",
+        "quantity": "12",
+        "sum": "2280",
+        "storage": "3"
+      },
+      {
+
+        "product": "7",
+        "quantity": "16",
+        "sum": "3040",
+        "storage": "3"
+      },
+      {
+
+        "product": "8",
+        "quantity": "16",
+        "sum": "3040",
+        "storage": "3"
+      },
+      {
+
+        "product": "9",
+        "quantity": "12",
+        "sum": "2280",
+        "storage": "3"
+      }
+    ]
+  },
+  {
+    "partner": "13",
+    "dateOfDeal": "2017-07-21T00:00",
+
+    "type": "SELL",
+    "state": "COMPLETED",
+    "details":
+    [
+      {
+
+        "product": "3",
+        "quantity": 10,
+        "sum": "2500",
+        "storage": "4"
+      },
+      {
+
+        "product": "4",
+        "quantity": "2",
+        "sum": "340",
+        "storage": "4"
+      }
+    ]
+  }
+]
