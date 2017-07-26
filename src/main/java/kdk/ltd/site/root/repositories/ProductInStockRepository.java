@@ -15,50 +15,27 @@ import java.util.Optional;
 import java.util.Set;
 
 
-public interface ProductInStockRepository extends JpaRepository<ProductInStock, InStockId> {
+public interface ProductInStockRepository extends JpaRepository<ProductInStock, Long> {
 
-    Optional<ProductInStock> findByIdProductStorageWrapperProductIdAndIdProductStorageWrapperStorageId(Long productId, Long storageId);
-  /*  @Query("select r from ProductInStock r where r.id.product = ?1 and r.id.storage = ?2 and r.id.restDateTime = ?3")
-    Optional<ProductInStock> findBy(Product product, Storage storage, LocalDate date);*/
+    Optional<ProductInStock> findByProductIdAndStorageId(Long productId, Long storageId);
+    @Query("select r from ProductInStock r where r.product = ?1 and r.storage = ?2 and r.dateTimePoint = ?3")
+    Optional<ProductInStock> findByProductAndStorageAndDateTimePoint(Product product, Storage storage, LocalDateTime date);
 
-    List<ProductInStock> findByIdProductStorageWrapperStorageId(Long storageId);
-    List<ProductInStock> findByIdProductStorageWrapperProductId(Long productId);
-    @Query("select sum(r.quantity) from ProductInStock r where r.id.productStorageWrapper.product.id = ?1")
-    Integer findReamainingQuantityForProduct(Long productId);
-
-  /*  @Query("select new ProductInStock(dd.storage, dd.product, sum(dd.quantity), sum(dd.sum) ) " +
-            "from DealDetail dd where dd.deal.id in (?1)" +
-            "group by dd.product, dd.storage")
-    List<ProductInStock> prepareNewPeriod(List<Long> docsIds);
-    */
+    List<ProductInStock> findByStorageId(Long storageId);
+    List<ProductInStock> findByProductId(Long productId);
 
     @Query(
-            "select new kdk.ltd.site.root.entities.ProductInStock(dd.product, dd.storage, sum(dd.quantity), sum(dd.sum)) " +
-                    "from Deal d join DealDetail dd on d.id = dd.deal.id and d.dateTimeOfDeal between :prev and :target" +
+            "select new kdk.ltd.site.root.entities.ProductInStock(dd.product, dd.storage, sum(dd.sum), sum(dd.quantity)) " +
+                    "from Deal d join DealDetail dd on d.id = dd.deal.id and d.dateTimeOfDeal between ?1 and ?2" +
                     " group by dd.product, dd.storage")
-    List<ProductInStock> findAllForNewPeriod(@Param("prev") LocalDateTime prev, @Param("target") LocalDateTime target);
+    List<ProductInStock> createForNewPoint(LocalDateTime prevPoint, LocalDateTime newPoint);
 
     @Query("select sum(d.quantity) from DealDetail d where d.product.id = ?1 and d.storage.id = ?2")
     Long selectSum(Long productId, Long storageId);
 
-    List<ProductInStock> findByIdRestDateTime(LocalDateTime dateTime);
+    List<ProductInStock> findByDateTimePoint(LocalDateTime dateTime);
 
-    @Query("select max(r.id.restDateTime) from ProductInStock r")
-    LocalDateTime findMaxDate();
+    @Query("select max(r.dateTimePoint) from ProductInStock r")
+    LocalDateTime findPrevDateTimePoint();
 
-    @Query(
-            "select new kdk.ltd.site.root.entities.ProductInStock(p.id, p.quantity, p.sum) from ProductInStock p " +
-                    "where p.id.productStorageWrapper in (?1)"
-    )
-    List<ProductInStock> findByInProductSorageWrapper(Set<ProductStorageWrapper> set);
-
-    @Query(
-            "select new kdk.ltd.site.root.entities.ProductInStock(p.id, p.quantity, p.sum) from ProductInStock p " +
-                    "where p.id.productStorageWrapper not in (?1)"
-    )
-    List<ProductInStock> findByNotInProductStorageWrapper(Set<ProductStorageWrapper> set);
-
-    List<ProductInStock> findByIdProductStorageWrapperInAndIdRestDateTime(Set<ProductStorageWrapper> wrappers, LocalDateTime dateTime);
-
-    List<ProductInStock> findByIdProductStorageWrapperNotInAndIdRestDateTime(Set<ProductStorageWrapper> ids, LocalDateTime restDate);
 }

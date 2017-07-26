@@ -1,4 +1,4 @@
-package kdk.ltd.site.root.services.exceptions;
+package kdk.ltd.site.root.exceptions;
 
 public class NegativeBalanceException extends RuntimeException {
 

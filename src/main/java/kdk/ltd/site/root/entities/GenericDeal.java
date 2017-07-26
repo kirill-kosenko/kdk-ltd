@@ -25,7 +25,7 @@ public abstract class GenericDeal extends PersistableObjectAudit {
     @Column(name = "is_paid")
     private boolean paid;
 
-    @Date
+
     @Column(name = "date_time_of_deal")
     @JsonProperty("dateOfDeal")
     private LocalDateTime dateTimeOfDeal;

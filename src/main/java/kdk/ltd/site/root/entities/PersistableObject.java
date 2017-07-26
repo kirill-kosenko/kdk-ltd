@@ -12,6 +12,7 @@ public abstract class PersistableObject {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Access(AccessType.PROPERTY)
     private Long id;
 
     @JsonIgnore

@@ -85,8 +85,8 @@ public class DealServiceImpl implements DealService<Deal, DealDTO> {
     @Transactional
     @Override
     public void save(List<Deal> deals) {
-        List<DealDetail> details = new LinkedList<>();
         dealRepository.saveBatch(deals);
+        List<DealDetail> details = new LinkedList<>();
         deals.forEach(d -> details.addAll(d.getDetails()));
         productInStockService.updateProductsInStock(details);
     /*    List<DealDetail> details = new LinkedList<>();

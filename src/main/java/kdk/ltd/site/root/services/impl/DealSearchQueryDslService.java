@@ -60,12 +60,12 @@ public class DealSearchQueryDslService implements DealSearchService<Deal> {
         }
 
         if ( criteria.getFrom() != null ) {
-            builder.and(deal.dateOfDeal.after(criteria.getFrom()));
+            builder.and(deal.dateTimeOfDeal.after(criteria.getFrom()));
         }
 
         if ( criteria.getTo() != null ) {
             builder.and(
-                    deal.dateOfDeal.before(criteria.getTo())
+                    deal.dateTimeOfDeal.before(criteria.getTo())
             );
         }
 

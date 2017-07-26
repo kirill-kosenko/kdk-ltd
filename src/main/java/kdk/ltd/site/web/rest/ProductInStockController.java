@@ -28,25 +28,25 @@ public class ProductInStockController {
                                                     @RequestParam(value = "storage", required = false) Optional<Long> storageId) {
 
         if (productId.isPresent() && storageId.isPresent() )
-            return Collections.singletonList(repository.findByIdProductStorageWrapperProductIdAndIdProductStorageWrapperStorageId(productId.get(), storageId.get()).get());
+            return Collections.singletonList(repository.findByProductIdAndStorageId(productId.get(), storageId.get()).get());
         if (productId.isPresent())
-            return repository.findByIdProductStorageWrapperProductId(productId.get());
+            return repository.findByProductId(productId.get());
         if (storageId.isPresent())
-            return repository.findByIdProductStorageWrapperStorageId(storageId.get());
+            return repository.findByStorageId(storageId.get());
         return repository.findAll();
     }
 
     @RequestMapping(value = "{productId}", method = RequestMethod.GET)
     public @ResponseBody Integer productQuantity(@PathVariable Long productId) {
-        Integer i = repository.findReamainingQuantityForProduct(productId);
-        return i;
+
+        return 999999999;
     }
 
     @ResponseStatus(HttpStatus.OK)
     @RequestMapping(value = "createNewPeriod", method = RequestMethod.GET)
-    public void createNewPeriod(@RequestParam(value = "date", required = true)
+    public void createNewPeriod(@RequestParam(value = "date")
                                 @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime dateTime) {
-        this.service.createPeriod(dateTime);
+        this.service.createNewDateTimePoint(dateTime);
     }
 }
 

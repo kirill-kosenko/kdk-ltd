@@ -54,6 +54,14 @@ public abstract class Detail extends PersistableObjectAudit {
         this.sum = sum;
     }
 
+    public void setStorage() {
+        throw new UnsupportedOperationException();
+    }
+
+    public Storage getStorage() {
+        throw new UnsupportedOperationException();
+    }
+
     @Override
     public String toString() {
         return  "product=" + product.getId() +

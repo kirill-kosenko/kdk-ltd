@@ -39,7 +39,7 @@ import java.util.Properties;
         basePackages = "kdk.ltd.site.root"
 )
 @Import(SecurityConfig.class)
-@PropertySource({ "classpath:persistence-${envTarget:postgresql}.properties" })
+@PropertySource({ "classpath:persistence-${envTarget:mysql}.properties" })
 public class RootContextConfiguration {
 
     @Inject
@@ -128,8 +128,8 @@ public class RootContextConfiguration {
         return mapper;
     }
 
-    @Bean
-    public LocalDateTime currentRemainingsDate() {
+    @Bean(name = "currentDateTimePoint")
+    public LocalDateTime currentDateTimePoint() {
         return LocalDateTime.of(2000, 1, 1, 0, 0);
     }
 }

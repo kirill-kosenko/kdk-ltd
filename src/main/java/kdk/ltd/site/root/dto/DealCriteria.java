@@ -3,6 +3,7 @@ package kdk.ltd.site.root.dto;
 import kdk.ltd.site.root.entities.GenericDeal;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -13,9 +14,9 @@ public class DealCriteria {
 
     private List<Long> partnerIdList = new LinkedList<>();
 
-    private LocalDate from;
+    private LocalDateTime from;
 
-    private LocalDate to;
+    private LocalDateTime to;
 
     public List<GenericDeal.Type> getDealTypes() {
         return dealTypes;
@@ -25,19 +26,19 @@ public class DealCriteria {
         this.dealTypes = dealTypes;
     }
 
-    public LocalDate getFrom() {
+    public LocalDateTime getFrom() {
         return from;
     }
 
-    public void setFrom(LocalDate from) {
+    public void setFrom(LocalDateTime from) {
         this.from = from;
     }
 
-    public LocalDate getTo() {
+    public LocalDateTime getTo() {
         return to;
     }
 
-    public void setTo(LocalDate to) {
+    public void setTo(LocalDateTime to) {
         this.to = to;
     }
 

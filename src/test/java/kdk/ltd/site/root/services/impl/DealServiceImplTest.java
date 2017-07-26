@@ -130,12 +130,12 @@ public class DealServiceImplTest {
 
         service.save(deal);
 
-        ProductInStock inStock = productInStockRepository.findOne(new InStockId());
+        ProductInStock inStock = productInStockRepository.findOne(1L);
 
         Assert.assertEquals(detail1.getStorage().getId(),
-                inStock.getId().getProductStorageWrapper().getStorage().getId());
+                inStock.getStorage().getId());
         Assert.assertEquals(detail1.getProduct().getId(),
-                inStock.getId().getProductStorageWrapper().getProduct().getId());
+                inStock.getProduct().getId());
         Assert.assertEquals(new Integer(50), inStock.getQuantity());
         Assert.assertEquals(new BigDecimal(12000).negate(), inStock.getSum());
     }

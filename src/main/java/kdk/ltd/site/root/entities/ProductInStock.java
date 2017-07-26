@@ -1,9 +1,10 @@
 package kdk.ltd.site.root.entities;
 
+import kdk.ltd.site.root.exceptions.NegativeBalanceException;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.math.BigDecimal;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 
@@ -11,30 +12,20 @@ import java.time.LocalDateTime;
 @Table(name = "products_in_stock")
 public class ProductInStock implements Serializable {
 
-    @EmbeddedId
-    private InStockId id;
+    @Id
+    @GeneratedValue
+    private Long id;
 
-    public ProductInStock() {
-    }
+    @Column(name = "restDate")
+    private LocalDateTime dateTimePoint;
 
-    public ProductInStock(InStockId id, Integer quantity, BigDecimal sum) {
-        this.id = id;
-        this.quantity = quantity;
-        this.sum = sum;
-    }
+    @ManyToOne
+    @JoinColumn(name = "product_id")
+    private Product product;
 
-    public ProductInStock(Product product, Storage storage, Integer quantity, BigDecimal sum) {
-        this.id = new InStockId(product, storage);
-        this.quantity = quantity;
-        this.sum = sum;
-    }
-
-    public ProductInStock(LocalDateTime restDate, Storage storage, Product product, Integer quantity, BigDecimal sum) {
-        this.id = new InStockId(product, storage, restDate);
-        this.quantity = quantity;
-        this.sum = sum;
-    }
-
+    @ManyToOne
+    @JoinColumn(name = "storage_id")
+    private Storage storage;
 
     @Column(name = "qnt")
     private Integer quantity;
@@ -42,12 +33,59 @@ public class ProductInStock implements Serializable {
     @Column(name = "summ")
     private BigDecimal sum;
 
-    public InStockId getId() {
+    public ProductInStock() {
+    }
+
+    public ProductInStock(Product product, Storage storage, int quantity, BigDecimal sum) {
+        setProduct(product);
+        setStorage(storage);
+        setQuantity(quantity);
+        setSum(sum);
+    }
+
+    public ProductInStock(Product product, Storage storage, BigDecimal sum, Long quantity) {
+        this(product, storage, quantity.intValue(), sum);
+    }
+
+    public ProductInStock(Product product, Storage storage, int quantity, BigDecimal sum, LocalDateTime dateTimePoint) {
+        this(product, storage, quantity, sum);
+        setDateTimePoint(dateTimePoint);
+    }
+
+    public ProductInStock(ProductInStock r) {
+        this(r.getProduct(), r.getStorage(), r.getQuantity(), r.getSum());
+    }
+
+    public Long getId() {
         return id;
     }
 
-    public void setId(InStockId id) {
+    public void setId(Long id) {
         this.id = id;
+    }
+
+    public LocalDateTime getDateTimePoint() {
+        return dateTimePoint;
+    }
+
+    public void setDateTimePoint(LocalDateTime restDateTime) {
+        this.dateTimePoint = restDateTime;
+    }
+
+    public Product getProduct() {
+        return product;
+    }
+
+    public void setProduct(Product product) {
+        this.product = product;
+    }
+
+    public Storage getStorage() {
+        return storage;
+    }
+
+    public void setStorage(Storage storage) {
+        this.storage = storage;
     }
 
     public Integer getQuantity() {
@@ -86,20 +124,21 @@ public class ProductInStock implements Serializable {
         return this;
     }
 
-    //delegation
-    public ProductStorageWrapper getProductStorageWrapper() {
-        return id.getProductStorageWrapper();
+    public boolean eqaulsByProductAndStorage(ProductInStock p) {
+        return !product.getId().equals(p.getProduct().getId()) &&
+                !storage.getId().equals(p.getStorage().getId());
+
     }
 
-    public void setProductStorageWrapper(ProductStorageWrapper productStorageWrapper) {
-        id.setProductStorageWrapper(productStorageWrapper);
+    @PrePersist
+    @PreUpdate
+    private void checkQuantity() {
+        if (quantity < 0)
+            throw new NegativeBalanceException(
+                    String.format("Product: %d Storage: %d",
+                            getProduct().getId(),
+                            getStorage().getId())
+            );
     }
 
-    public LocalDateTime getRestDateTime() {
-        return id.getRestDateTime();
-    }
-
-    public void setRestDateTime(LocalDateTime restDate) {
-        id.setRestDateTime(restDate);
-    }
 }

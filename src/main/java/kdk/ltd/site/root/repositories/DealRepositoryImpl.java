@@ -5,6 +5,7 @@ import kdk.ltd.site.root.entities.Deal;
 import javax.persistence.EntityManager;
 import javax.persistence.FlushModeType;
 import javax.persistence.PersistenceContext;
+import javax.transaction.Transactional;
 import java.util.List;
 
 public class DealRepositoryImpl implements DealRepositoryCustom {
