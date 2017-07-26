@@ -27,38 +27,40 @@ public class StorageRepositoryTest {
     @Before
     public void setUp() {
         list = Arrays.asList(
-                new Storage("storage 1"),
-                new Storage("storage 2"),
-                new Storage("storage 3")
+                new Storage("Storage 1"),
+                new Storage("Storage 2"),
+                new Storage("Storage 3"),
+                new Storage("Storage 4"),
+                new Storage("Storage 5")
         );
 
-        repository.save(list);
+
     }
 
     @Test
     public void findOneTest() {
         Storage storage = repository.findOne(1L);
-        Assert.assertEquals(list.get(0), storage);
+        Assert.assertEquals(list.get(0).getName(), storage.getName());
     }
 
     @Test
     public void findAllTest() {
         List<Storage> storages = repository.findAll();
-        Assert.assertEquals(list, storages);
+        Assert.assertEquals(list.size(), storages.size());
     }
 
     @Test
     public void findAllNamesTest() {
         List<String> names = repository.findAllNames();
 
-        Assert.assertEquals(3, names.size());
+        Assert.assertEquals(5, names.size());
         for (int i = 0; i < names.size(); i++)
             Assert.assertEquals(list.get(i).getName(), names.get(i));
     }
 
     @Test
     public void findByNameTest() {
-        Storage actual = repository.findByName("storage 2");
-        Assert.assertEquals(list.get(1), actual);
+        Storage actual = repository.findByName("Storage 2");
+        Assert.assertEquals(list.get(1).getName(), actual.getName());
     }
 }

@@ -94,6 +94,7 @@ public class ProductInStockServiceImplTest {
                 new DealDetail(productRepository.getOne(3L), -10, new BigDecimal(3200), storageRepository.getOne(4L));
 
         productInStockService.updateProductsInStock(Collections.singletonList(detail));
+        em.flush();
     }
 
     @Test
