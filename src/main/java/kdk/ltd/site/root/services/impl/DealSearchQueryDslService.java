@@ -1,7 +1,7 @@
 package kdk.ltd.site.root.services.impl;
 
 
-import com.mysema.query.BooleanBuilder;
+import com.querydsl.core.BooleanBuilder;
 import kdk.ltd.site.root.dto.DealCriteria;
 import kdk.ltd.site.root.dto.DealSearchCriteria;
 import kdk.ltd.site.root.dto.DetailCriteria;
