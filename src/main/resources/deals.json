@@ -1,7 +1,7 @@
 [
   {
 
-    "partner": "1",
+    "partner": 1,
     "dateOfDeal": "2016-09-01T00:00",
 
     "type": "PURCHASE",
@@ -10,92 +10,68 @@
     [
       {
 
-        "product": "3",
-        "quantity": "100",
-        "sum": "10750",
-        "storage": "4"
+        "product": 3,
+        "quantity": 100,
+        "sum": -10750,
+        "storage": 4
       },
       {
 
-        "product": "4",
-        "quantity": "10",
-        "sum": "1150",
-        "storage": "4"
-      }
-    ]
-  },
-  {
-
-    "partner": "14",
-    "dateOfDeal": "2016-09-01T00:00",
-
-    "type": "PURCHASE",
-    "state": "COMPLETED",
-    "details":
-    [
-      {
-
-        "product": "5",
-        "quantity": "12",
-        "sum": "2280",
-        "storage": "3"
-      },
-      {
-
-        "product": "6",
-        "quantity": "12",
-        "sum": "2280",
-        "storage": "3"
-      },
-      {
-
-        "product": "7",
-        "quantity": "16",
-        "sum": "3040",
-        "storage": "3"
-      },
-      {
-
-        "product": "8",
-        "quantity": "16",
-        "sum": "3040",
-        "storage": "3"
-      },
-      {
-
-        "product": "9",
-        "quantity": "12",
-        "sum": "2280",
-        "storage": "3"
-      }
-    ]
-  },
-  {
-    "partner": "13",
-    "dateOfDeal": "2016-09-01T00:00",
-
-    "type": "SELL",
-    "state": "COMPLETED",
-    "details":
-    [
-      {
-
-        "product": "3",
+        "product": 4,
         "quantity": 10,
-        "sum": "2500",
-        "storage": "4"
-      },
-      {
-
-        "product": "4",
-        "quantity": "2",
-        "sum": "340",
-        "storage": "4"
+        "sum": -1150,
+        "storage": 4
       }
     ]
   },
   {
-    "partner": "2",
+
+    "partner": 14,
+    "dateOfDeal": "2016-09-01T00:00",
+
+    "type": "PURCHASE",
+    "state": "COMPLETED",
+    "details":
+    [
+      {
+
+        "product": 5,
+        "quantity": 12,
+        "sum": -2280,
+        "storage": 3
+      },
+      {
+
+        "product": 6,
+        "quantity": 12,
+        "sum": -2280,
+        "storage": 3
+      },
+      {
+
+        "product": 7,
+        "quantity": 16,
+        "sum": -3040,
+        "storage": 3
+      },
+      {
+
+        "product": 8,
+        "quantity": 16,
+        "sum": -3040,
+        "storage": 3
+      },
+      {
+
+        "product": 9,
+        "quantity": 12,
+        "sum": -2280,
+        "storage": 3
+      }
+    ]
+  },
+  {
+    "partner": 13,
     "dateOfDeal": "2016-09-01T00:00",
 
     "type": "SELL",
@@ -104,43 +80,67 @@
     [
       {
 
-        "product": "3",
-        "quantity": "3",
-        "sum": "960",
-        "storage": "4"
+        "product": 3,
+        "quantity": -10,
+        "sum": 2500,
+        "storage": 4
       },
       {
 
-        "product": "4",
-        "quantity": "2",
-        "sum": "360",
-        "storage": "4"
+        "product": 4,
+        "quantity": -2,
+        "sum": 340,
+        "storage": 4
+      }
+    ]
+  },
+  {
+    "partner": 2,
+    "dateOfDeal": "2016-09-01T00:00",
+
+    "type": "SELL",
+    "state": "COMPLETED",
+    "details":
+    [
+      {
+
+        "product": 3,
+        "quantity": -3,
+        "sum": 960,
+        "storage": 4
       },
       {
 
-        "product": "5",
-        "quantity": "1",
-        "sum": "280",
-        "storage": "3"
+        "product": 4,
+        "quantity": -2,
+        "sum": 360,
+        "storage": 4
+      },
+      {
+
+        "product": 5,
+        "quantity": -1,
+        "sum": 280,
+        "storage": 3
       } ,
       {
 
-        "product": "7",
-        "quantity": "1",
-        "sum": "280",
-        "storage": "3"
+        "product": 7,
+        "quantity": -1,
+        "sum": 280,
+        "storage": 3
       },
       {
 
-        "product": "8",
-        "quantity": "1",
-        "sum": "280",
-        "storage": "3"
+        "product": 8,
+        "quantity": -1,
+        "sum": 280,
+        "storage": 3
       }
     ]
   },
   {
-    "partner": "3",
+    "partner": 3,
     "dateOfDeal": "2016-09-01T00:00",
 
     "type": "SELL",
@@ -149,22 +149,22 @@
     [
       {
 
-        "product": "3",
-        "quantity": "2",
-        "sum": "640",
-        "storage": "4"
+        "product": 3,
+        "quantity": -2,
+        "sum": 640,
+        "storage": 4
       },
       {
 
-        "product": "4",
-        "quantity": "1",
-        "sum": "180",
-        "storage": "4"
+        "product": 4,
+        "quantity": -1,
+        "sum": 180,
+        "storage": 4
       }
     ]
   },
   {
-    "partner": "4",
+    "partner": 4,
     "dateOfDeal": "2016-09-01T00:00",
 
     "type": "SELL",
@@ -173,28 +173,28 @@
     [
       {
 
-        "product": "3",
-        "quantity": "1",
-        "sum": "300",
-        "storage": "4"
+        "product": 3,
+        "quantity": -1,
+        "sum": 300,
+        "storage": 4
       },
       {
 
-        "product": "4",
-        "quantity": "1",
-        "sum": "180",
-        "storage": "4"
+        "product": 4,
+        "quantity": -1,
+        "sum": 180,
+        "storage": 4
       },
       {
-        "product": "7",
-        "quantity": "1",
-        "sum": "280",
-        "storage": "3"
+        "product": 7,
+        "quantity": -1,
+        "sum": 280,
+        "storage": 3
       }
     ]
   },
   {
-    "partner": "12",
+    "partner": 12,
     "dateOfDeal": "2016-09-02T00:00",
 
     "type": "SELL",
@@ -203,22 +203,22 @@
     [
       {
 
-        "product": "3",
-        "quantity": "5",
-        "sum": "1500",
-        "storage": "4"
+        "product": 3,
+        "quantity": -5,
+        "sum": 1500,
+        "storage": 4
       },
       {
 
-        "product": "9",
-        "quantity": "3",
-        "sum": "840",
-        "storage": "3"
+        "product": 9,
+        "quantity": -3,
+        "sum": 840,
+        "storage": 3
       }
     ]
   },
   {
-    "partner": "5",
+    "partner": 5,
     "dateOfDeal": "2016-09-02T00:00",
 
     "type": "SELL",
@@ -227,22 +227,22 @@
     [
       {
 
-        "product": "3",
-        "quantity": "15",
-        "sum": "4350",
-        "storage": "4"
+        "product": 3,
+        "quantity": -15,
+        "sum": 4350,
+        "storage": 4
       },
       {
 
-        "product": "7",
-        "quantity": "4",
-        "sum": "1120",
-        "storage": "3"
+        "product": 7,
+        "quantity": -4,
+        "sum": 1120,
+        "storage": 3
       }
     ]
   },
   {
-    "partner": "11",
+    "partner": 11,
     "dateOfDeal": "2016-09-03T00:00",
 
     "type": "SELL",
@@ -251,21 +251,21 @@
     [
       {
 
-        "product": "3",
-        "quantity": "10",
-        "sum": "3200",
-        "storage": "4"
+        "product": 3,
+        "quantity": -10,
+        "sum": 3200,
+        "storage": 4
       },
       {
-        "product": "9",
-        "quantity": "4",
-        "sum": "1120",
-        "storage": "3"
+        "product": 9,
+        "quantity": -4,
+        "sum": 1120,
+        "storage": 3
       }
     ]
   },
   {
-    "partner": "2",
+    "partner": 2,
     "dateOfDeal": "2016-09-03T00:00",
 
     "type": "SELL",
@@ -274,47 +274,47 @@
     [
       {
 
-        "product": "3",
-        "quantity": "5",
-        "sum": "1600",
-        "storage": "4"
+        "product": 3,
+        "quantity": -5,
+        "sum": 1600,
+        "storage": 4
       },
       {
 
-        "product": "4",
-        "quantity": "2",
-        "sum": "360",
-        "storage": "4"
+        "product": 4,
+        "quantity": -2,
+        "sum": 360,
+        "storage": 4
       },
       {
-        "product": "5",
-        "quantity": "2",
-        "sum": "560",
-        "storage": "3"
+        "product": 5,
+        "quantity": -2,
+        "sum": 560,
+        "storage": 3
       },
       {
-        "product": "6",
-        "quantity": "2",
-        "sum": "560",
-        "storage": "3"
+        "product": 6,
+        "quantity": -2,
+        "sum": 560,
+        "storage": 3
       },
       {
-        "product": "7",
-        "quantity": "2",
-        "sum": "560",
-        "storage": "3"
+        "product": 7,
+        "quantity": -2,
+        "sum": 560,
+        "storage": 3
       },
       {
-        "product": "8",
-        "quantity": "2",
-        "sum": "560",
-        "storage": "3"
+        "product": 8,
+        "quantity": -2,
+        "sum": 560,
+        "storage": 3
       }
     ]
   },
   {
 
-    "partner": "1",
+    "partner": 1,
     "dateOfDeal": "2016-09-05T00:00",
 
     "type": "PURCHASE",
@@ -323,23 +323,23 @@
     [
       {
 
-        "product": "3",
-        "quantity": "50",
-        "sum": "10750",
-        "storage": "4"
+        "product": 3,
+        "quantity": 50,
+        "sum": -10750,
+        "storage": 4
       },
       {
 
-        "product": "4",
-        "quantity": "10",
-        "sum": "1150",
-        "storage": "4"
+        "product": 4,
+        "quantity": 10,
+        "sum": -1150,
+        "storage": 4
       }
     ]
   },
   {
 
-    "partner": "7",
+    "partner": 7,
     "dateOfDeal": "2016-09-05T00:00",
 
     "type": "SELL",
@@ -348,16 +348,16 @@
     [
       {
 
-        "product": "3",
-        "quantity": "2",
-        "sum": "640",
-        "storage": "4"
+        "product": 3,
+        "quantity": -2,
+        "sum": 640,
+        "storage": 4
       }
     ]
   },
   {
 
-    "partner": "10",
+    "partner": 10,
     "dateOfDeal": "2016-09-05T00:00",
 
     "type": "SELL",
@@ -366,73 +366,72 @@
     [
       {
 
-        "product": "3",
-        "quantity": "5",
-        "sum": "1500",
-        "storage": "4"
+        "product": 3,
+        "quantity": -5,
+        "sum": 1500,
+        "storage": 4
       }
     ]
   },
   {
 
-    "partner": "13",
+    "partner": 13,
     "dateOfDeal": "2016-09-06T00:00",
-
     "type": "SELL",
     "state": "COMPLETED",
     "details":
     [
       {
 
-        "product": "3",
-        "quantity": "10",
-        "sum": "2500",
-        "storage": "4"
+        "product": 3,
+        "quantity": -10,
+        "sum": 2500,
+        "storage": 4
       },
       {
 
-        "product": "4",
-        "quantity": "2",
-        "sum": "340",
-        "storage": "4"
+        "product": 4,
+        "quantity": -2,
+        "sum": 340,
+        "storage": 4
       }
     ]
   },
   {
-    "partner": "2",
+    "partner": 2,
     "dateOfDeal": "2016-09-06T00:00",
     "type": "SELL",
     "state": "COMPLETED",
     "details": [
       {
-        "product": "3",
-        "quantity": "2",
-        "sum": "640",
-        "storage": "4"
+        "product": 3,
+        "quantity": -2,
+        "sum": 640,
+        "storage": 4
       },
       {
-        "product": "4",
-        "quantity": "1",
-        "sum": "180",
-        "storage": "4"
+        "product": 4,
+        "quantity": -1,
+        "sum": 180,
+        "storage": 4
       },
       {
-        "product": "7",
-        "quantity": "1",
-        "sum": "280",
-        "storage": "3"
+        "product": 7,
+        "quantity": -1,
+        "sum": 280,
+        "storage": 3
       },
       {
-        "product": "8",
-        "quantity": "1",
-        "sum": "280",
-        "storage": "3"
+        "product": 8,
+        "quantity": -1,
+        "sum": 280,
+        "storage": 3
       }
     ]
   },
   {
 
-    "partner": "14",
+    "partner": 14,
     "dateOfDeal": "2016-09-01T00:00",
 
     "type": "PURCHASE",
@@ -441,63 +440,63 @@
     [
       {
 
-        "product": "5",
-        "quantity": "12",
-        "sum": "2280",
-        "storage": "3"
+        "product": 5,
+        "quantity": 12,
+        "sum": -2280,
+        "storage": 3
       },
       {
 
-        "product": "6",
-        "quantity": "12",
-        "sum": "2280",
-        "storage": "3"
+        "product": 6,
+        "quantity": 12,
+        "sum": -2280,
+        "storage": 3
       },
       {
 
-        "product": "7",
-        "quantity": "16",
-        "sum": "3040",
-        "storage": "3"
+        "product": 7,
+        "quantity": 16,
+        "sum": -3040,
+        "storage": 3
       },
       {
 
-        "product": "8",
-        "quantity": "16",
-        "sum": "3040",
-        "storage": "3"
+        "product": 8,
+        "quantity": 16,
+        "sum": -3040,
+        "storage": 3
       },
       {
 
-        "product": "9",
-        "quantity": "20",
-        "sum": "3800",
-        "storage": "3"
+        "product": 9,
+        "quantity": 20,
+        "sum": -3800,
+        "storage": 3
       }
     ]
   },
   {
-    "partner": "12",
+    "partner": 12,
     "dateOfDeal": "2016-09-07T00:00",
     "type": "SELL",
     "state": "COMPLETED",
     "details": [
       {
-        "product": "3",
-        "quantity": "9",
-        "sum": "2700",
-        "storage": "4"
+        "product": 3,
+        "quantity": -9,
+        "sum": 2700,
+        "storage": 4
       },
       {
-        "product": "9",
-        "quantity": "8",
-        "sum": "2240",
-        "storage": "3"
+        "product": 9,
+        "quantity": -8,
+        "sum": 2240,
+        "storage": 3
       }
     ]
   },
   {
-    "partner": "3",
+    "partner": 3,
     "dateOfDeal": "2016-09-08T00:00",
 
     "type": "SELL",
@@ -506,204 +505,204 @@
     [
       {
 
-        "product": "3",
-        "quantity": "3",
-        "sum": "960",
-        "storage": "4"
+        "product": 3,
+        "quantity": -3,
+        "sum": 960,
+        "storage": 4
       },
       {
 
-        "product": "4",
-        "quantity": "1",
-        "sum": "180",
-        "storage": "4"
+        "product": 4,
+        "quantity": -1,
+        "sum": 180,
+        "storage": 4
       },
       {
 
-        "product": "7",
-        "quantity": "1",
-        "sum": "280",
-        "storage": "3"
+        "product": 7,
+        "quantity": -1,
+        "sum": 280,
+        "storage": 3
       }
      ]
   },
   {
-    "partner": "4",
+    "partner": 4,
     "dateOfDeal": "2016-09-08T00:00",
     "type": "SELL",
     "state": "COMPLETED",
     "details": [
       {
-        "product": "3",
-        "quantity": "1",
-        "sum": "300",
-        "storage": "4"
+        "product": 3,
+        "quantity": -1,
+        "sum": 300,
+        "storage": 4
       },
       {
-        "product": "4",
-        "quantity": "1",
-        "sum": "180",
-        "storage": "4"
+        "product": 4,
+        "quantity": -1,
+        "sum": 180,
+        "storage": 4
       },
       {
-        "product": "7",
-        "quantity": "1",
-        "sum": "280",
-        "storage": "3"
+        "product": 7,
+        "quantity": -1,
+        "sum": 280,
+        "storage": 3
       },
       {
-        "product": "8",
-        "quantity": "1",
-        "sum": "280",
-        "storage": "3"
+        "product": 8,
+        "quantity": -1,
+        "sum": 280,
+        "storage": 3
       }
     ]
   },
   {
-    "partner": "2",
+    "partner": 2,
     "dateOfDeal": "2016-09-08T00:00",
     "type": "SELL",
     "state": "COMPLETED",
     "details": [
       {
-        "product": "3",
-        "quantity": "2",
-        "sum": "640",
-        "storage": "4"
+        "product": 3,
+        "quantity": -2,
+        "sum": 640,
+        "storage": 4
       },
       {
-        "product": "4",
-        "quantity": "1",
-        "sum": "180",
-        "storage": "4"
+        "product": 4,
+        "quantity": -1,
+        "sum": 180,
+        "storage": 4
       },
       {
-        "product": "6",
-        "quantity": "1",
-        "sum": "280",
-        "storage": "3"
+        "product": 6,
+        "quantity": -1,
+        "sum": 280,
+        "storage": 3
       },
       {
-        "product": "7",
-        "quantity": "1",
-        "sum": "280",
-        "storage": "3"
+        "product": 7,
+        "quantity": -1,
+        "sum": 280,
+        "storage": 3
       }
     ]
   },
   {
-    "partner": "3",
+    "partner": 3,
     "dateOfDeal": "2016-09-09T00:00",
     "type": "SELL",
     "state": "COMPLETED",
     "details": [
       {
-        "product": "3",
-        "quantity": "2",
-        "sum": "640",
-        "storage": "4"
+        "product": 3,
+        "quantity": -2,
+        "sum": 640,
+        "storage": 4
       }
     ]
   },
   {
-    "partner": "4",
+    "partner": 4,
     "dateOfDeal": "2016-09-09T00:00",
     "type": "SELL",
     "state": "COMPLETED",
     "details": [
       {
-        "product": "3",
-        "quantity": "2",
-        "sum": "600",
-        "storage": "4"
+        "product": 3,
+        "quantity": -2,
+        "sum": 600,
+        "storage": 4
       },
       {
-        "product": "4",
-        "quantity": "1",
-        "sum": "180",
-        "storage": "4"
+        "product": 4,
+        "quantity": -1,
+        "sum": 180,
+        "storage": 4
       },
       {
-        "product": "7",
-        "quantity": "1",
-        "sum": "280",
-        "storage": "3"
+        "product": 7,
+        "quantity": -1,
+        "sum": 280,
+        "storage": 3
       },
       {
-        "product": "8",
-        "quantity": "1",
-        "sum": "280",
-        "storage": "3"
+        "product": 8,
+        "quantity": -1,
+        "sum": 280,
+        "storage": 3
       }
     ]
   },
   {
-    "partner": "11",
+    "partner": 11,
     "dateOfDeal": "2016-09-10T00:00",
     "type": "SELL",
     "state": "COMPLETED",
     "details": [
       {
-        "product": "3",
-        "quantity": "7",
-        "sum": "2240",
-        "storage": "4"
+        "product": 3,
+        "quantity": -7,
+        "sum": 2240,
+        "storage": 4
       },
       {
-        "product": "9",
-        "quantity": "3",
-        "sum": "840",
-        "storage": "3"
+        "product": 9,
+        "quantity": -3,
+        "sum": 840,
+        "storage": 3
       }
     ]
   },
   {
-  "partner": "2",
+  "partner": 2,
   "dateOfDeal": "2016-09-06T00:00",
   "type": "SELL",
   "state": "COMPLETED",
   "details": [
     {
-      "product": "3",
-      "quantity": "5",
-      "sum": "1600",
-      "storage": "4"
+      "product": 3,
+      "quantity": -5,
+      "sum": 1600,
+      "storage": 4
     },
     {
-      "product": "4",
-      "quantity": "2",
-      "sum": "360",
-      "storage": "4"
+      "product": 4,
+      "quantity": -2,
+      "sum": 360,
+      "storage": 4
     },
     {
-      "product": "5",
-      "quantity": "2",
-      "sum": "560",
-      "storage": "3"
+      "product": 5,
+      "quantity": -2,
+      "sum": 560,
+      "storage": 3
     },
     {
-      "product": "6",
-      "quantity": "2",
-      "sum": "560",
-      "storage": "3"
+      "product": 6,
+      "quantity": -2,
+      "sum": 560,
+      "storage": 3
     },
     {
-      "product": "7",
-      "quantity": "2",
-      "sum": "560",
-      "storage": "3"
+      "product": 7,
+      "quantity": -2,
+      "sum": 560,
+      "storage": 3
     },
     {
-      "product": "8",
-      "quantity": "2",
-      "sum": "560",
-      "storage": "3"
+      "product": 8,
+      "quantity": -2,
+      "sum": 560,
+      "storage": 3
     }
   ]
 },
   {
 
-    "partner": "1",
+    "partner": 1,
     "dateOfDeal": "2016-09-12T00:00",
 
     "type": "PURCHASE",
@@ -712,121 +711,121 @@
     [
       {
 
-        "product": "3",
-        "quantity": "50",
-        "sum": "10750",
-        "storage": "4"
+        "product": 3,
+        "quantity": 50,
+        "sum": -10750,
+        "storage": 4
       },
       {
 
-        "product": "4",
-        "quantity": "10",
-        "sum": "1150",
-        "storage": "4"
+        "product": 4,
+        "quantity": 10,
+        "sum": -1150,
+        "storage": 4
       }
     ]
   },
   {
-    "partner": "5",
+    "partner": 5,
     "dateOfDeal": "2016-09-12T00:00",
     "type": "SELL",
     "state": "COMPLETED",
     "details": [
       {
-        "product": "3",
-        "quantity": "10",
-        "sum": "2900",
-        "storage": "4"
+        "product": 3,
+        "quantity": -10,
+        "sum": 2900,
+        "storage": 4
       },
       {
-        "product": "7",
-        "quantity": "5",
-        "sum": "1400",
-        "storage": "3"
+        "product": 7,
+        "quantity": -5,
+        "sum": 1400,
+        "storage": 3
       }
     ]
   },
   {
-    "partner": "13",
+    "partner": 13,
     "dateOfDeal": "2016-09-13T00:00",
     "type": "SELL",
     "state": "COMPLETED",
     "details": [
       {
-        "product": "3",
-        "quantity": "10",
-        "sum": "2500",
-        "storage": "4"
+        "product": 3,
+        "quantity": -10,
+        "sum": 2500,
+        "storage": 4
       },
       {
-        "product": "4",
-        "quantity": "2",
-        "sum": "340",
-        "storage": "4"
+        "product": 4,
+        "quantity": -2,
+        "sum": 340,
+        "storage": 4
       }
     ]
   },
   {
-    "partner": "3",
+    "partner": 3,
     "dateOfDeal": "2016-09-13T00:00",
     "type": "SELL",
     "state": "COMPLETED",
     "details": [
       {
-        "product": "3",
-        "quantity": "3",
-        "sum": "960",
-        "storage": "4"
+        "product": 3,
+        "quantity": -3,
+        "sum": 960,
+        "storage": 4
       },
       {
-        "product": "4",
-        "quantity": "1",
-        "sum": "180",
-        "storage": "4"
+        "product": 4,
+        "quantity": -1,
+        "sum": 180,
+        "storage": 4
       },
       {
-        "product": "7",
-        "quantity": "1",
-        "sum": "280",
-        "storage": "3"
+        "product": 7,
+        "quantity": -1,
+        "sum": 280,
+        "storage": 3
       }
     ]
   },
   {
-    "partner": "4",
+    "partner": 4,
     "dateOfDeal": "2016-09-14T00:00",
     "type": "SELL",
     "state": "COMPLETED",
     "details": [
       {
-        "product": "3",
-        "quantity": "2",
-        "sum": "600",
-        "storage": "4"
+        "product": 3,
+        "quantity": -2,
+        "sum": 600,
+        "storage": 4
       },
       {
-        "product": "4",
-        "quantity": "1",
-        "sum": "180",
-        "storage": "4"
+        "product": 4,
+        "quantity": -1,
+        "sum": 180,
+        "storage": 4
       },
       {
-        "product": "7",
-        "quantity": "1",
-        "sum": "280",
-        "storage": "3"
+        "product": 7,
+        "quantity": -1,
+        "sum": 280,
+        "storage": 3
       },
       {
-        "product": "8",
-        "quantity": "1",
-        "sum": "180",
-        "storage": "3"
+        "product": 8,
+        "quantity": -1,
+        "sum": 180,
+        "storage": 3
       }
     ]
   },
   {
 
-    "partner": "7",
+    "partner": 7,
     "dateOfDeal": "2016-09-15T00:00",
 
     "type": "SELL",
@@ -835,16 +834,16 @@
     [
       {
 
-        "product": "3",
-        "quantity": "2",
-        "sum": "640",
-        "storage": "4"
+        "product": 3,
+        "quantity": -2,
+        "sum": 640,
+        "storage": 4
       }
     ]
   },
   {
 
-    "partner": "10",
+    "partner": 10,
     "dateOfDeal": "2016-09-15T00:00",
 
     "type": "SELL",
@@ -853,16 +852,16 @@
     [
       {
 
-        "product": "3",
-        "quantity": "5",
-        "sum": "1500",
-        "storage": "4"
+        "product": 3,
+        "quantity": -5,
+        "sum": 1500,
+        "storage": 4
       }
     ]
   },
   {
 
-      "partner": "12",
+      "partner": 12,
       "dateOfDeal": "2016-09-16T00:00",
 
       "type": "SELL",
@@ -871,22 +870,22 @@
     [
       {
 
-        "product": "3",
-        "quantity": "7",
-        "sum": "2100",
-        "storage": "4"
+        "product": 3,
+        "quantity": -7,
+        "sum": 2100,
+        "storage": 4
       },
       {
 
-        "product": "9",
-        "quantity": "4",
-        "sum": "1120",
-        "storage": "3"
+        "product": 9,
+        "quantity": -4,
+        "sum": 1120,
+        "storage": 3
       }
     ]
   },
   {
-    "partner": "11",
+    "partner": 11,
     "dateOfDeal": "2016-09-17T00:00",
 
     "type": "SELL",
@@ -895,23 +894,23 @@
     [
       {
 
-        "product": "3",
-        "quantity": "8",
-        "sum": "2560",
-        "storage": "4"
+        "product": 3,
+        "quantity": -8,
+        "sum": 2560,
+        "storage": 4
       },
       {
 
-        "product": "9",
-        "quantity": "5",
-        "sum": "1400",
-        "storage": "3"
+        "product": 9,
+        "quantity": -5,
+        "sum": 1400,
+        "storage": 3
       }
     ]
   },
   {
 
-    "partner": "1",
+    "partner": 1,
     "dateOfDeal": "2016-09-16T00:00",
 
     "type": "PURCHASE",
@@ -920,217 +919,217 @@
     [
       {
 
-        "product": "3",
-        "quantity": "50",
-        "sum": "10750",
-        "storage": "4"
+        "product": 3,
+        "quantity": 50,
+        "sum": -10750,
+        "storage": 4
       },
       {
 
-        "product": "4",
-        "quantity": "10",
-        "sum": "1150",
-        "storage": "4"
+        "product": 4,
+        "quantity": 10,
+        "sum": -1150,
+        "storage": 4
       }
     ]
   },
   {
-    "partner": "2",
+    "partner": 2,
     "dateOfDeal": "2016-09-17T00:00",
     "type": "SELL",
     "state": "COMPLETED",
     "details": [
       {
-        "product": "3",
-        "quantity": "6",
-        "sum": "1800",
-        "storage": "4"
+        "product": 3,
+        "quantity": -6,
+        "sum": 1800,
+        "storage": 4
       },
       {
-        "product": "4",
-        "quantity": "2",
-        "sum": "360",
-        "storage": "4"
+        "product": 4,
+        "quantity": -2,
+        "sum": 360,
+        "storage": 4
       },
       {
-        "product": "5",
-        "quantity": "2",
-        "sum": "560",
-        "storage": "3"
+        "product": 5,
+        "quantity": -2,
+        "sum": 560,
+        "storage": 3
       },
       {
-        "product": "6",
-        "quantity": "2",
-        "sum": "560",
-        "storage": "3"
+        "product": 6,
+        "quantity": -2,
+        "sum": 560,
+        "storage": 3
       },
       {
-        "product": "7",
-        "quantity": "2",
-        "sum": "560",
-        "storage": "3"
+        "product": 7,
+        "quantity": -2,
+        "sum": 560,
+        "storage": 3
       },
       {
-        "product": "8",
-        "quantity": "2",
-        "sum": "560",
-        "storage": "3"
+        "product": 8,
+        "quantity": -2,
+        "sum": 560,
+        "storage": 3
       }
     ]
   },
   {
-    "partner": "3",
+    "partner": 3,
     "dateOfDeal": "2016-09-19T00:00",
     "type": "SELL",
     "state": "COMPLETED",
     "details": [
       {
-        "product": "3",
-        "quantity": "3",
-        "sum": "960",
-        "storage": "4"
+        "product": 3,
+        "quantity": -3,
+        "sum": 960,
+        "storage": 4
       },
       {
-        "product": "4",
-        "quantity": "1",
-        "sum": "180",
-        "storage": "4"
+        "product": 4,
+        "quantity": -1,
+        "sum": 180,
+        "storage": 4
       },
       {
-        "product": "7",
-        "quantity": "1",
-        "sum": "280",
-        "storage": "3"
+        "product": 7,
+        "quantity": -1,
+        "sum": 280,
+        "storage": 3
       }
     ]
   },
   {
-    "partner": "4",
+    "partner": 4,
     "dateOfDeal": "2016-09-19T00:00",
     "type": "SELL",
     "state": "COMPLETED",
     "details": [
       {
-        "product": "3",
-        "quantity": "2",
-        "sum": "600",
-        "storage": "4"
+        "product": 3,
+        "quantity": -2,
+        "sum": 600,
+        "storage": 4
       },
       {
-        "product": "4",
-        "quantity": "1",
-        "sum": "180",
-        "storage": "4"
+        "product": 4,
+        "quantity": -1,
+        "sum": 180,
+        "storage": 4
       },
       {
-        "product": "7",
-        "quantity": "1",
-        "sum": "280",
-        "storage": "3"
+        "product": 7,
+        "quantity": -1,
+        "sum": 280,
+        "storage": 3
       },
       {
-        "product": "8",
-        "quantity": "1",
-        "sum": "280",
-        "storage": "3"
+        "product": 8,
+        "quantity": -1,
+        "sum": 280,
+        "storage": 3
       }
     ]
   },
   {
-    "partner": "13",
+    "partner": 13,
     "dateOfDeal": "2016-09-20T00:00",
     "type": "SELL",
     "state": "COMPLETED",
     "details": [
       {
-        "product": "3",
-        "quantity": "10",
-        "sum": "2500",
-        "storage": "4"
+        "product": 3,
+        "quantity": -10,
+        "sum": 2500,
+        "storage": 4
       },
       {
-        "product": "4",
-        "quantity": "2",
-        "sum": "340",
-        "storage": "4"
+        "product": 4,
+        "quantity": -2,
+        "sum": 340,
+        "storage": 4
       }
     ]
   },
   {
-    "partner": "12",
+    "partner": 12,
     "dateOfDeal": "2016-09-21T00:00",
     "type": "SELL",
     "state": "COMPLETED",
     "details": [
       {
-        "product": "3",
-        "quantity": "5",
-        "sum": "1500",
-        "storage": "4"
+        "product": 3,
+        "quantity": -5,
+        "sum": 1500,
+        "storage": 4
       },
       {
-        "product": "9",
-        "quantity": "3",
-        "sum": "840",
-        "storage": "3"
+        "product": 9,
+        "quantity": -3,
+        "sum": 840,
+        "storage": 3
       }
     ]
   },
   {
-    "partner": "2",
+    "partner": 2,
     "dateOfDeal": "2016-09-21T00:00",
     "type": "SELL",
     "state": "COMPLETED",
     "details": [
       {
-        "product": "3",
-        "quantity": "3",
-        "sum": "960",
-        "storage": "4"
+        "product": 3,
+        "quantity": -3,
+        "sum": 960,
+        "storage": 4
       },
       {
-        "product": "4",
-        "quantity": "2",
-        "sum": "180",
-        "storage": "4"
+        "product": 4,
+        "quantity": -2,
+        "sum": 180,
+        "storage": 4
       },
       {
-        "product": "5",
-        "quantity": "1",
-        "sum": "280",
-        "storage": "3"
+        "product": 5,
+        "quantity": -1,
+        "sum": 280,
+        "storage": 3
       },
       {
-        "product": "7",
-        "quantity": "1",
-        "sum": "280",
-        "storage": "3"
+        "product": 7,
+        "quantity": -1,
+        "sum": 280,
+        "storage": 3
       }
     ]
   },
   {
-    "partner": "3",
+    "partner": 3,
     "dateOfDeal": "2016-09-21T00:00",
     "type": "SELL",
     "state": "COMPLETED",
     "details": [
       {
-        "product": "3",
-        "quantity": "2",
-        "sum": "640",
-        "storage": "4"
+        "product": 3,
+        "quantity": -2,
+        "sum": 640,
+        "storage": 4
       },
       {
-        "product": "4",
-        "quantity": "1",
-        "sum": "180",
-        "storage": "4"
+        "product": 4,
+        "quantity": -1,
+        "sum": 180,
+        "storage": 4
       }
     ]
   },
   {
 
-    "partner": "7",
+    "partner": 7,
     "dateOfDeal": "2016-09-22T00:00",
 
     "type": "SELL",
@@ -1139,16 +1138,16 @@
     [
       {
 
-        "product": "3",
-        "quantity": "1",
-        "sum": "320",
-        "storage": "4"
+        "product": 3,
+        "quantity": -1,
+        "sum": 320,
+        "storage": 4
       }
     ]
   },
   {
 
-    "partner": "10",
+    "partner": 10,
     "dateOfDeal": "2016-09-22T00:00",
 
     "type": "SELL",
@@ -1157,16 +1156,16 @@
     [
       {
 
-        "product": "3",
-        "quantity": "3",
-        "sum": "900",
-        "storage": "4"
+        "product": 3,
+        "quantity": -3,
+        "sum": 900,
+        "storage": 4
       }
     ]
   },
   {
 
-    "partner": "4",
+    "partner": 4,
     "dateOfDeal": "2016-09-23T00:00",
 
     "type": "SELL",
@@ -1175,16 +1174,16 @@
     [
       {
 
-        "product": "3",
-        "quantity": "1",
-        "sum": "300",
-        "storage": "4"
+        "product": 3,
+        "quantity": -1,
+        "sum": 300,
+        "storage": 4
       }
     ]
   },
   {
 
-    "partner": "14",
+    "partner": 14,
     "dateOfDeal": "2016-09-23T00:00",
 
     "type": "PURCHASE",
@@ -1193,22 +1192,22 @@
     [
       {
 
-        "product": "7",
-        "quantity": "20",
-        "sum": "3800",
-        "storage": "3"
+        "product": 7,
+        "quantity": 20,
+        "sum": -3800,
+        "storage": 3
       },
       {
 
-        "product": "9",
-        "quantity": "20",
-        "sum": "3800",
-        "storage": "3"
+        "product": 9,
+        "quantity": 20,
+        "sum": -3800,
+        "storage": 3
       }
     ]
   },
   {
-    "partner": "11",
+    "partner": 11,
     "dateOfDeal": "2016-09-24T00:00",
 
     "type": "SELL",
@@ -1217,68 +1216,68 @@
     [
       {
 
-        "product": "3",
-        "quantity": "7",
-        "sum": "2240",
-        "storage": "4"
+        "product": 3,
+        "quantity": -7,
+        "sum": 2240,
+        "storage": 4
       },
       {
 
-        "product": "9",
-        "quantity": "3",
-        "sum": "840",
-        "storage": "3"
+        "product": 9,
+        "quantity": -3,
+        "sum": 840,
+        "storage": 3
       }
     ]
   },
 
   {
-    "partner": "2",
+    "partner": 2,
     "dateOfDeal": "2016-09-24T00:00",
     "type": "SELL",
     "state": "COMPLETED",
     "details": [
       {
-        "product": "3",
-        "quantity": "6",
-        "sum": "1800",
-        "storage": "4"
+        "product": 3,
+        "quantity": -6,
+        "sum": 1800,
+        "storage": 4
       },
       {
-        "product": "4",
-        "quantity": "2",
-        "sum": "360",
-        "storage": "4"
+        "product": 4,
+        "quantity": -2,
+        "sum": 360,
+        "storage": 4
       },
       {
-        "product": "5",
-        "quantity": "2",
-        "sum": "560",
-        "storage": "3"
+        "product": 5,
+        "quantity": -2,
+        "sum": 560,
+        "storage": 3
       },
       {
-        "product": "6",
-        "quantity": "2",
-        "sum": "560",
-        "storage": "3"
+        "product": 6,
+        "quantity": -2,
+        "sum": 560,
+        "storage": 3
       },
       {
-        "product": "7",
-        "quantity": "2",
-        "sum": "560",
-        "storage": "3"
+        "product": 7,
+        "quantity": -2,
+        "sum": 560,
+        "storage": 3
       },
       {
-        "product": "8",
-        "quantity": "2",
-        "sum": "560",
-        "storage": "3"
+        "product": 8,
+        "quantity": -2,
+        "sum": 560,
+        "storage": 3
       }
     ]
   },
   {
 
-    "partner": "1",
+    "partner": 1,
     "dateOfDeal": "2016-09-26T00:00",
 
     "type": "PURCHASE",
@@ -1287,140 +1286,140 @@
     [
       {
 
-        "product": "3",
-        "quantity": "50",
-        "sum": "10750",
-        "storage": "4"
+        "product": 3,
+        "quantity": 50,
+        "sum": -10750,
+        "storage": 4
       },
       {
 
-        "product": "4",
-        "quantity": "10",
-        "sum": "1150",
-        "storage": "4"
+        "product": 4,
+        "quantity": 10,
+        "sum": -1150,
+        "storage": 4
       }
     ]
   },
   {
-    "partner": "13",
+    "partner": 13,
     "dateOfDeal": "2016-09-27T00:00",
     "type": "SELL",
     "state": "COMPLETED",
     "details": [
       {
-        "product": "3",
-        "quantity": "10",
-        "sum": "2550",
-        "storage": "4"
+        "product": 3,
+        "quantity": -10,
+        "sum": 2550,
+        "storage": 4
       },
       {
-        "product": "4",
-        "quantity": "2",
-        "sum": "340",
-        "storage": "4"
+        "product": 4,
+        "quantity": -2,
+        "sum": 340,
+        "storage": 4
       }
     ]
   },
   {
-    "partner": "3",
+    "partner": 3,
     "dateOfDeal": "2016-09-28T00:00",
     "type": "SELL",
     "state": "COMPLETED",
     "details": [
       {
-        "product": "3",
-        "quantity": "3",
-        "sum": "960",
-        "storage": "4"
+        "product": 3,
+        "quantity": -3,
+        "sum": 960,
+        "storage": 4
       },
       {
-        "product": "4",
-        "quantity": "1",
-        "sum": "180",
-        "storage": "4"
+        "product": 4,
+        "quantity": -1,
+        "sum": 180,
+        "storage": 4
       },
       {
-        "product": "7",
-        "quantity": "1",
-        "sum": "280",
-        "storage": "3"
+        "product": 7,
+        "quantity": -1,
+        "sum": 280,
+        "storage": 3
       }
     ]
   },
   {
-    "partner": "4",
+    "partner": 4,
     "dateOfDeal": "2016-09-28T00:00",
     "type": "SELL",
     "state": "COMPLETED",
     "details": [
       {
-        "product": "3",
-        "quantity": "2",
-        "sum": "600",
-        "storage": "4"
+        "product": 3,
+        "quantity": -2,
+        "sum": 600,
+        "storage": 4
       },
       {
-        "product": "4",
-        "quantity": "1",
-        "sum": "180",
-        "storage": "4"
+        "product": 4,
+        "quantity": -1,
+        "sum": 180,
+        "storage": 4
       },
       {
-        "product": "7",
-        "quantity": "1",
-        "sum": "280",
-        "storage": "3"
+        "product": 7,
+        "quantity": -1,
+        "sum": 280,
+        "storage": 3
       },
       {
-        "product": "8",
-        "quantity": "1",
-        "sum": "280",
-        "storage": "3"
+        "product": 8,
+        "quantity": -1,
+        "sum": 280,
+        "storage": 3
       }
     ]
   },
   {
-    "partner": "12",
+    "partner": 12,
     "dateOfDeal": "2016-09-29T00:00",
     "type": "SELL",
     "state": "COMPLETED",
     "details": [
       {
-        "product": "3",
-        "quantity": "8",
-        "sum": "2400",
-        "storage": "4"
+        "product": 3,
+        "quantity": -8,
+        "sum": 2400,
+        "storage": 4
       },
       {
-        "product": "9",
-        "quantity": "5",
-        "sum": "1400",
-        "storage": "3"
+        "product": 9,
+        "quantity": -5,
+        "sum": 1400,
+        "storage": 3
       }
     ]
   },
   {
-    "partner": "5",
+    "partner": 5,
     "dateOfDeal": "2016-09-30T00:00",
     "type": "SELL",
     "state": "COMPLETED",
     "details": [
       {
-        "product": "3",
-        "quantity": "10",
-        "sum": "2900",
-        "storage": "4"
+        "product": 3,
+        "quantity": -10,
+        "sum": 2900,
+        "storage": 4
       },
       {
-        "product": "7",
-        "quantity": "2",
-        "sum": "560",
-        "storage": "3"
+        "product": 7,
+        "quantity": -2,
+        "sum": 560,
+        "storage": 3
       }
     ]
   },
   {
-    "partner": "11",
+    "partner": 11,
     "dateOfDeal": "2016-10-01T00:00",
 
     "type": "SELL",
@@ -1429,120 +1428,120 @@
     [
       {
 
-        "product": "3",
-        "quantity": "6",
-        "sum": "1920",
-        "storage": "4"
+        "product": 3,
+        "quantity": -6,
+        "sum": 1920,
+        "storage": 4
       },
       {
 
-        "product": "9",
-        "quantity": "4",
-        "sum": "1120",
-        "storage": "3"
+        "product": 9,
+        "quantity": -4,
+        "sum": 1120,
+        "storage": 3
       }
     ]
   },
 
   {
-    "partner": "2",
+    "partner": 2,
     "dateOfDeal": "2016-10-01T00:00",
     "type": "SELL",
     "state": "COMPLETED",
     "details": [
       {
-        "product": "3",
-        "quantity": "6",
-        "sum": "1800",
-        "storage": "4"
+        "product": 3,
+        "quantity": -6,
+        "sum": 1800,
+        "storage": 4
       },
       {
-        "product": "4",
-        "quantity": "2",
-        "sum": "360",
-        "storage": "4"
+        "product": 4,
+        "quantity": -2,
+        "sum": 360,
+        "storage": 4
       },
       {
-        "product": "5",
-        "quantity": "2",
-        "sum": "560",
-        "storage": "3"
+        "product": 5,
+        "quantity": -2,
+        "sum": 560,
+        "storage": 3
       },
       {
-        "product": "6",
-        "quantity": "2",
-        "sum": "560",
-        "storage": "3"
+        "product": 6,
+        "quantity": -2,
+        "sum": 560,
+        "storage": 3
       },
       {
-        "product": "7",
-        "quantity": "2",
-        "sum": "560",
-        "storage": "3"
+        "product": 7,
+        "quantity": -2,
+        "sum": 560,
+        "storage": 3
       },
       {
-        "product": "8",
-        "quantity": "2",
-        "sum": "560",
-        "storage": "3"
+        "product": 8,
+        "quantity": -2,
+        "sum": 560,
+        "storage": 3
       }
     ]
   },
   {
-    "partner": "3",
+    "partner": 3,
     "dateOfDeal": "2016-10-03T00:00",
     "type": "SELL",
     "state": "COMPLETED",
     "details": [
       {
-        "product": "3",
-        "quantity": "3",
-        "sum": "960",
-        "storage": "4"
+        "product": 3,
+        "quantity": -3,
+        "sum": 960,
+        "storage": 4
       },
       {
-        "product": "4",
-        "quantity": "1",
-        "sum": "180",
-        "storage": "4"
+        "product": 4,
+        "quantity": -1,
+        "sum": 180,
+        "storage": 4
       },
       {
-        "product": "7",
-        "quantity": "1",
-        "sum": "280",
-        "storage": "3"
+        "product": 7,
+        "quantity": -1,
+        "sum": 280,
+        "storage": 3
       }
     ]
   },
   {
-    "partner": "4",
+    "partner": 4,
     "dateOfDeal": "2016-10-03T00:00",
     "type": "SELL",
     "state": "COMPLETED",
     "details": [
       {
-        "product": "3",
-        "quantity": "2",
-        "sum": "600",
-        "storage": "4"
+        "product": 3,
+        "quantity": -2,
+        "sum": 600,
+        "storage": 4
       },
       {
-        "product": "4",
-        "quantity": "1",
-        "sum": "180",
-        "storage": "4"
+        "product": 4,
+        "quantity": -1,
+        "sum": 180,
+        "storage": 4
       },
       {
-        "product": "7",
-        "quantity": "1",
-        "sum": "280",
-        "storage": "3"
+        "product": 7,
+        "quantity": -1,
+        "sum": 280,
+        "storage": 3
       },
       {
-        "product": "8",
-        "quantity": "1",
-        "sum": "280",
-        "storage": "3"
+        "product": 8,
+        "quantity": -1,
+        "sum": 280,
+        "storage": 3
       }
     ]
   }
