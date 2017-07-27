@@ -45,9 +45,15 @@ public class DealController {
         this.dealService.save(deals);
     }
 
+    @ResponseStatus(HttpStatus.OK)
+    @RequestMapping(value = "{id}", method = RequestMethod.PUT)
+    public void update(@PathVariable Long id, @RequestBody Deal deal) {
+        dealService.update(id, deal );
+    }
+
     @RequestMapping(method = RequestMethod.GET, params = "search")
     public Page<DealDTO> search(
-                                 @PageableDefault(size = 10, page = 0) Pageable pageable,
+                                 @PageableDefault Pageable pageable,
                                  @RequestBody DealSearchCriteria criteria) {
         return dealService.search(criteria, pageable);
     }
