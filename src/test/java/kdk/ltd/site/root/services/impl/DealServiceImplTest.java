@@ -18,9 +18,10 @@ import org.springframework.test.context.jdbc.Sql;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import javax.inject.Inject;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 import javax.transaction.Transactional;
 import java.math.BigDecimal;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.Arrays;
 import java.util.Collections;
@@ -35,6 +36,10 @@ public class DealServiceImplTest {
 
     @Inject
     DealService<Deal, DealDTO> service;
+    @Inject
+    DealDetailRepository detailRepository;
+    @Inject
+    DealRepository dealRepository;
 
     @Inject
     ProductRepository productRepository;
@@ -47,6 +52,9 @@ public class DealServiceImplTest {
     @Inject
     ProductInStockRepository productInStockRepository;
 
+    @PersistenceContext
+    EntityManager em;
+
     @Inject
     ObjectMapper objectMapper;
 
@@ -57,17 +65,20 @@ public class DealServiceImplTest {
     @Before
     public void setUp() {
         DealDetail detail1 =
-                new DealDetail(productRepository.getOne(3L), 50, new BigDecimal(12000));
+                new DealDetail(productRepository.getOne(3L), 50, new BigDecimal(-12000));
         DealDetail detail2 =
-                new DealDetail(productRepository.getOne(4L), 10, new BigDecimal(1200));
+                new DealDetail(productRepository.getOne(4L), 10, new BigDecimal(-1200));
         deal =
                 new Deal(
                         GenericDeal.Type.PURCHASE,
                         partnerRepository.getOne(1L),
                         true,
-                        LocalDateTime.now(),
-                        Arrays.asList(detail1, detail2)
+                        LocalDateTime.now()
+
                 );
+        deal.getDetails().addAll(Arrays.asList(detail1, detail2));
+        detail1.setDeal(deal);
+        detail2.setDeal(deal);
     }
 
     @Test
@@ -117,7 +128,7 @@ public class DealServiceImplTest {
     @Test
     public void whenSavesDeal_updatesProductInStock_thenCorrect() {
         DealDetail detail1 =
-                new DealDetail(productRepository.getOne(3L), 50, new BigDecimal(12000), storageRepository.getOne(1L));
+                new DealDetail(productRepository.getOne(3L), 50, new BigDecimal(-12000), storageRepository.getOne(1L));
 
         Deal deal =
                 new Deal(
@@ -127,6 +138,7 @@ public class DealServiceImplTest {
                         LocalDateTime.now(),
                         Collections.singletonList(detail1)
                 );
+        detail1.setDeal(deal);
 
         service.save(deal);
 
@@ -137,6 +149,45 @@ public class DealServiceImplTest {
         Assert.assertEquals(detail1.getProduct().getId(),
                 inStock.getProduct().getId());
         Assert.assertEquals(new Integer(50), inStock.getQuantity());
-        Assert.assertEquals(new BigDecimal(12000).negate(), inStock.getSum());
+        Assert.assertEquals(new BigDecimal(-12000), inStock.getSum());
+    }
+
+    @Test
+    public void updateTest() {
+        Deal deal = new Deal(
+                GenericDeal.Type.PURCHASE,
+                partnerRepository.getOne(1L),
+                false,
+                LocalDateTime.of(2016, 9, 1, 0, 0));
+        deal.setId(1L);
+        deal.setVersion(0);
+
+        DealDetail detail = new DealDetail(
+                productRepository.getOne(3L),
+                50,
+                new BigDecimal(-10750),
+                storageRepository.getOne(4L));
+        detail.setId(2147L);
+        detail.setVersion(0);
+        DealDetail detail1 = new DealDetail(
+                productRepository.getOne(4L),
+                10,
+                new BigDecimal(-1150),
+                storageRepository.getOne(4L)
+        );
+        detail1.setId(2148L);
+        detail1.setVersion(0);
+
+        deal.addAll(Arrays.asList(detail, detail1));
+        deal.setPartner( partnerRepository.getOne(2L) );
+
+        long dealSize = 5;
+        long detailSize = 16;
+     //   em.merge(deal);
+        service.update(1L, deal);
+        em.flush();
+
+     /*   Assert.assertEquals(dealSize, dealRepository.count());
+        Assert.assertEquals(detailSize, detailRepository.count());*/
     }
 }

@@ -17,9 +17,8 @@ import javax.inject.Inject;
 import java.util.LinkedList;
 import java.util.List;
 
-
-@Transactional
 @Service
+@Transactional
 public class OrderServiceImpl implements DealService<Order, OrderDTO> {
 
     @Inject
@@ -79,5 +78,10 @@ public class OrderServiceImpl implements DealService<Order, OrderDTO> {
     @Override
     public Page<OrderDTO> search(DealSearchCriteria criteria, Pageable pageable) {
         throw new UnsupportedOperationException("Search operation is unsupported yet");
+    }
+
+    @Override
+    public void update(Long id, Order deal) {
+
     }
 }

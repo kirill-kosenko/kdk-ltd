@@ -5,7 +5,7 @@ import kdk.ltd.site.root.dto.DealSearchCriteria;
 import kdk.ltd.site.root.entities.Deal;
 import kdk.ltd.site.root.entities.DealDetail;
 import kdk.ltd.site.root.repositories.DealRepository;
-import kdk.ltd.site.root.repositories.DetailRepository;
+import kdk.ltd.site.root.repositories.DealDetailRepository;
 import kdk.ltd.site.root.services.DealSearchService;
 import kdk.ltd.site.root.services.DealService;
 import kdk.ltd.site.root.services.ProductInStockService;
@@ -28,7 +28,7 @@ public class DealServiceImpl implements DealService<Deal, DealDTO> {
     @Inject
     private DealRepository dealRepository;
     @Inject
-    private DetailRepository detailRepository;
+    private DealDetailRepository dealDetailRepository;
 
     @Inject
     private ProductInStockService productInStockService;
@@ -101,5 +101,17 @@ public class DealServiceImpl implements DealService<Deal, DealDTO> {
     public Page<DealDTO> search(DealSearchCriteria criteria, Pageable pageable) {
         Page<Deal> deals = searchService.search(criteria, pageable);
         return new PageImpl<>(transformDocumentsInDTOs(deals), pageable, deals.getTotalElements());
+    }
+
+    @Override
+    public void update(Long id, Deal source) {
+        dealRepository.save(source);
+     /*   Deal target = dealRepository.findOne(source.getId());
+        target.setUsername( source.getUsername() );
+        target.setType( source.getType() );
+        target.setPartner( source.getPartner() );
+        target.setState( source.getState() );
+        target.setDateTimeOfDeal( source.getDateTimeOfDeal() );
+        */
     }
 }

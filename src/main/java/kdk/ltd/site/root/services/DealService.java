@@ -13,7 +13,8 @@ public interface DealService<T, U>  {//extends GenericService<T, Long> {
     List<T> findAll();
     U findDto(Long id);
     Page<U> findAll(Pageable pageable);
-    void save(T document);
+    void save(T deal);
     void save(List<T> documents);
     Page<U> search(DealSearchCriteria criteria, Pageable pageable);
+    void update(Long id, T deal);
 }

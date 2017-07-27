@@ -51,7 +51,6 @@ public class OrderServiceImplTest {
         OrderDetail detail = new OrderDetail(productRepository.getOne(1L), 50, new BigDecimal(12000));
         order.add(detail);
         order.setUser(userRepository.getOne(1L));
-
         service.save(order);
         Order from = service.find(4L);
 
@@ -91,26 +90,35 @@ public class OrderServiceImplTest {
                         partnerRepository.getOne(1L),
                         false,
                         LocalDateTime.now(),
-                        true,
-                        Arrays.asList(detail1, detail2));
+                        true
+                        );
+        order1.getDetails().addAll(Arrays.asList(detail1, detail2));
+        detail1.setOrder(order1);
+        detail2.setOrder(order1);
+
         Order order2 =
                 new Order(
                         GenericDeal.Type.SELL,
                         partnerRepository.getOne(2L),
                         true,
                         LocalDateTime.now(),
-                        true,
-                        Arrays.asList(detail3, detail4)
+                        true
                 );
+        order2.getDetails().addAll(Arrays.asList(detail3, detail4));
+        detail3.setOrder(order2);
+        detail4.setOrder(order2);
+
         Order order3 =
                 new Order(
                         GenericDeal.Type.SELL,
                         partnerRepository.getOne(5L),
                         true,
                         LocalDateTime.now(),
-                        true,
-                        Collections.singletonList(detail5)
+                        true
                 );
+        order3.getDetails().add(detail5);
+        detail5.setOrder(order3);
+
         service.save(
                 Arrays.asList(
                         order1, order2, order3
