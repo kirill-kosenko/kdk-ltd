@@ -16,7 +16,7 @@ public class Order extends GenericDeal {
     private LocalDate completionDate;
     private boolean active;
 
-    @OneToMany(mappedBy = "order", cascade = CascadeType.ALL, fetch = FetchType.EAGER, orphanRemoval = true)
+    @OneToMany(mappedBy = "order", cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
     private List<OrderDetail> details = new ArrayList<>();
 
     public Order() {
@@ -61,17 +61,14 @@ public class Order extends GenericDeal {
         this.details.add(detail);
     }
 
-    public void addAll(Collection<OrderDetail> details) {
-        this.details.addAll(
-                details.stream()
-                        .peek(d -> d.setOrder(this))
-                        .collect(Collectors.toList())
-        );
+    public void addAll(List<OrderDetail> details) {
+        details.forEach(d -> d.setOrder(this));
+        this.details = new ArrayList<>(details);
     }
 
-    @PrePersist
+  /*  @PrePersist
     @PreUpdate
     private void pre() {
         this.details.stream().peek(d -> d.setOrder(this)).collect(Collectors.toList());
-    }
+    }*/
 }

@@ -19,11 +19,11 @@ public class ProductInStock implements Serializable {
     @Column(name = "restDate")
     private LocalDateTime dateTimePoint;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "product_id")
     private Product product;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "storage_id")
     private Storage storage;
 

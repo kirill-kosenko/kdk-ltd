@@ -14,7 +14,7 @@ public class Phone extends PersistableObjectAudit {
 
     private String fullNumber;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "partner_id")
     @JsonIgnore
     private Partner partner;

@@ -8,7 +8,7 @@ import java.math.BigDecimal;
 @Table(name = "order_detail")
 public class OrderDetail extends Detail {
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "order_id")
     private Order order;
 

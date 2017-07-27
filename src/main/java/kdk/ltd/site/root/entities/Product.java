@@ -29,7 +29,7 @@ public class Product extends PersistableObject {
 
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     @JsonDeserialize(using = ProductDeserializer.class)
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "parent_id")
     private Product parent;
 

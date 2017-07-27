@@ -26,7 +26,7 @@ public class Authority extends PersistableObject implements GrantedAuthority {
         this.authority = Role.valueOf(string);
     }
 
-    @OneToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "username", nullable = false)
     @JsonIgnore
     private User user;

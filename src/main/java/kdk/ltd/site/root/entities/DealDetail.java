@@ -11,11 +11,11 @@ import java.math.BigDecimal;
 @Table(name = "deal_details")
 public class DealDetail extends Detail  {
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "document_id")
     private Deal deal;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "storage_id")
     @JsonDeserialize(using = StorageDeserializer.class)
     private Storage storage;
@@ -56,17 +56,25 @@ public class DealDetail extends Detail  {
 
     @Override
     public boolean equals(Object o) {
-        if (o == null) return false;
-        if (!(o instanceof DealDetail)) return false;
-        DealDetail obj = (DealDetail) o;
-        return this.getId().equals(obj.getId());
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        if (!super.equals(o)) return false;
+
+        DealDetail that = (DealDetail) o;
+
+        if (!deal.getId().equals(that.deal.getId())) return false;
+        return storage.getId().equals(that.storage.getId());
     }
 
     @Override
     public int hashCode() {
-        return super.hashCode();
+        int result = super.hashCode();
+        result = 31 * result + deal.getId().hashCode();
+        result = 31 * result + storage.getId().hashCode();
+        return result;
     }
 
+    /*
     public void negateSum() {
         this.setSum(getSum().negate());
     }
@@ -79,7 +87,15 @@ public class DealDetail extends Detail  {
     private void abs() {
         setQuantity(Math.abs(getQuantity()));
         setSum(getSum().abs());
-    }
+    }*/
 
+    public static DealDetail inverseQntAndSum(DealDetail d) {
+        return new DealDetail(
+                d.getProduct(),
+                -1 * d.getQuantity(),
+                d.getSum().negate(),
+                d.getStorage(),
+                d.getDeal());
+    }
 
 }

@@ -17,7 +17,7 @@ public abstract class GenericDeal extends PersistableObjectAudit {
     @Column(name = "deal_type")
     private Type type;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "partner_id")
     @JsonDeserialize(using = PartnerDeserializer.class)
     private Partner partner;
@@ -30,7 +30,7 @@ public abstract class GenericDeal extends PersistableObjectAudit {
     @JsonProperty("dateOfDeal")
     private LocalDateTime dateTimeOfDeal;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_login")
     private User user;
 
@@ -86,5 +86,29 @@ public abstract class GenericDeal extends PersistableObjectAudit {
 
     public void setUser(User user) {
         this.user = user;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        GenericDeal that = (GenericDeal) o;
+
+        if (paid != that.paid) return false;
+        if (type != that.type) return false;
+        if (!partner.getId().equals(that.partner.getId())) return false;
+        if (!dateTimeOfDeal.equals(that.dateTimeOfDeal)) return false;
+        return user != null ? user.getId().equals(that.user.getId()) : that.user == null;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = type.hashCode();
+        result = 31 * result + partner.getId().hashCode();
+        result = 31 * result + (paid ? 1 : 0);
+        result = 31 * result + dateTimeOfDeal.hashCode();
+        result = 31 * result + (user != null ? user.getId().hashCode() : 0);
+        return result;
     }
 }

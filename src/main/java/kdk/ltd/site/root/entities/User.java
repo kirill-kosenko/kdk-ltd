@@ -27,7 +27,7 @@ public class User implements UserDetails {
     @Column(name="not_locked")
     private boolean accountNonLocked;
 
-    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
    // @JsonDeserialize(using = AuthorityDeserializer.class)
     private Set<Authority> authorities = new LinkedHashSet<>();
 

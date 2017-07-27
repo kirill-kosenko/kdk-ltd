@@ -19,7 +19,7 @@ public class Partner extends PersistableObject {
     private String name;
 
 
-    @OneToMany(mappedBy = "partner", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "partner", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private Set<Phone> phones = new LinkedHashSet<>();
 
     public Partner() {

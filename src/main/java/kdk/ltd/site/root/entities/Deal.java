@@ -19,7 +19,7 @@ public class Deal extends GenericDeal {
 
     private State state;
 
-    @OneToMany(mappedBy = "deal", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "deal", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
     private List<DealDetail> details = new ArrayList<>();
 
     public enum State {
@@ -51,34 +51,41 @@ public class Deal extends GenericDeal {
     }
 
     public void setDetails(List<DealDetail> details) {
+        details.forEach(d -> d.setDeal(this));
         this.details = details;
     }
 
-    public void addDetail(DealDetail detail) {
+    public void add(DealDetail detail) {
         this.details.add(detail);
         detail.setDeal(this);
     }
 
-    public void addAllDetails(Collection<DealDetail> details) {
-        for (DealDetail detail: details) {
-            detail.setDeal(this);
-        }
+    public void addAll(Collection<DealDetail> details) {
+        details.forEach(d -> d.setDeal(this));
         this.getDetails().addAll(details);
     }
 
     @Override
     public boolean equals(Object o) {
-        if (o == null) return false;
-        if (!(o instanceof Deal)) return false;
-        Deal obj = (Deal) o;
-        return super.equals(o);
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        if (!super.equals(o)) return false;
+
+        Deal deal = (Deal) o;
+
+        if (state != deal.state) return false;
+        return details.equals(deal.details);
     }
 
     @Override
     public int hashCode() {
-        return super.hashCode();
+        int result = super.hashCode();
+        result = 31 * result + state.hashCode();
+        result = 31 * result + details.hashCode();
+        return result;
     }
 
+    /*
     @PrePersist
     @PreUpdate
     private void pre() {
@@ -109,5 +116,5 @@ public class Deal extends GenericDeal {
        if (i%2 == 0) d.negateQuantity();
        else d.negateSum();
        d.setDeal(this);
-    }
+    }*/
 }

@@ -12,18 +12,23 @@ public abstract class PersistableObject {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Access(AccessType.PROPERTY)
+    @Access(value = AccessType.PROPERTY)
     private Long id;
 
     @JsonIgnore
     @Version
     private Integer version;
 
+    /*public PersistableObject(Long id, Integer version) {
+        this.id = id;
+        this.version = version;
+    }*/
+
     public Long getId() {
         return id;
     }
 
-    protected void setId(Long pkey) {
+    public void setId(Long pkey) {
         this.id = pkey;
     }
 
@@ -40,21 +45,5 @@ public abstract class PersistableObject {
 
     public PersistableObject(Long id) {
         this.id = id;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-
-        PersistableObject that = (PersistableObject) o;
-
-        return !(id != null ? !id.equals(that.id) : that.id != null);
-
-    }
-
-    @Override
-    public int hashCode() {
-        return id != null ? id.hashCode() : 0;
     }
 }

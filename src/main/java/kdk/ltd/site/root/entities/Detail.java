@@ -19,7 +19,7 @@ public abstract class Detail extends PersistableObjectAudit {
         this.sum = sum;
     }
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "product_id")
     @JsonDeserialize(using = ProductDeserializer.class)
     private Product product;
@@ -55,11 +55,31 @@ public abstract class Detail extends PersistableObjectAudit {
     }
 
     public void setStorage() {
-        throw new UnsupportedOperationException();
+
     }
 
     public Storage getStorage() {
         throw new UnsupportedOperationException();
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Detail detail = (Detail) o;
+
+        if (!product.getId().equals(detail.product.getId())) return false;
+        if (!quantity.equals(detail.quantity)) return false;
+        return sum.equals(detail.sum);
+    }
+
+    @Override
+    public int hashCode() {
+        int result = product.getId().hashCode();
+        result = 31 * result + quantity.hashCode();
+        result = 31 * result + sum.hashCode();
+        return result;
     }
 
     @Override
