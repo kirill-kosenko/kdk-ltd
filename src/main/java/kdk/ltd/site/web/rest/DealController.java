@@ -45,10 +45,10 @@ public class DealController {
         this.dealService.save(deals);
     }
 
-    @ResponseStatus(HttpStatus.OK)
+    @ResponseStatus(HttpStatus.NO_CONTENT)
     @RequestMapping(value = "{id}", method = RequestMethod.PUT)
     public void update(@PathVariable Long id, @RequestBody Deal deal) {
-        dealService.update(id, deal );
+        dealService.update( deal );
     }
 
     @RequestMapping(method = RequestMethod.GET, params = "search")
@@ -56,5 +56,11 @@ public class DealController {
                                  @PageableDefault Pageable pageable,
                                  @RequestBody DealSearchCriteria criteria) {
         return dealService.search(criteria, pageable);
+    }
+
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    @RequestMapping(value = "{id}", method = RequestMethod.DELETE)
+    public void delete(@PathVariable Long id) {
+        dealService.delete(id);
     }
 }

@@ -81,7 +81,12 @@ public class OrderServiceImpl implements DealService<Order, OrderDTO> {
     }
 
     @Override
-    public void update(Long id, Order deal) {
+    public void update(Order deal) {
 
+    }
+
+    @Override
+    public void delete(Long id) {
+        orderRepository.delete(id);
     }
 }

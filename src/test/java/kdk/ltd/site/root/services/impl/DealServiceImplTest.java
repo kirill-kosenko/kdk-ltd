@@ -30,7 +30,8 @@ import java.util.List;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration( classes = RootContextConfiguration.class )
-@Sql( executionPhase = Sql.ExecutionPhase.BEFORE_TEST_METHOD, scripts = "classpath:insert_deals.sql" )
+@Sql( executionPhase = Sql.ExecutionPhase.BEFORE_TEST_METHOD,
+        scripts = { "classpath:insert_deals.sql", "classpath:stock.sql" } )
 @Transactional
 public class DealServiceImplTest {
 
@@ -50,7 +51,7 @@ public class DealServiceImplTest {
     @Inject
     StorageRepository storageRepository;
     @Inject
-    ProductInStockRepository productInStockRepository;
+    RemainingProductsRepository remainingProductsRepository;
 
     @PersistenceContext
     EntityManager em;
@@ -128,7 +129,7 @@ public class DealServiceImplTest {
     @Test
     public void whenSavesDeal_updatesProductInStock_thenCorrect() {
         DealDetail detail1 =
-                new DealDetail(productRepository.getOne(3L), 50, new BigDecimal(-12000), storageRepository.getOne(1L));
+                new DealDetail(productRepository.getOne(3L), 50, new BigDecimal(-12000), storageRepository.getOne(4L));
 
         Deal deal =
                 new Deal(
@@ -142,14 +143,14 @@ public class DealServiceImplTest {
 
         service.save(deal);
 
-        ProductInStock inStock = productInStockRepository.findOne(1L);
+        RemainingProducts inStock = remainingProductsRepository.findOne(1L);
 
         Assert.assertEquals(detail1.getStorage().getId(),
                 inStock.getStorage().getId());
         Assert.assertEquals(detail1.getProduct().getId(),
                 inStock.getProduct().getId());
-        Assert.assertEquals(new Integer(50), inStock.getQuantity());
-        Assert.assertEquals(new BigDecimal(-12000), inStock.getSum());
+        Assert.assertEquals(new Integer(103), inStock.getQuantity());
+        Assert.assertEquals(new BigDecimal(7200), inStock.getSum());
     }
 
     @Test
@@ -183,11 +184,11 @@ public class DealServiceImplTest {
 
         long dealSize = 5;
         long detailSize = 16;
-     //   em.merge(deal);
-        service.update(1L, deal);
+
+        service.update(deal);
         em.flush();
 
-     /*   Assert.assertEquals(dealSize, dealRepository.count());
-        Assert.assertEquals(detailSize, detailRepository.count());*/
+        Assert.assertEquals(dealSize, dealRepository.count());
+        Assert.assertEquals(detailSize, detailRepository.count());
     }
 }

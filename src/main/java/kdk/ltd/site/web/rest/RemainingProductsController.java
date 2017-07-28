@@ -1,11 +1,11 @@
 package kdk.ltd.site.web.rest;
 
-import kdk.ltd.site.root.entities.ProductInStock;
-import kdk.ltd.site.root.repositories.ProductInStockRepository;
+import kdk.ltd.site.root.entities.RemainingProducts;
+import kdk.ltd.site.root.repositories.RemainingProductsRepository;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
-import kdk.ltd.site.root.services.ProductInStockService;
+import kdk.ltd.site.root.services.RemainingProductsService;
 
 import javax.inject.Inject;
 import java.time.LocalDateTime;
@@ -16,16 +16,16 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("remainings")
-public class ProductInStockController {
+public class RemainingProductsController {
 
     @Inject
-    private ProductInStockService service;
+    private RemainingProductsService service;
     @Inject
-    private ProductInStockRepository repository;
+    private RemainingProductsRepository repository;
 
     @RequestMapping(method = RequestMethod.GET)
-    public List<ProductInStock> showForProductAndStorage(@RequestParam(value = "product", required = false) Optional<Long> productId,
-                                                    @RequestParam(value = "storage", required = false) Optional<Long> storageId) {
+    public List<RemainingProducts> showForProductAndStorage(@RequestParam(value = "product", required = false) Optional<Long> productId,
+                                                            @RequestParam(value = "storage", required = false) Optional<Long> storageId) {
 
         if (productId.isPresent() && storageId.isPresent() )
             return Collections.singletonList(repository.findByProductIdAndStorageId(productId.get(), storageId.get()).get());

@@ -2,7 +2,7 @@ package kdk.ltd.site.root.services.impl;
 
 import kdk.ltd.site.root.entities.Deal;
 import kdk.ltd.site.root.repositories.DealRepository;
-import kdk.ltd.site.root.services.ProductInStockService;
+import kdk.ltd.site.root.services.RemainingProductsService;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import kdk.ltd.site.root.entities.DealDetail;
@@ -23,15 +23,15 @@ public class DealDetailService implements DetailService<DealDetail> {
 
     private DealRepository dealRepository;
 
-    private ProductInStockService productInStockService;
+    private RemainingProductsService remainingProductsService;
 
     @Inject
     public DealDetailService(DealDetailRepository detailRepository,
                                 DealRepository dealRepository,
-                                    ProductInStockService productInStockService) {
+                                    RemainingProductsService remainingProductsService) {
         this.detailRepository = detailRepository;
         this.dealRepository = dealRepository;
-        this.productInStockService = productInStockService;
+        this.remainingProductsService = remainingProductsService;
     }
 
     @Override
@@ -42,7 +42,7 @@ public class DealDetailService implements DetailService<DealDetail> {
     @Override
     public void saveAll(Collection<DealDetail> details) {
         this.detailRepository.save(details);
-        this.productInStockService.updateProductsInStock(details);
+        this.remainingProductsService.update(details);
     }
 
     @Override
@@ -53,35 +53,10 @@ public class DealDetailService implements DetailService<DealDetail> {
     }
 
     @Override
-    public void update(Long id, DealDetail d) {
-        DealDetail u = detailRepository.findOne(id);
-        DealDetail inversed = DealDetail.inverseQntAndSum(u);
-        productInStockService.updateProductsInStock(Arrays.asList(inversed, d));
-
-        if (d.getQuantity() != null) {
-            if ( sameSign(
-                    u.getQuantity(), d.getQuantity() ))
-                u.setQuantity(d.getQuantity());
-            else
-                throw new UnsupportedOperationException();
-        }
-        if (d.getStorage() != null) u.setStorage(d.getStorage());
-        if (d.getProduct() != null) u.setProduct(d.getProduct());
-        if (d.getSum() != null) {
-            if ( sameSign( u.getSum(), d.getSum() ) )
-                u.setSum(d.getSum());
-            else
-                throw new UnsupportedOperationException();
-        }
-        if (d.getDeal() != null) u.setDeal(d.getDeal());
-    }
-
-    private <T extends Number> boolean sameSign(T op1, T op2) {
-        double d1 = op1.doubleValue();
-        double d2 = op2.doubleValue();
-        return d1 < 0 && d2 < 0 ||
-                    d1 > 0 && d2 > 0 ||
-                        d1 == 0 && d2 == 0;
+    public void update(DealDetail d) {
+        DealDetail inversed = DealDetail.inverseQntAndSum(d);
+        remainingProductsService.update( Arrays.asList(inversed, d) );
+        detailRepository.save(d);
     }
 
     @Override

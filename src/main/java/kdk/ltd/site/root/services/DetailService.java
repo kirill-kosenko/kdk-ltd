@@ -9,6 +9,6 @@ public interface DetailService<T extends Detail> {
     void save( T detail );
     void save( Long dealId, T detail );
     void saveAll( Collection<T> details );
-    void update( Long id, T detail );
-    void delete(Long id);
+    void update( T detail );
+    void delete( Long id );
 }
