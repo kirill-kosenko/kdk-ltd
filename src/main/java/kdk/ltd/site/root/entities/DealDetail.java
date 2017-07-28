@@ -1,6 +1,7 @@
 package kdk.ltd.site.root.entities;
 
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import kdk.ltd.site.root.exceptions.SameSignException;
 import kdk.ltd.site.web.deserializers.StorageDeserializer;
 
 import javax.persistence.*;
@@ -38,6 +39,10 @@ public class DealDetail extends Detail  {
         this.deal = deal;
     }
 
+    public DealDetail(Integer quantity, BigDecimal sum, Product product, Storage storage) {
+        this(product, -1*quantity, sum.negate(), storage);
+    }
+
     public Deal getDeal() {
         return deal;
     }
@@ -72,6 +77,14 @@ public class DealDetail extends Detail  {
         result = 31 * result + deal.getId().hashCode();
         result = 31 * result + storage.getId().hashCode();
         return result;
+    }
+
+    @PrePersist
+    @PreUpdate
+    private void checkSign() {
+        if (getQuantity() > 0 && getSum().signum() > 0 ||
+                getQuantity() < 0 && getSum().signum() < 0)
+            throw new SameSignException();
     }
 
     /*
