@@ -5,13 +5,13 @@ import kdk.ltd.config.RootContextConfiguration;
 import kdk.ltd.site.root.dto.DealDTO;
 import kdk.ltd.site.root.entities.Deal;
 import kdk.ltd.site.root.entities.DealDetail;
-import kdk.ltd.site.root.entities.ProductInStock;
+import kdk.ltd.site.root.entities.RemainingProducts;
 import kdk.ltd.site.root.repositories.PartnerRepository;
 import kdk.ltd.site.root.repositories.ProductRepository;
 import kdk.ltd.site.root.repositories.StorageRepository;
 import kdk.ltd.site.root.repositories.UserRepository;
 import kdk.ltd.site.root.services.DealService;
-import kdk.ltd.site.root.services.ProductInStockService;
+import kdk.ltd.site.root.services.RemainingProductsService;
 import kdk.ltd.site.root.exceptions.NegativeBalanceException;
 import org.junit.Assert;
 import org.junit.Test;
@@ -33,10 +33,10 @@ import java.util.List;
 @ContextConfiguration( classes = RootContextConfiguration.class)
 @Sql( executionPhase = Sql.ExecutionPhase.BEFORE_TEST_METHOD, scripts = "classpath:stock.sql" )
 @Transactional
-public class ProductInStockServiceImplTest {
+public class RemainingProductsServiceImplTest {
 
     @Inject
-    ProductInStockService productInStockService;
+    RemainingProductsService remainingProductsService;
 
     @PersistenceContext
     EntityManager em;
@@ -55,7 +55,7 @@ public class ProductInStockServiceImplTest {
 
     @Test                                      //TODO: add product and storage
     public void findOneTest() {
-        ProductInStock inStock = productInStockService.findOne(1L);
+        RemainingProducts inStock = remainingProductsService.findOne(1L);
         Assert.assertNotNull(inStock);
     }
 
@@ -63,13 +63,13 @@ public class ProductInStockServiceImplTest {
 
     @Test
     public void findByStorageTest() {
-        List<ProductInStock> list = productInStockService.findByStorageId(4L);
+        List<RemainingProducts> list = remainingProductsService.findByStorageId(4L);
         Assert.assertEquals(2, list.size());
     }
 
     @Test
     public void findByProductTest() {
-        List<ProductInStock> list = productInStockService.findByProductId(3L);
+        List<RemainingProducts> list = remainingProductsService.findByProductId(3L);
         Assert.assertEquals(1L, list.size());
     }
 
@@ -80,20 +80,20 @@ public class ProductInStockServiceImplTest {
 
         DealDetail detail2 =
                 new DealDetail(productRepository.getOne(3L), -40, new BigDecimal(12000), storageRepository.getOne(4L));
-        productInStockService.updateProductsInStock(Arrays.asList(detail1, detail2));
+        remainingProductsService.update(Arrays.asList(detail1, detail2));
         em.flush();
-        ProductInStock inStock = productInStockService.findOne(1L);
+        RemainingProducts inStock = remainingProductsService.findOne(1L);
 
-        Assert.assertEquals(new Integer(13), inStock.getQuantity());
+        Assert.assertEquals(new Integer(63), inStock.getQuantity());
         Assert.assertEquals(new BigDecimal(19200), inStock.getSum());
     }
 
     @Test(expected = NegativeBalanceException.class)
     public void updateProductsInStockExceptionTest() {
         DealDetail detail =
-                new DealDetail(productRepository.getOne(3L), -10, new BigDecimal(3200), storageRepository.getOne(4L));
+                new DealDetail(productRepository.getOne(3L), -60, new BigDecimal(19200), storageRepository.getOne(4L));
 
-        productInStockService.updateProductsInStock(Collections.singletonList(detail));
+        remainingProductsService.update(Collections.singletonList(detail));
         em.flush();
     }
 

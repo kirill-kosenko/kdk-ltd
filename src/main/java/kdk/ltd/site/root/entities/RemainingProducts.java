@@ -10,7 +10,7 @@ import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "products_in_stock")
-public class ProductInStock implements Serializable {
+public class RemainingProducts implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -33,26 +33,26 @@ public class ProductInStock implements Serializable {
     @Column(name = "summ")
     private BigDecimal sum;
 
-    public ProductInStock() {
+    public RemainingProducts() {
     }
 
-    public ProductInStock(Product product, Storage storage, int quantity, BigDecimal sum) {
+    public RemainingProducts(Product product, Storage storage, int quantity, BigDecimal sum) {
         setProduct(product);
         setStorage(storage);
         setQuantity(quantity);
         setSum(sum);
     }
 
-    public ProductInStock(Product product, Storage storage, BigDecimal sum, Long quantity) {
+    public RemainingProducts(Product product, Storage storage, BigDecimal sum, Long quantity) {
         this(product, storage, quantity.intValue(), sum);
     }
 
-    public ProductInStock(Product product, Storage storage, int quantity, BigDecimal sum, LocalDateTime dateTimePoint) {
+    public RemainingProducts(Product product, Storage storage, int quantity, BigDecimal sum, LocalDateTime dateTimePoint) {
         this(product, storage, quantity, sum);
         setDateTimePoint(dateTimePoint);
     }
 
-    public ProductInStock(ProductInStock r) {
+    public RemainingProducts(RemainingProducts r) {
         this(r.getProduct(), r.getStorage(), r.getQuantity(), r.getSum());
     }
 
@@ -104,30 +104,9 @@ public class ProductInStock implements Serializable {
         this.sum = sum;
     }
 
-    public ProductInStock addQnt(Integer qnt) {
-        this.setQuantity(quantity + qnt);
-        return this;
-    }
-
-    public ProductInStock addSumm(BigDecimal sum) {
-        this.setSum(this.sum.add(sum));
-        return this;
-    }
-
-    public ProductInStock subQnt(Integer qnt) {
-        this.setQuantity(quantity - qnt);
-        return this;
-    }
-
-    public ProductInStock subSum(BigDecimal sum) {
-        this.setSum(this.sum.subtract(sum));
-        return this;
-    }
-
-    public boolean eqaulsByProductAndStorage(ProductInStock p) {
+    public boolean eqaulsByProductAndStorage(RemainingProducts p) {
         return !product.getId().equals(p.getProduct().getId()) &&
                 !storage.getId().equals(p.getStorage().getId());
-
     }
 
     @PrePersist

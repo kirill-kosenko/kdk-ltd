@@ -1,8 +1,8 @@
 package kdk.ltd.site.root.services.impl;
 
 import kdk.ltd.site.root.entities.*;
-import kdk.ltd.site.root.repositories.ProductInStockRepository;
-import kdk.ltd.site.root.services.ProductInStockService;
+import kdk.ltd.site.root.repositories.RemainingProductsRepository;
+import kdk.ltd.site.root.services.RemainingProductsService;
 import org.springframework.stereotype.Service;
 
 import javax.inject.Inject;
@@ -17,56 +17,56 @@ import java.util.stream.Collectors;
 
 @Service
 @Transactional
-public class ProductInStockServiceImpl implements ProductInStockService {
+public class RemainingProductsServiceImpl implements RemainingProductsService {
 
     private final LocalDateTime CURRENT_DATETIME_POINT;
 
-    private ProductInStockRepository productInStockRepository;
+    private RemainingProductsRepository remainingProductsRepository;
 
     @PersistenceContext
     private EntityManager em;
 
     @Inject
-    public ProductInStockServiceImpl(ProductInStockRepository productInStockRepository,
-                                     LocalDateTime currentDateTimePoint) {
-        this.productInStockRepository = productInStockRepository;
+    public RemainingProductsServiceImpl(RemainingProductsRepository remainingProductsRepository,
+                                        LocalDateTime currentDateTimePoint) {
+        this.remainingProductsRepository = remainingProductsRepository;
         this.CURRENT_DATETIME_POINT = currentDateTimePoint;
     }
 
     @Override
-    public ProductInStock findOne(Long id) {
-        return productInStockRepository.findOne(id);
+    public RemainingProducts findOne(Long id) {
+        return remainingProductsRepository.findOne(id);
     }
 
 
-    public ProductInStock findBy(Long productId, Long storageId) {
+    public RemainingProducts findBy(Long productId, Long storageId) {
         //    Product product = productRepository.getOne(productId);
         //    Storage storage = storageRepository.getOne(storageId);
-        return productInStockRepository.findByProductIdAndStorageId(productId, storageId).get();
+        return remainingProductsRepository.findByProductIdAndStorageId(productId, storageId).get();
     }
 
     @Override
-    public List<ProductInStock> findByStorageId(Long storageId) {
+    public List<RemainingProducts> findByStorageId(Long storageId) {
         //    Storage storage = storageRepository.getOne(storageId);
-        return productInStockRepository.findByStorageId(storageId);
+        return remainingProductsRepository.findByStorageId(storageId);
     }
 
     @Override
-    public List<ProductInStock> findByProductId(Long productId) {
+    public List<RemainingProducts> findByProductId(Long productId) {
         //   Product product = productRepository.getOne(productId);
-        return productInStockRepository.findByProductId(productId);
+        return remainingProductsRepository.findByProductId(productId);
     }
 
 
     @Override
-    public void updateProductsInStock(Collection<DealDetail> details) {
+    public void update(Collection<DealDetail> details) {
         details.forEach(this::saveOrUpdateRemaining);
     }
 
     public void saveOrUpdateRemaining(DealDetail d) {
 
-        Optional<ProductInStock> inStock =
-                    productInStockRepository.findByProductAndStorageAndDateTimePoint(
+        Optional<RemainingProducts> inStock =
+                    remainingProductsRepository.findByProductAndStorageAndDateTimePoint(
                             d.getProduct(), d.getStorage(), CURRENT_DATETIME_POINT
                     );
 
@@ -77,14 +77,14 @@ public class ProductInStockServiceImpl implements ProductInStockService {
     }
 
     private void createAndSaveRemaining(DealDetail d) {
-        productInStockRepository.save(
-                new ProductInStock(
+        remainingProductsRepository.save(
+                new RemainingProducts(
                        d.getProduct(), d.getStorage(), d.getQuantity(), d.getSum(), CURRENT_DATETIME_POINT )
         );
         em.flush();
     }
 
-    private void addQntAndSumTo(ProductInStock r, Integer qnt, BigDecimal sum) {
+    private void addQntAndSumTo(RemainingProducts r, Integer qnt, BigDecimal sum) {
         r.setSum( r.getSum().add(sum) );
         r.setQuantity( r.getQuantity() + qnt);
     }
@@ -98,35 +98,35 @@ public class ProductInStockServiceImpl implements ProductInStockService {
     public void createNewDateTimePoint(final LocalDateTime newPoint) {
 
         final LocalDateTime prevPoint =
-                productInStockRepository.findPrevDateTimePoint();
+                remainingProductsRepository.findPrevDateTimePoint();
 
         if ( prevPoint.compareTo( newPoint ) > 0 )
             throw new IllegalArgumentException("Specified DateTimePoint is before previous");
 
-        List<ProductInStock> newRemainings =
-                productInStockRepository.createForNewPoint( prevPoint, newPoint );
+        List<RemainingProducts> newRemainings =
+                remainingProductsRepository.createForNewPoint( prevPoint, newPoint );
 
         if ( !CURRENT_DATETIME_POINT.equals( prevPoint ) ) {
             addRemainingsFromPrevPoint( newRemainings, prevPoint );
         }
 
         newRemainings.forEach( p -> p.setDateTimePoint( newPoint ));
-        productInStockRepository.save( newRemainings );
+        remainingProductsRepository.save( newRemainings );
     }
 
-    private void addRemainingsFromPrevPoint( List<ProductInStock> newRemainings,
+    private void addRemainingsFromPrevPoint( List<RemainingProducts> newRemainings,
                                              LocalDateTime prevPoint ) {
 
-        List<ProductInStock> prevRemainings =
-                productInStockRepository.findByDateTimePoint(prevPoint);
+        List<RemainingProducts> prevRemainings =
+                remainingProductsRepository.findByDateTimePoint(prevPoint);
 
         merge(newRemainings, prevRemainings);
     }
 
-    private void merge( List<ProductInStock> newRems,
-                        List<ProductInStock> prevRems ) {
+    private void merge( List<RemainingProducts> newRems,
+                        List<RemainingProducts> prevRems ) {
 
-        Map<Long, ProductInStock> matched =
+        Map<Long, RemainingProducts> matched =
                 changeQntAndSumFromPrevRems( newRems, prevRems );
 
         addPreviousRemainingsNotExistedIn(newRems, prevRems, matched);
@@ -138,9 +138,9 @@ public class ProductInStockServiceImpl implements ProductInStockService {
      * @param prevRems - list of previous point Remainings
      * @return Map of all previous Remainings that have been used for changing new Remainings
      */
-    private Map<Long, ProductInStock> changeQntAndSumFromPrevRems(List<ProductInStock> newRems,
-                                             final List<ProductInStock> prevRems) {
-        final Map<Long, ProductInStock> matched = new HashMap<>();
+    private Map<Long, RemainingProducts> changeQntAndSumFromPrevRems(List<RemainingProducts> newRems,
+                                                                     final List<RemainingProducts> prevRems) {
+        final Map<Long, RemainingProducts> matched = new HashMap<>();
         newRems.forEach(newRem ->
                 prevRems.forEach(p -> {
                     if (newRem.eqaulsByProductAndStorage(p)) {
@@ -159,19 +159,19 @@ public class ProductInStockServiceImpl implements ProductInStockService {
      * @param matched - Map of all previous Remainings that have been used
      *                  for changing new Remainings
      */
-    private void addPreviousRemainingsNotExistedIn(List<ProductInStock> newRems,
-                                                   List<ProductInStock> prevRems,
-                                                   final Map<Long, ProductInStock> matched) {
+    private void addPreviousRemainingsNotExistedIn(List<RemainingProducts> newRems,
+                                                   List<RemainingProducts> prevRems,
+                                                   final Map<Long, RemainingProducts> matched) {
         newRems.addAll(
                 prevRems.stream()
                         .filter(r -> matched.get(r.getId()) == null)
-                        .map(ProductInStock::new)
+                        .map(RemainingProducts::new)
                         .collect(Collectors.toList()));
     }
 
     @Override
     public void deleteAll() {
-        this.productInStockRepository.deleteAll();
+        this.remainingProductsRepository.deleteAll();
     }
 
 }
