@@ -15,7 +15,6 @@ public abstract class PersistableObject {
     @Access(value = AccessType.PROPERTY)
     private Long id;
 
-    @JsonIgnore
     @Version
     private Integer version;
 
