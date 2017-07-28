@@ -1,0 +1,27 @@
+{
+  "id": 1676,
+  "version": 0,
+  "partner": 2,
+  "dateOfDeal": "2016-09-01T00:00",
+  "type": "PURCHASE",
+  "state": "COMPLETED",
+  "details":
+  [
+    {
+      "id": 4669,
+      "version": 0,
+      "product": 3,
+      "quantity": 100,
+      "sum": -21500,
+      "storage": 4
+    },
+    {
+      "id": 4670,
+      "version": 0,
+      "product": 4,
+      "quantity": 10,
+      "sum": -1150,
+      "storage": 4
+    }
+  ]
+}
