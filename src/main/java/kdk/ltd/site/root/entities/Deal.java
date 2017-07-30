@@ -12,7 +12,17 @@ import java.util.stream.IntStream;
 
 @Entity
 @NamedEntityGraph(name = "graph.document.details",
-        attributeNodes = @NamedAttributeNode("details")
+        attributeNodes = {
+                @NamedAttributeNode(value = "details",
+                                    subgraph = "subgraph.deal.details"),
+                @NamedAttributeNode("partner")
+        },
+        subgraphs = @NamedSubgraph(name = "subgraph.deal.details",
+                            attributeNodes = {
+                                @NamedAttributeNode("product"),
+                                @NamedAttributeNode("storage")
+                            }
+        )
 )
 @Table(name = "deals")
 public class Deal extends GenericDeal {
@@ -84,37 +94,4 @@ public class Deal extends GenericDeal {
         result = 31 * result + details.hashCode();
         return result;
     }
-
-    /*
-    @PrePersist
-    @PreUpdate
-    private void pre() {
-        switch (getType()) {
-                case PURCHASE:
-                case RETURN:
-                    changeInOutDetails(DealDetail::negateSum);
-                    break;
-                case SELL:
-                case CANCEL:
-                    changeInOutDetails(DealDetail::negateQuantity);
-                    break;
-                case MOVE:
-                    changeMoveDetails();
-            }
-        }
-
-
-    private void changeInOutDetails(Consumer<DealDetail> c) {
-        details.forEach(d -> {d.setDeal(this); c.accept(d); } );
-    }
-
-    private void changeMoveDetails() {
-        IntStream.range(0, details.size()).forEach((idx) -> changeMove(idx, details.get(idx)));
-    }
-
-    private void changeMove(int i, DealDetail d) {
-       if (i%2 == 0) d.negateQuantity();
-       else d.negateSum();
-       d.setDeal(this);
-    }*/
 }
