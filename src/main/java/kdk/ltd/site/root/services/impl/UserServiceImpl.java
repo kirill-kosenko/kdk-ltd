@@ -1,6 +1,6 @@
 package kdk.ltd.site.root.services.impl;
 
-import kdk.ltd.site.root.dto.UserDTO;
+import kdk.ltd.site.root.dto.UserDto;
 import kdk.ltd.site.root.entities.User;
 import kdk.ltd.site.root.services.UserService;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -42,8 +42,8 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void save(UserDTO dto) {
-        User newUser = UserDTO.build(dto);
+    public void save(UserDto dto) {
+        User newUser = UserDto.build(dto);
         this.save(newUser);
     }
 }

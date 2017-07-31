@@ -1,6 +1,6 @@
 package kdk.ltd.site.web.rest;
 
-import kdk.ltd.site.root.dto.UserDTO;
+import kdk.ltd.site.root.dto.UserDto;
 import kdk.ltd.site.root.entities.User;
 import org.springframework.web.bind.annotation.*;
 import kdk.ltd.site.root.repositories.UserRepository;
@@ -29,7 +29,7 @@ public class UserController {
     }
 
     @RequestMapping(method = RequestMethod.POST)
-    public void create(@RequestBody UserDTO user) {
+    public void create(@RequestBody UserDto user) {
         userService.save(user);
     }
 
