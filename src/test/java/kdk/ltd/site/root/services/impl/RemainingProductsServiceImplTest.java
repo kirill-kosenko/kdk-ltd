@@ -2,7 +2,7 @@ package kdk.ltd.site.root.services.impl;
 
 
 import kdk.ltd.config.RootContextConfiguration;
-import kdk.ltd.site.root.dto.DealDTO;
+import kdk.ltd.site.root.dto.DealDto;
 import kdk.ltd.site.root.entities.Deal;
 import kdk.ltd.site.root.entities.DealDetail;
 import kdk.ltd.site.root.entities.RemainingProducts;
@@ -42,7 +42,7 @@ public class RemainingProductsServiceImplTest {
     EntityManager em;
 
     @Inject
-    DealService<Deal, DealDTO> service;
+    DealService<Deal> service;
 
     @Inject
     ProductRepository productRepository;

@@ -1,7 +1,7 @@
 package kdk.ltd.site.root.services.impl;
 
 import kdk.ltd.config.RootContextConfiguration;
-import kdk.ltd.site.root.dto.OrderDTO;
+import kdk.ltd.site.root.dto.OrderDto;
 import kdk.ltd.site.root.entities.GenericDeal;
 import kdk.ltd.site.root.entities.Order;
 import kdk.ltd.site.root.entities.OrderDetail;
@@ -22,10 +22,8 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import javax.inject.Inject;
 import javax.transaction.Transactional;
 import java.math.BigDecimal;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
 
 @RunWith( SpringJUnit4ClassRunner.class )
@@ -35,7 +33,7 @@ import java.util.List;
 public class OrderServiceImplTest {
 
     @Inject
-    DealService<Order, OrderDTO> service;
+    DealService<Order> service;
     @Inject
     PartnerRepository partnerRepository;
     @Inject
@@ -59,10 +57,10 @@ public class OrderServiceImplTest {
 
     @Test
     public void findDtoTest() {
-        OrderDTO dto = service.findDto(1L);
-        Assert.assertEquals(GenericDeal.Type.PURCHASE, dto.getType());
-        Assert.assertEquals(1L, dto.getId());
-        Assert.assertEquals(2, dto.getDetails().size());
+        Order order = service.find(1L);
+        Assert.assertEquals(GenericDeal.Type.PURCHASE, order.getType());
+        Assert.assertEquals(new Long(1), order.getId());
+        Assert.assertEquals(2, order.getDetails().size());
     }
 
     @Test

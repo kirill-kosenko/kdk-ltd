@@ -8,21 +8,19 @@ import kdk.ltd.site.root.dto.DealSearchCriteria;
 import java.util.List;
 
 
-public interface DealService<T, U>  {//extends GenericService<T, Long> {
+public interface DealService<T>  {//extends GenericService<T, Long> {
 
     T find(Long id);
 
     List<T> findAll();
 
-    U findDto(Long id);
-
-    Page<U> findAll(Pageable pageable);
+    Page<T> findAll(Pageable pageable);
 
     void save(T deal);
 
     void save(List<T> documents);
 
-    Page<U> search(DealSearchCriteria criteria, Pageable pageable);
+    Page<T> search(DealSearchCriteria criteria, Pageable pageable);
 
     void update(T deal);
 

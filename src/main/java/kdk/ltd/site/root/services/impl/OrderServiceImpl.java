@@ -1,7 +1,7 @@
 package kdk.ltd.site.root.services.impl;
 
 import kdk.ltd.site.root.dto.DealSearchCriteria;
-import kdk.ltd.site.root.dto.OrderDTO;
+import kdk.ltd.site.root.dto.OrderDto;
 import kdk.ltd.site.root.entities.Order;
 import kdk.ltd.site.root.repositories.OrderRepository;
 import kdk.ltd.site.root.repositories.ProductRepository;
@@ -19,13 +19,14 @@ import java.util.List;
 
 @Service
 @Transactional
-public class OrderServiceImpl implements DealService<Order, OrderDTO> {
+public class OrderServiceImpl implements DealService<Order> {
 
-    @Inject
     private OrderRepository orderRepository;
-    @Inject
-    private ProductRepository productRepository;
 
+    @Inject
+    public OrderServiceImpl(OrderRepository orderRepository) {
+        this.orderRepository = orderRepository;
+    }
 
     protected JpaRepository<Order, Long> getRepository() {
         return this.orderRepository;
@@ -47,27 +48,8 @@ public class OrderServiceImpl implements DealService<Order, OrderDTO> {
     }
 
     @Override
-    public OrderDTO findDto(Long id) {
-        Order order = orderRepository.findOne(id);
-        return buildDTO(order);
-    }
-
-    @Override
-    public Page<OrderDTO> findAll(Pageable pageable) {
-        Page<Order> orders = orderRepository.findAll(pageable);
-        return new PageImpl<>(transformDocumentsInDTOs(orders), pageable, orders.getTotalElements());
-    }
-
-    protected List<OrderDTO> transformDocumentsInDTOs(Iterable<Order> documents) {
-        List<OrderDTO> results = new LinkedList<>();
-        documents.forEach(
-                d -> results.add( buildDTO(d) ));
-        return results;
-    }
-
-
-    protected OrderDTO buildDTO(Order document) {
-        return OrderDTO.build(document);
+    public Page<Order> findAll(Pageable pageable) {
+        return orderRepository.findAll(pageable);
     }
 
     @Override
@@ -76,7 +58,7 @@ public class OrderServiceImpl implements DealService<Order, OrderDTO> {
     }
 
     @Override
-    public Page<OrderDTO> search(DealSearchCriteria criteria, Pageable pageable) {
+    public Page<Order> search(DealSearchCriteria criteria, Pageable pageable) {
         throw new UnsupportedOperationException("Search operation is unsupported yet");
     }
 

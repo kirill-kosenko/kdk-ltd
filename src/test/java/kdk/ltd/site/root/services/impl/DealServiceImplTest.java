@@ -2,7 +2,7 @@ package kdk.ltd.site.root.services.impl;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import kdk.ltd.config.RootContextConfiguration;
-import kdk.ltd.site.root.dto.DealDTO;
+import kdk.ltd.site.root.dto.DealDto;
 import kdk.ltd.site.root.entities.*;
 import kdk.ltd.site.root.repositories.*;
 import kdk.ltd.site.root.services.DealService;
@@ -36,7 +36,7 @@ import java.util.List;
 public class DealServiceImplTest {
 
     @Inject
-    DealService<Deal, DealDTO> service;
+    DealService<Deal> service;
     @Inject
     DealDetailRepository detailRepository;
     @Inject
@@ -85,6 +85,7 @@ public class DealServiceImplTest {
     @Test
     public void findTest() {
         Deal deal = service.find(1L);
+        System.out.println(deal.getDetails().size());
         Assert.assertNotNull(deal);
     }
 
@@ -95,14 +96,8 @@ public class DealServiceImplTest {
     }
 
     @Test
-    public void findDtoTest() {
-        DealDTO dto = service.findDto(5L);
-        Assert.assertNotNull(dto);
-    }
-
-    @Test
     public void pageFindAllTest() {
-        Page<DealDTO> page = service.findAll(pageable);
+        Page<Deal> page = service.findAll(pageable);
         Assert.assertEquals(3, page.getSize());
         Assert.assertEquals(5, page.getTotalElements());
         Assert.assertEquals(2, page.getTotalPages());

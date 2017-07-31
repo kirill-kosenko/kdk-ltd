@@ -1,11 +1,9 @@
 package kdk.ltd.site.web.rest;
 
-import kdk.ltd.site.root.dto.DealDTO;
 import kdk.ltd.site.root.entities.Deal;
 import kdk.ltd.site.root.entities.DealDetail;
 import kdk.ltd.site.root.repositories.DealDetailRepository;
 import kdk.ltd.site.root.repositories.DealRepository;
-import kdk.ltd.site.root.services.DealService;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 

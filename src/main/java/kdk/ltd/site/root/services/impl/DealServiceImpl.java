@@ -1,6 +1,6 @@
 package kdk.ltd.site.root.services.impl;
 
-import kdk.ltd.site.root.dto.DealDTO;
+import kdk.ltd.site.root.dto.DealDto;
 import kdk.ltd.site.root.dto.DealSearchCriteria;
 import kdk.ltd.site.root.entities.Deal;
 import kdk.ltd.site.root.entities.DealDetail;
@@ -24,7 +24,7 @@ import java.util.stream.Collectors;
 
 @Service
 @Transactional
-public class DealServiceImpl implements DealService<Deal, DealDTO> {
+public class DealServiceImpl implements DealService<Deal> {
 
 
     private DealRepository dealRepository;
@@ -57,33 +57,12 @@ public class DealServiceImpl implements DealService<Deal, DealDTO> {
 
     @Override
     public List<Deal> findAll() {
-        return dealRepository.findAll();
+        return dealRepository.findAllDistinctBy();
     }
 
     @Override
-    public DealDTO findDto(Long id) {
-        Deal deal = dealRepository.findOne(id);
-        return buildDTO(deal);
-    }
-
-    @Override
-    public Page<DealDTO> findAll(Pageable pageable) {
-        Page<Deal> deals = dealRepository.findAll(pageable);
-        return new PageImpl<>(transformDocumentsInDTOs(deals), pageable, deals.getTotalElements());
-    }
-
-
-    protected List<DealDTO> transformDocumentsInDTOs(Iterable<Deal> documents) {
-        List<DealDTO> results = new LinkedList<>();
-        for (Deal document: documents) {
-            results.add( buildDTO(document) );
-        }
-        return results;
-    }
-
-
-    protected DealDTO buildDTO(Deal document) {
-        return DealDTO.build(document);
+    public Page<Deal> findAll(Pageable pageable) {
+        return dealRepository.findAll(pageable);
     }
 
     @Override
@@ -92,7 +71,6 @@ public class DealServiceImpl implements DealService<Deal, DealDTO> {
         remainingProductsService.update(d.getDetails());
     }
 
-    @Transactional
     @Override
     public void save(List<Deal> deals) {
         dealRepository.saveBatch(deals);
@@ -101,11 +79,9 @@ public class DealServiceImpl implements DealService<Deal, DealDTO> {
         remainingProductsService.update(details);
     }
 
-
     @Override
-    public Page<DealDTO> search(DealSearchCriteria criteria, Pageable pageable) {
-        Page<Deal> deals = searchService.search(criteria, pageable);
-        return new PageImpl<>(transformDocumentsInDTOs(deals), pageable, deals.getTotalElements());
+    public Page<Deal> search(DealSearchCriteria criteria, Pageable pageable) {
+        return searchService.search(criteria, pageable);
     }
 
     @Override

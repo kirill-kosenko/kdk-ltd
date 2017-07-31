@@ -1,10 +1,11 @@
 package kdk.ltd.site.web.rest;
 
+import kdk.ltd.site.root.dto.DealDto;
 import kdk.ltd.site.root.dto.DealSearchCriteria;
-import kdk.ltd.site.root.dto.DealDTO;
 import kdk.ltd.site.root.entities.Deal;
 import kdk.ltd.site.root.services.DealService;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
@@ -12,25 +13,33 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.inject.Inject;
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.StreamSupport;
 
 
 @RestController
 @RequestMapping("deals")
 public class DealController {
 
+    private DealService<Deal> dealService;
+
     @Inject
-    private DealService<Deal, DealDTO> dealService;
+    public DealController(DealService<Deal> dealService) {
+        this.dealService = dealService;
+    }
 
     @RequestMapping(value = "{id}", method = RequestMethod.GET)
-    public DealDTO getOne(@PathVariable Long id) {
-        return dealService.findDto(id);
+    public DealDto getOne(@PathVariable Long id) {
+        Deal deal = dealService.find(id);
+        return DealDto.build(deal);
     }
 
     @RequestMapping(method = RequestMethod.GET)
-    public Page<DealDTO> findPage(
+    public Page<DealDto> findPage(
             @PageableDefault(size = 10, page = 0) Pageable pageable
     ) {
-        return dealService.findAll(pageable);
+        Page<Deal> deals = dealService.findAll(pageable);
+        return new PageImpl<>(transformDealsInDTOs(deals), pageable, deals.getTotalElements());
     }
 
     @ResponseStatus(HttpStatus.CREATED)
@@ -52,15 +61,22 @@ public class DealController {
     }
 
     @RequestMapping(method = RequestMethod.GET, params = "search")
-    public Page<DealDTO> search(
+    public Page<DealDto> search(
                                  @PageableDefault Pageable pageable,
                                  @RequestBody DealSearchCriteria criteria) {
-        return dealService.search(criteria, pageable);
+        Page<Deal> deals = dealService.search(criteria, pageable);
+        return new PageImpl<>(transformDealsInDTOs(deals), pageable, deals.getTotalElements());
     }
 
     @ResponseStatus(HttpStatus.NO_CONTENT)
     @RequestMapping(value = "{id}", method = RequestMethod.DELETE)
     public void delete(@PathVariable Long id) {
         dealService.delete(id);
+    }
+
+    protected List<DealDto> transformDealsInDTOs(Iterable<Deal> documents) {
+        return StreamSupport.stream(documents.spliterator(), false)
+                .map(DealDto::build)
+                .collect(Collectors.toList());
     }
 }
