@@ -1,6 +1,5 @@
 package kdk.ltd.site.web.rest;
 
-import kdk.ltd.site.root.dto.PartnerDTO;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import kdk.ltd.site.root.entities.Partner;
@@ -29,7 +28,7 @@ public class PartnerController {
 
     @ResponseStatus(HttpStatus.CREATED)
     @RequestMapping(method = RequestMethod.POST)
-    public Partner create(@RequestBody PartnerDTO partner) {
+    public Partner create(@RequestBody Partner partner) {
         System.out.println(partner.getLastname() + " " + partner.getFirstname() + " " + partner.getFathername());
         partner.getPhones().forEach(System.out::println);
      //   repository.save(partner);
@@ -38,9 +37,7 @@ public class PartnerController {
 
     @RequestMapping(method = RequestMethod.GET, params = {"fullname"})
     public List<Partner> searchBy(@RequestParam(value = "fullname") String fullname) {
-        System.err.println(fullname);
-        List<Partner> partners = repository.findByNameLikeIgnoreCase("%" + fullname + "%");
-        return partners;
+        return repository.findByNameLikeIgnoreCase("%" + fullname + "%");
     }
 
     @ResponseStatus(HttpStatus.NO_CONTENT)
