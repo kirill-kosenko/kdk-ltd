@@ -3,23 +3,24 @@ package kdk.ltd.site.root.dto;
 import kdk.ltd.site.root.entities.GenericDeal;
 
 import java.io.Serializable;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 
-public class GenericDealDTO implements Serializable {
+public class GenericDealDto implements Serializable {
 
 	private long id;
+	private int version;
 	private String partner;
 	private LocalDateTime dateOfDocument;
 	private String user;
 	private GenericDeal.Type type;
 
-	public GenericDealDTO() {
+	public GenericDealDto() {
 	}
 
-	public GenericDealDTO(long id, String partner, LocalDateTime dateOfDocument, String user, GenericDeal.Type type) {
+	public GenericDealDto(long id, int version, String partner, LocalDateTime dateOfDocument, String user, GenericDeal.Type type) {
 		this.id = id;
+		this.version = version;
 		this.partner = partner;
 		this.dateOfDocument = dateOfDocument;
 		this.user = user;
@@ -32,6 +33,14 @@ public class GenericDealDTO implements Serializable {
 
 	public void setId(long id) {
 		this.id = id;
+	}
+
+	public int getVersion() {
+		return version;
+	}
+
+	public void setVersion(int version) {
+		this.version = version;
 	}
 
 	public String getPartner() {
@@ -66,14 +75,14 @@ public class GenericDealDTO implements Serializable {
 		this.type = type;
 	}
 
-	public static GenericDealDTO buildDocument(GenericDeal d) {
-		GenericDealDTO dto = new GenericDealDTO(
+	public static GenericDealDto buildDocument(GenericDeal d) {
+		return new GenericDealDto(
 				d.getId(),
+                d.getVersion(),
 				d.getPartner().getName(),
 				d.getDateTimeOfDeal(),
 				d.getUser().getUsername(),
 				d.getType()
 		);
-		return dto;
 	}
 }

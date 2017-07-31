@@ -7,12 +7,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class DealDetailDTO extends DetailDTO {
+public class DealDetailDto extends DetailDto {
 
     private String storage;
 
-    public DealDetailDTO(long id, String product, int qnt, BigDecimal sum, String storage) {
-        super(id, product, qnt, sum);
+    public DealDetailDto(long id, Integer version, String product, int qnt, BigDecimal sum, String storage) {
+        super(id, version, product, qnt, sum);
         this.storage = storage;
     }
 
@@ -24,22 +24,22 @@ public class DealDetailDTO extends DetailDTO {
         this.storage = storage;
     }
 
-    public static List<DealDetailDTO> buildDtoList(List<DealDetail> details) {
-        List<DealDetailDTO> dtos = new ArrayList<>(details.size());
+    public static List<DealDetailDto> buildDtoList(List<DealDetail> details) {
+        List<DealDetailDto> dtos = new ArrayList<>(details.size());
         for (DealDetail d: details) {
             dtos.add( build(d) );
         }
         return dtos;
     }
 
-    public static DealDetailDTO build(DealDetail d) {
-        DealDetailDTO dto = new DealDetailDTO(
+    public static DealDetailDto build(DealDetail d) {
+        return new DealDetailDto(
                 d.getId(),
+                d.getVersion(),
                 d.getProduct().getName(),
                 d.getQuantity(),
                 d.getSum(),
                 d.getStorage().getName()
         );
-        return dto;
     }
 }

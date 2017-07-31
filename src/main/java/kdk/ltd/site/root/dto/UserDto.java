@@ -8,7 +8,7 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 
-public class UserDTO {
+public class UserDto {
 
     private Long id;
     private String username;
@@ -56,7 +56,7 @@ public class UserDTO {
         this.roles = roles;
     }
 
-    public static User build(UserDTO dto) {
+    public static User build(UserDto dto) {
         Set<Authority> authorities = dto.getRoles().stream().map(Authority::new).collect(Collectors.toSet());
         return new User(dto.getUsername(), dto.password, dto.getEmail(), authorities);
     }

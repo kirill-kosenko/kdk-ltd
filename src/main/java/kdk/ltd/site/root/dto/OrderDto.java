@@ -8,14 +8,14 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 
-public class OrderDTO extends GenericDealDTO {
+public class OrderDto extends GenericDealDto {
 
     private LocalDate completionDate;
     private boolean active;
-    private List<DetailDTO> details;
+    private List<DetailDto> details;
 
-    public OrderDTO(long id, String partner, LocalDateTime dateOf, String user, LocalDate completionDate, boolean active, GenericDeal.Type type, List<DetailDTO> details) {
-        super(id, partner, dateOf, user, type);
+    public OrderDto(long id, Integer version, String partner, LocalDateTime dateOf, String user, LocalDate completionDate, boolean active, GenericDeal.Type type, List<DetailDto> details) {
+        super(id, version, partner, dateOf, user, type);
         this.completionDate = completionDate;
         this.active = active;
         this.details = details;
@@ -39,24 +39,25 @@ public class OrderDTO extends GenericDealDTO {
         this.active = active;
     }
 
-    public List<DetailDTO> getDetails() {
+    public List<DetailDto> getDetails() {
         return details;
     }
 
-    public void setDetails(List<DetailDTO> details) {
+    public void setDetails(List<DetailDto> details) {
         this.details = details;
     }
 
-    public static OrderDTO build(Order o) {
-        OrderDTO dto = new OrderDTO(
+    public static OrderDto build(Order o) {
+        OrderDto dto = new OrderDto(
                 o.getId(),
+                o.getVersion(),
                 o.getPartner().getFullname(),
                 o.getDateTimeOfDeal(),
                 o.getUser().getUsername(),
                 o.getCompletionDate(),
                 o.isActive(),
                 o.getType(),
-                DetailDTO.buildList(o.getDetails())
+                DetailDto.buildList(o.getDetails())
         );
         return dto;
     }

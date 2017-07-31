@@ -7,17 +7,18 @@ import java.util.List;
 
 import kdk.ltd.site.root.entities.Detail;
 
-public class DetailDTO implements Serializable {
+public class DetailDto implements Serializable {
 	
 	private long id;
+	private Integer version;
 	private String product;
 	private int quantity;
 	private BigDecimal sum;	
 	
 	
-	public DetailDTO(long id, String product, int quantity, BigDecimal sum) {
-		super();
+	public DetailDto(long id, Integer version, String product, int quantity, BigDecimal sum) {
 		this.id = id;
+		this.version = version;
 		this.product = product;
 		this.quantity = quantity;
 		this.sum = sum;
@@ -29,6 +30,15 @@ public class DetailDTO implements Serializable {
 	public void setId(long id) {
 		this.id = id;
 	}
+
+	public Integer getVersion() {
+		return version;
+	}
+
+	public void setVersion(Integer version) {
+		this.version = version;
+	}
+
 	public String getProduct() {
 		return product;
 	}
@@ -48,17 +58,18 @@ public class DetailDTO implements Serializable {
 		this.sum = sum;
 	}
 
-	public static List<DetailDTO> buildList(List<? extends Detail> details) {
-		List<DetailDTO> dtos = new ArrayList<>(details.size());
+	public static List<DetailDto> buildList(List<? extends Detail> details) {
+		List<DetailDto> dtos = new ArrayList<>(details.size());
 		for (Detail d: details) {
 			dtos.add( build(d) );
 		}
 		return dtos;
 	}
 
-	public static DetailDTO build(Detail d) {
-		return new DetailDTO(
+	public static DetailDto build(Detail d) {
+		return new DetailDto(
 				d.getId(),
+				d.getVersion(),
 				d.getProduct().getName(),
 				d.getQuantity(),
 				d.getSum()
