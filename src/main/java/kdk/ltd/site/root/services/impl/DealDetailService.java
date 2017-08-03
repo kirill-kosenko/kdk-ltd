@@ -1,6 +1,7 @@
 package kdk.ltd.site.root.services.impl;
 
 import kdk.ltd.site.root.entities.Deal;
+import kdk.ltd.site.root.entities.RemainingProducts;
 import kdk.ltd.site.root.repositories.DealRepository;
 import kdk.ltd.site.root.services.RemainingProductsService;
 import org.springframework.stereotype.Service;
@@ -11,8 +12,11 @@ import kdk.ltd.site.root.services.DetailService;
 
 import javax.inject.Inject;
 
-import java.util.Arrays;
 import java.util.Collection;
+import java.util.Collections;
+import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 
 @Service
@@ -35,14 +39,18 @@ public class DealDetailService implements DetailService<DealDetail> {
     }
 
     @Override
-    public void save(DealDetail detail) {
-        this.detailRepository.save(detail);
+    public void save(DealDetail d) {
+        this.detailRepository.save(d);
+        this.remainingProductsService.saveOrUpdate(
+                Collections.singletonList(
+                        new RemainingProducts(d.getProduct(), d.getStorage(), d.getQuantity(), d.getSum())));
     }
 
     @Override
     public void saveAll(Collection<DealDetail> details) {
         this.detailRepository.save(details);
-        this.remainingProductsService.update(details);
+        List<RemainingProducts> rems = details.stream().map(this::createFrom).collect(Collectors.toList());
+        this.remainingProductsService.saveOrUpdate(rems);
     }
 
     @Override
@@ -55,12 +63,19 @@ public class DealDetailService implements DetailService<DealDetail> {
     @Override
     public void update(DealDetail d) {
         DealDetail inversed = DealDetail.inverseQntAndSum(d);
-        remainingProductsService.update( Arrays.asList(inversed, d) );
+        remainingProductsService.saveOrUpdate(
+                Stream.of(d, inversed)
+                        .map(this::createFrom)
+                        .collect(Collectors.toList()) );
         detailRepository.save(d);
     }
 
     @Override
     public void delete(Long id) {
 
+    }
+
+    private RemainingProducts createFrom(DealDetail d) {
+        return new RemainingProducts(d.getProduct(), d.getStorage(), d.getQuantity(), d.getSum());
     }
 }

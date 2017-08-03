@@ -1,13 +1,12 @@
 package kdk.ltd.site.root.entities;
 
+import org.hibernate.annotations.DynamicUpdate;
+
 import javax.persistence.*;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
-import java.util.function.Consumer;
-import java.util.stream.IntStream;
 
 
 @Entity
@@ -25,11 +24,13 @@ import java.util.stream.IntStream;
         )
 )
 @Table(name = "deals")
+@DynamicUpdate
 public class Deal extends GenericDeal {
 
     private State state;
 
-    @OneToMany(mappedBy = "deal", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "deal", fetch = FetchType.LAZY,
+            cascade = {CascadeType.MERGE, CascadeType.REMOVE}, orphanRemoval = true)
     private List<DealDetail> details = new ArrayList<>();
 
     public enum State {

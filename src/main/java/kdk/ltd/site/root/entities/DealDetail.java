@@ -3,6 +3,7 @@ package kdk.ltd.site.root.entities;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import kdk.ltd.site.root.exceptions.SameSignException;
 import kdk.ltd.site.web.deserializers.StorageDeserializer;
+import org.hibernate.annotations.DynamicUpdate;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
@@ -10,6 +11,7 @@ import java.math.BigDecimal;
 
 @Entity
 @Table(name = "deal_details")
+@DynamicUpdate
 public class DealDetail extends Detail  {
 
     @ManyToOne(fetch = FetchType.LAZY)
@@ -86,21 +88,6 @@ public class DealDetail extends Detail  {
                 getQuantity() < 0 && getSum().signum() < 0)
             throw new SameSignException();
     }
-
-    /*
-    public void negateSum() {
-        this.setSum(getSum().negate());
-    }
-
-    public void negateQuantity() {
-        this.setQuantity(Math.negateExact(getQuantity()));
-    }
-
-    @PostLoad
-    private void abs() {
-        setQuantity(Math.abs(getQuantity()));
-        setSum(getSum().abs());
-    }*/
 
     public static DealDetail inverseQntAndSum(DealDetail d) {
         return new DealDetail(

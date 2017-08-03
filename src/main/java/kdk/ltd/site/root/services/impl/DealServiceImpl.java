@@ -1,6 +1,5 @@
 package kdk.ltd.site.root.services.impl;
 
-import kdk.ltd.site.root.dto.DealDto;
 import kdk.ltd.site.root.dto.DealSearchCriteria;
 import kdk.ltd.site.root.entities.Deal;
 import kdk.ltd.site.root.entities.DealDetail;
@@ -11,14 +10,12 @@ import kdk.ltd.site.root.services.DealSearchService;
 import kdk.ltd.site.root.services.DealService;
 import kdk.ltd.site.root.services.RemainingProductsService;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.inject.Inject;
-import java.util.LinkedList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -31,6 +28,8 @@ public class DealServiceImpl implements DealService<Deal> {
 
     private DealDetailRepository detailRepository;
 
+    private DealDetailService detailService;
+
     private RemainingProductsService remainingProductsService;
 
     private DealSearchService<Deal> searchService;
@@ -38,10 +37,12 @@ public class DealServiceImpl implements DealService<Deal> {
     @Inject
     public DealServiceImpl(DealRepository dealRepository,
                            DealDetailRepository detailRepository,
+                           DealDetailService detailService,
                            RemainingProductsService remainingProductsService,
                            DealSearchService<Deal> searchService) {
         this.dealRepository = dealRepository;
         this.detailRepository = detailRepository;
+        this.detailService = detailService;
         this.remainingProductsService = remainingProductsService;
         this.searchService = searchService;
     }
@@ -68,15 +69,19 @@ public class DealServiceImpl implements DealService<Deal> {
     @Override
     public void save(Deal d) {
         this.dealRepository.save(d);
-        remainingProductsService.update(d.getDetails());
+        this.detailService.saveAll(d.getDetails());
+      //  remainingProductsService.saveOrUpdate(d.getDetails());
     }
 
     @Override
     public void save(List<Deal> deals) {
         dealRepository.saveBatch(deals);
-        List<DealDetail> details = new LinkedList<>();
-        deals.forEach(d -> details.addAll(d.getDetails()));
-        remainingProductsService.update(details);
+        detailService.saveAll(
+                deals.stream()
+                        .map(Deal::getDetails)
+                        .flatMap(List::stream)
+                        .collect(Collectors.toList())
+        );
     }
 
     @Override
@@ -94,8 +99,8 @@ public class DealServiceImpl implements DealService<Deal> {
 
         dealRepository.save(deal);
 
-        forRemainingsUpdate.addAll(deal.getDetails());
-        remainingProductsService.update(forRemainingsUpdate);
+        forRemainingsUpdate.addAll(0, deal.getDetails());
+//        remainingProductsService.saveOrUpdate(forRemainingsUpdate);
     }
 
     @Override
@@ -110,7 +115,7 @@ public class DealServiceImpl implements DealService<Deal> {
         List<DealDetail> forRemainingsDeletion =
                 detailRepository.inverseOldDetails(ids);
 
-        remainingProductsService.update(forRemainingsDeletion);
+//        remainingProductsService.saveOrUpdate(forRemainingsDeletion);
         dealRepository.delete(deal);
     }
 
