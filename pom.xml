@@ -21,6 +21,7 @@
         <querydsl.version>4.1.3</querydsl.version>
         <junit.version>4.12</junit.version>
         <mockito.version>1.9.5</mockito.version>
+        <datasource-proxy.version>1.3.3</datasource-proxy.version>
     </properties>
 
     <repositories>
@@ -346,7 +347,6 @@
             <groupId>org.postgresql</groupId>
             <artifactId>postgresql</artifactId>
             <version>9.4.1212</version>
-            <scope>runtime</scope>
         </dependency>
 
         <dependency>
@@ -407,6 +407,12 @@
             <groupId>org.apache.velocity</groupId>
             <artifactId>velocity</artifactId>
             <version>1.7</version>
+        </dependency>
+
+        <dependency>
+            <groupId>net.ttddyy</groupId>
+            <artifactId>datasource-proxy</artifactId>
+            <version>${datasource-proxy.version}</version>
         </dependency>
     </dependencies>
 

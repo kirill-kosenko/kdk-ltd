@@ -3,6 +3,10 @@ package kdk.ltd.config;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
+import kdk.ltd.site.root.util.InlineQueryLogEntryCreator;
+import net.ttddyy.dsproxy.listener.ChainListener;
+import net.ttddyy.dsproxy.listener.SLF4JQueryLoggingListener;
+import net.ttddyy.dsproxy.support.ProxyDataSourceBuilder;
 import org.springframework.beans.factory.config.AutowireCapableBeanFactory;
 import org.springframework.context.annotation.*;
 import org.springframework.core.env.Environment;
@@ -20,9 +24,7 @@ import javax.inject.Inject;
 import javax.persistence.SharedCacheMode;
 import javax.persistence.ValidationMode;
 import javax.sql.DataSource;
-import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.Properties;
 
 
@@ -39,7 +41,7 @@ import java.util.Properties;
         basePackages = "kdk.ltd.site.root"
 )
 @Import(SecurityConfig.class)
-@PropertySource({ "classpath:persistence-${envTarget:mysql}.properties" })
+@PropertySource({ "classpath:persistence-${envTarget:postgresql}.properties" })
 public class RootContextConfiguration {
 
     @Inject
@@ -47,6 +49,9 @@ public class RootContextConfiguration {
 
     @Inject
     Environment env;
+
+    @Inject
+    InlineQueryLogEntryCreator queryLog;
 
     @Bean
     public DataSource dataSource() {
@@ -61,11 +66,18 @@ public class RootContextConfiguration {
         */
     }
 
-   /* @Bean
-    public DataSource h2DataSource() {
-        EmbeddedDatabaseBuilder builder = new EmbeddedDatabaseBuilder();
-        return builder.setType(EmbeddedDatabaseType.HSQL).build();
-    }                */
+    @Bean
+    public DataSource proxyDataSource() {
+            ChainListener listener = new ChainListener();
+            SLF4JQueryLoggingListener loggingListener = new SLF4JQueryLoggingListener();
+            loggingListener.setQueryLogEntryCreator(queryLog);
+            listener.addListener(loggingListener);
+            return ProxyDataSourceBuilder
+                    .create(this.dataSource())
+                    .name(getClass().getName())
+                    .listener(listener)
+                    .build();
+    }
 
     @Bean
     public LocalContainerEntityManagerFactoryBean entityManagerFactoryBean() {
@@ -77,7 +89,7 @@ public class RootContextConfiguration {
                 new LocalContainerEntityManagerFactoryBean();
 
         factory.setJpaVendorAdapter(adapter);
-        factory.setDataSource(this.dataSource());
+        factory.setDataSource(this.proxyDataSource());
         factory.setPackagesToScan("kdk.ltd.site.root.entities");
         factory.setSharedCacheMode(SharedCacheMode.ENABLE_SELECTIVE);
         factory.setValidationMode(ValidationMode.NONE);
@@ -95,7 +107,7 @@ public class RootContextConfiguration {
         hibernateProperties.setProperty("hibernate.order_inserts", env.getProperty("hibernate.order_inserts"));
         hibernateProperties.setProperty("hibernate.order_updates", env.getProperty("hibernate.order_updates"));
         hibernateProperties.setProperty("hibernate.jdbc.batch_versioned_data", env.getProperty("hibernate.jdbc.batch_versioned_data"));
-        hibernateProperties.setProperty("hibernate.generate_statistics", env.getProperty("hibernate.generate_statistics"));
+      //  hibernateProperties.setProperty("hibernate.generate_statistics", env.getProperty("hibernate.generate_statistics"));
         return hibernateProperties;
     }
 
