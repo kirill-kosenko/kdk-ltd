@@ -2,8 +2,16 @@ package kdk.ltd.site.root.entities;
 
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.hibernate.annotations.GenericGenerator;
+import org.hibernate.annotations.Parameter;
 
-import javax.persistence.*;
+import javax.persistence.MappedSuperclass;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Access;
+import javax.persistence.AccessType;
+import javax.persistence.Id;
+import javax.persistence.Version;
+
 
 
 @MappedSuperclass
@@ -11,9 +19,18 @@ import javax.persistence.*;
 public abstract class PersistableObject {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(generator = "optimized-sequence")
     @Access(value = AccessType.PROPERTY)
-    private Long id;
+    @GenericGenerator(
+            name = "optimized-sequence",
+            strategy = "enhanced-sequence",
+            parameters = {
+                  @Parameter(name = "prefer_sequence_per_entity", value = "true"),
+                  @Parameter(name = "optimizer", value = "hilo"),
+                  @Parameter(name = "increment_size", value = "50")
+            }
+    )
+    private Long id;                    
 
     @Version
     private Integer version;
