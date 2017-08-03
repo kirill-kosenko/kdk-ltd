@@ -59,21 +59,25 @@ public class RemainingProductsServiceImpl implements RemainingProductsService {
 
 
     @Override
-    public void update(Collection<DealDetail> details) {
-        details.forEach(this::saveOrUpdateRemaining);
+    public void saveOrUpdate(Collection<RemainingProducts> details) {
+        details.forEach(this::saveOrUpdate);
     }
 
-    public void saveOrUpdateRemaining(DealDetail d) {
+    private void saveOrUpdate(RemainingProducts rmp) {
 
         Optional<RemainingProducts> inStock =
                     remainingProductsRepository.findByProductAndStorageAndDateTimePoint(
-                            d.getProduct(), d.getStorage(), CURRENT_DATETIME_POINT
+                            rmp.getProduct(), rmp.getStorage(), CURRENT_DATETIME_POINT
                     );
 
         if (inStock.isPresent())
-            addQntAndSumTo( inStock.get(), d.getQuantity(), d.getSum() );
-        else
-            createAndSaveRemaining( d );
+            addQntAndSumTo( inStock.get(), rmp.getQuantity(), rmp.getSum() );
+        else {
+            rmp.setDateTimePoint(CURRENT_DATETIME_POINT);
+            remainingProductsRepository.save(rmp);
+            em.flush();
+        }
+          //  createAndSaveRemaining( rmp );
     }
 
     private void createAndSaveRemaining(DealDetail d) {
@@ -95,22 +99,22 @@ public class RemainingProductsServiceImpl implements RemainingProductsService {
     }
 
     @Override
-    public void createNewDateTimePoint(final LocalDateTime newPoint) {
+    public void createNewDateTimePoint(final LocalDateTime newDateTimePoint) {
 
-        final LocalDateTime prevPoint =
+        final LocalDateTime prevDateTimePoint =
                 remainingProductsRepository.findPrevDateTimePoint();
 
-        if ( prevPoint.compareTo( newPoint ) > 0 )
-            throw new IllegalArgumentException("Specified DateTimePoint is before previous");
+        if ( prevDateTimePoint.compareTo( newDateTimePoint ) > 0 )
+            throw new IllegalArgumentException("Specified DateTimePoint is before previous one");
 
         List<RemainingProducts> newRemainings =
-                remainingProductsRepository.createForNewPoint( prevPoint, newPoint );
+                remainingProductsRepository.createForNewPoint( prevDateTimePoint, newDateTimePoint );
 
-        if ( !CURRENT_DATETIME_POINT.equals( prevPoint ) ) {
-            addRemainingsFromPrevPoint( newRemainings, prevPoint );
+        if ( !CURRENT_DATETIME_POINT.equals( prevDateTimePoint ) ) {
+            addRemainingsFromPrevPoint( newRemainings, prevDateTimePoint );
         }
 
-        newRemainings.forEach( p -> p.setDateTimePoint( newPoint ));
+        newRemainings.forEach( p -> p.setDateTimePoint( newDateTimePoint ));
         remainingProductsRepository.save( newRemainings );
     }
 

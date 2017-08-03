@@ -2,7 +2,6 @@ package kdk.ltd.site.root.services.impl;
 
 
 import kdk.ltd.config.RootContextConfiguration;
-import kdk.ltd.site.root.dto.DealDto;
 import kdk.ltd.site.root.entities.Deal;
 import kdk.ltd.site.root.entities.DealDetail;
 import kdk.ltd.site.root.entities.RemainingProducts;
@@ -80,7 +79,7 @@ public class RemainingProductsServiceImplTest {
 
         DealDetail detail2 =
                 new DealDetail(productRepository.getOne(3L), -40, new BigDecimal(12000), storageRepository.getOne(4L));
-        remainingProductsService.update(Arrays.asList(detail1, detail2));
+//        remainingProductsService.saveOrUpdate(Arrays.asList(detail1, detail2));
         em.flush();
         RemainingProducts inStock = remainingProductsService.findOne(1L);
 
@@ -93,7 +92,7 @@ public class RemainingProductsServiceImplTest {
         DealDetail detail =
                 new DealDetail(productRepository.getOne(3L), -60, new BigDecimal(19200), storageRepository.getOne(4L));
 
-        remainingProductsService.update(Collections.singletonList(detail));
+//        remainingProductsService.saveOrUpdate(Collections.singletonList(detail));
         em.flush();
     }
 

@@ -12,7 +12,7 @@ public interface RemainingProductsService {
     RemainingProducts findOne(Long id);
     List<RemainingProducts> findByStorageId(Long storageId);
     List<RemainingProducts> findByProductId(Long productId);
-    void update(Collection<DealDetail> details);
+    void saveOrUpdate(Collection<RemainingProducts> remProds);
     void createNewDateTimePoint(LocalDateTime date);
     void createNewDateTimePoint();
     void deleteAll();

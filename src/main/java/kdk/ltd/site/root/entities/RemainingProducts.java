@@ -5,6 +5,7 @@ import kdk.ltd.site.root.exceptions.NegativeBalanceException;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.math.BigDecimal;
+import java.text.NumberFormat;
 import java.time.LocalDateTime;
 
 
@@ -114,9 +115,11 @@ public class RemainingProducts implements Serializable {
     private void checkQuantity() {
         if (quantity < 0)
             throw new NegativeBalanceException(
-                    String.format("Product: %d Storage: %d",
+                    String.format("Product: %d Storage: %d Qnt: %d Sum: %s" ,
                             getProduct().getId(),
-                            getStorage().getId())
+                            getStorage().getId(),
+                            quantity,
+                            NumberFormat.getCurrencyInstance().format(sum))
             );
     }
 
