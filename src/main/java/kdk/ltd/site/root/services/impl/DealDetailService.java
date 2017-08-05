@@ -1,6 +1,7 @@
 package kdk.ltd.site.root.services.impl;
 
 import kdk.ltd.site.root.entities.Deal;
+import kdk.ltd.site.root.entities.PersistableObject;
 import kdk.ltd.site.root.entities.RemainingProducts;
 import kdk.ltd.site.root.repositories.DealRepository;
 import kdk.ltd.site.root.services.RemainingProductsService;
@@ -49,7 +50,7 @@ public class DealDetailService implements DetailService<DealDetail> {
     @Override
     public void saveAll(Collection<DealDetail> details) {
         this.detailRepository.save(details);
-        List<RemainingProducts> rems = details.stream().map(this::createFrom).collect(Collectors.toList());
+        List<RemainingProducts> rems = details.stream().map(this::createRemainings).collect(Collectors.toList());
         this.remainingProductsService.saveOrUpdate(rems);
     }
 
@@ -65,17 +66,54 @@ public class DealDetailService implements DetailService<DealDetail> {
         DealDetail inversed = DealDetail.inverseQntAndSum(d);
         remainingProductsService.saveOrUpdate(
                 Stream.of(d, inversed)
-                        .map(this::createFrom)
+                        .map(this::createRemainings)
                         .collect(Collectors.toList()) );
         detailRepository.save(d);
     }
 
     @Override
-    public void delete(Long id) {
+    public void update(Collection<DealDetail> details) {
+        List<Long> ids = details.stream()
+                .filter(d -> d.getId() != null)
+                .map(DealDetail::getId)
+                .collect(Collectors.toList());
 
+        List<DealDetail> forRemainingsUpdate =
+                detailRepository.inverseOldDetails(ids);
+        forRemainingsUpdate.addAll(0, details);
+        remainingProductsService.saveOrUpdate(
+                forRemainingsUpdate.stream()
+                        .map(this::createRemainings)
+                        .collect(Collectors.toList())
+        );
+        detailRepository.save(details);
     }
 
-    private RemainingProducts createFrom(DealDetail d) {
+    @Override
+    public void delete(Long id) {
+        DealDetail detail = detailRepository.findOne(id);
+        detailRepository.delete(detail);
+        remainingProductsService.saveOrUpdate(
+                Collections.singletonList(
+                        createRemainingsWithNegation(detail)
+                ));
+    }
+
+    @Override
+    public void delete(Collection<DealDetail> details) {
+        detailRepository.delete(details);
+        remainingProductsService.saveOrUpdate(
+                details.stream()
+                        .map(this::createRemainingsWithNegation)
+                        .collect(Collectors.toList())
+        );
+    }
+
+    private RemainingProducts createRemainings(DealDetail d) {
         return new RemainingProducts(d.getProduct(), d.getStorage(), d.getQuantity(), d.getSum());
+    }
+
+    private RemainingProducts createRemainingsWithNegation(DealDetail d) {
+        return new RemainingProducts(d.getProduct(), d.getStorage(), -1 * d.getQuantity(), d.getSum().negate());
     }
 }

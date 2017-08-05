@@ -12,8 +12,8 @@ import java.util.Optional;
 public interface RemainingProductsRepository extends JpaRepository<RemainingProducts, Long> {
 
     Optional<RemainingProducts> findByProductIdAndStorageId(Long productId, Long storageId);
-    @Query("select r from RemainingProducts r where r.product = ?1 and r.storage = ?2 and r.dateTimePoint = ?3")
-    Optional<RemainingProducts> findByProductAndStorageAndDateTimePoint(Product product, Storage storage, LocalDateTime date);
+    @Query("select r from RemainingProducts r where r.product.id = ?1 and r.storage.id = ?2 and r.dateTimePoint = ?3")
+    Optional<RemainingProducts> findByProductAndStorageAndDateTimePoint(Long productId, Long storageId, LocalDateTime date);
 
     List<RemainingProducts> findByStorageId(Long storageId);
     List<RemainingProducts> findByProductId(Long productId);

@@ -1,6 +1,5 @@
 package kdk.ltd.site.root.services;
 
-import kdk.ltd.site.root.entities.DealDetail;
 import kdk.ltd.site.root.entities.RemainingProducts;
 
 import java.time.LocalDateTime;

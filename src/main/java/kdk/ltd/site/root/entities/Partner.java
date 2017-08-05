@@ -22,13 +22,6 @@ public class Partner extends PersistableObject {
     @OneToMany(mappedBy = "partner", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private Set<Phone> phones = new LinkedHashSet<>();
 
-    public Partner() {
-    }
-
-    public Partner(long id) {
-        super(id);
-    }
-
     public String getFullname() {
         return fullname;
     }

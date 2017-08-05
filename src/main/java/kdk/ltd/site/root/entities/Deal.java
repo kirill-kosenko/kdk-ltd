@@ -24,13 +24,11 @@ import java.util.List;
         )
 )
 @Table(name = "deals")
-@DynamicUpdate
 public class Deal extends GenericDeal {
 
     private State state;
 
-    @OneToMany(mappedBy = "deal", fetch = FetchType.LAZY,
-            cascade = {CascadeType.MERGE, CascadeType.REMOVE}, orphanRemoval = true)
+    @OneToMany(mappedBy = "deal", fetch = FetchType.LAZY)
     private List<DealDetail> details = new ArrayList<>();
 
     public enum State {

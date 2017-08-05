@@ -6,8 +6,6 @@ import kdk.ltd.site.root.services.RemainingProductsService;
 import org.springframework.stereotype.Service;
 
 import javax.inject.Inject;
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
 import javax.transaction.Transactional;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
@@ -23,9 +21,6 @@ public class RemainingProductsServiceImpl implements RemainingProductsService {
 
     private RemainingProductsRepository remainingProductsRepository;
 
-    @PersistenceContext
-    private EntityManager em;
-
     @Inject
     public RemainingProductsServiceImpl(RemainingProductsRepository remainingProductsRepository,
                                         LocalDateTime currentDateTimePoint) {
@@ -33,16 +28,10 @@ public class RemainingProductsServiceImpl implements RemainingProductsService {
         this.CURRENT_DATETIME_POINT = currentDateTimePoint;
     }
 
+
     @Override
     public RemainingProducts findOne(Long id) {
         return remainingProductsRepository.findOne(id);
-    }
-
-
-    public RemainingProducts findBy(Long productId, Long storageId) {
-        //    Product product = productRepository.getOne(productId);
-        //    Storage storage = storageRepository.getOne(storageId);
-        return remainingProductsRepository.findByProductIdAndStorageId(productId, storageId).get();
     }
 
     @Override
@@ -57,17 +46,37 @@ public class RemainingProductsServiceImpl implements RemainingProductsService {
         return remainingProductsRepository.findByProductId(productId);
     }
 
-
     @Override
-    public void saveOrUpdate(Collection<RemainingProducts> details) {
-        details.forEach(this::saveOrUpdate);
+    public void saveOrUpdate(Collection<RemainingProducts> list) {
+        Collection<RemainingProducts> merged =
+                mergeByProductAndStorage(list);
+
+        merged.forEach(this::saveOrUpdate);
+    }
+
+    private Collection<RemainingProducts>
+    mergeByProductAndStorage(Collection<RemainingProducts> list) {
+
+        final Map<Integer, RemainingProducts> merged = new HashMap<>();
+
+        list.forEach(rmp -> {
+                    Integer hash = rmp.productStorageHash();
+                    RemainingProducts r = merged.get( hash );
+                    if (r == null) {
+                        merged.put(hash, rmp);
+                    } else {
+                        addQntAndSumTo(r, rmp.getQuantity(), rmp.getSum());
+                    }
+                }
+        );
+        return merged.values();
     }
 
     private void saveOrUpdate(RemainingProducts rmp) {
 
         Optional<RemainingProducts> inStock =
                     remainingProductsRepository.findByProductAndStorageAndDateTimePoint(
-                            rmp.getProduct(), rmp.getStorage(), CURRENT_DATETIME_POINT
+                            rmp.getProduct().getId(), rmp.getStorage().getId(), CURRENT_DATETIME_POINT
                     );
 
         if (inStock.isPresent())
@@ -75,17 +84,7 @@ public class RemainingProductsServiceImpl implements RemainingProductsService {
         else {
             rmp.setDateTimePoint(CURRENT_DATETIME_POINT);
             remainingProductsRepository.save(rmp);
-            em.flush();
         }
-          //  createAndSaveRemaining( rmp );
-    }
-
-    private void createAndSaveRemaining(DealDetail d) {
-        remainingProductsRepository.save(
-                new RemainingProducts(
-                       d.getProduct(), d.getStorage(), d.getQuantity(), d.getSum(), CURRENT_DATETIME_POINT )
-        );
-        em.flush();
     }
 
     private void addQntAndSumTo(RemainingProducts r, Integer qnt, BigDecimal sum) {

@@ -37,13 +37,6 @@ public class Product extends PersistableObject {
     @OneToMany(mappedBy = "parent", fetch = FetchType.LAZY)
     private List<Product> childs = new LinkedList<>();
 
-    public Product() {
-    }
-
-    public Product(long id) {
-        super(id);
-    }
-
     public String getName() {
         return name;
     }

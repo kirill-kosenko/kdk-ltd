@@ -11,7 +11,6 @@ import java.math.BigDecimal;
 
 @Entity
 @Table(name = "deal_details")
-@DynamicUpdate
 public class DealDetail extends Detail  {
 
     @ManyToOne(fetch = FetchType.LAZY)

@@ -16,6 +16,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.inject.Inject;
+import java.util.Collection;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -91,16 +92,8 @@ public class DealServiceImpl implements DealService<Deal> {
 
     @Override
     public void update(Deal deal) {
-        List<Long> ids = getInvertedIds(
-                            deal.getDetails());
-
-        List<DealDetail> forRemainingsUpdate =
-                detailRepository.inverseOldDetails(ids);
-
         dealRepository.save(deal);
-
-        forRemainingsUpdate.addAll(0, deal.getDetails());
-//        remainingProductsService.saveOrUpdate(forRemainingsUpdate);
+        detailService.update(deal.getDetails());
     }
 
     @Override
@@ -110,20 +103,7 @@ public class DealServiceImpl implements DealService<Deal> {
         if (deal == null)
             throw new DealNotFoundException();
 
-        List<Long> ids =
-                getInvertedIds(deal.getDetails());
-        List<DealDetail> forRemainingsDeletion =
-                detailRepository.inverseOldDetails(ids);
-
-//        remainingProductsService.saveOrUpdate(forRemainingsDeletion);
+        detailService.delete(deal.getDetails());
         dealRepository.delete(deal);
-    }
-
-    private List<Long> getInvertedIds(List<DealDetail> details) {
-        return details
-                .stream()
-                .filter(detail -> detail.getId() != null)
-                .map(DealDetail::getId)
-                .collect(Collectors.toList());
     }
 }

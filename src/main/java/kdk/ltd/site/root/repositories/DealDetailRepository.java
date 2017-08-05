@@ -6,6 +6,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.querydsl.QueryDslPredicateExecutor;
 
+import java.util.Collection;
 import java.util.List;
 
 
@@ -18,5 +19,5 @@ public interface DealDetailRepository extends JpaRepository<DealDetail, Long>, Q
                     "FROM DealDetail d " +
                     "WHERE d.id IN (?1)"
     )
-    List<DealDetail> inverseOldDetails(List<Long> ids);
+    List<DealDetail> inverseOldDetails(Collection<Long> ids);
 }
