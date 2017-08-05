@@ -7,15 +7,13 @@ import java.io.Serializable;
 import java.math.BigDecimal;
 import java.text.NumberFormat;
 import java.time.LocalDateTime;
+import java.util.Objects;
 
 
 @Entity
 @Table(name = "products_in_stock")
-public class RemainingProducts implements Serializable {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+public class RemainingProducts
+        extends PersistableObject implements Serializable {
 
     @Column(name = "restDate")
     private LocalDateTime dateTimePoint;
@@ -55,14 +53,6 @@ public class RemainingProducts implements Serializable {
 
     public RemainingProducts(RemainingProducts r) {
         this(r.getProduct(), r.getStorage(), r.getQuantity(), r.getSum());
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
     }
 
     public LocalDateTime getDateTimePoint() {
@@ -108,6 +98,10 @@ public class RemainingProducts implements Serializable {
     public boolean eqaulsByProductAndStorage(RemainingProducts p) {
         return !product.getId().equals(p.getProduct().getId()) &&
                 !storage.getId().equals(p.getStorage().getId());
+    }
+
+    public int productStorageHash() {
+        return Objects.hash(product.getId(), storage.getId());
     }
 
     @PrePersist
