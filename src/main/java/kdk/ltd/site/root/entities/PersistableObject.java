@@ -24,7 +24,7 @@ public abstract class PersistableObject {
             }
     )
     @Access(value = AccessType.PROPERTY)
-    private Long id;                    
+    private Long id;
 
     @Version
     private Integer version;

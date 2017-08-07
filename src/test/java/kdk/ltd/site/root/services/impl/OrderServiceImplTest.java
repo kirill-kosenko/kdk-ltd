@@ -18,9 +18,9 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.jdbc.Sql;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.inject.Inject;
-import javax.transaction.Transactional;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.Arrays;
@@ -50,9 +50,9 @@ public class OrderServiceImplTest {
         order.add(detail);
         order.setUser(userRepository.getOne(1L));
         service.save(order);
-        Order from = service.find(4L);
+        Order from = service.find(order.getId());
 
-        Assert.assertNotNull( from );
+        Assert.assertEquals(order, from );
     }
 
     @Test

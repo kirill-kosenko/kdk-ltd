@@ -2,10 +2,9 @@ package kdk.ltd.site.root.services.impl;
 
 import kdk.ltd.site.root.dto.DealSearchCriteria;
 import kdk.ltd.site.root.entities.Deal;
-import kdk.ltd.site.root.entities.DealDetail;
 import kdk.ltd.site.root.exceptions.DealNotFoundException;
-import kdk.ltd.site.root.repositories.DealRepository;
 import kdk.ltd.site.root.repositories.DealDetailRepository;
+import kdk.ltd.site.root.repositories.DealRepository;
 import kdk.ltd.site.root.services.DealSearchService;
 import kdk.ltd.site.root.services.DealService;
 import kdk.ltd.site.root.services.RemainingProductsService;
@@ -16,7 +15,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.inject.Inject;
-import java.util.Collection;
 import java.util.List;
 import java.util.stream.Collectors;
 

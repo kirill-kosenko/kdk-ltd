@@ -1,5 +1,8 @@
+CREATE SEQUENCE "HIBERNATE_SEQUENCE" START WITH 1;
+
+CREATE SEQUENCE "partner_seq" START WITH 1;
 CREATE TABLE partners (
-  id         BIGINT NOT NULL,
+  id         BIGINT PRIMARY KEY AUTO_INCREMENT NOT NULL,
   version    INT(11)      DEFAULT NULL,
   fathername VARCHAR(255) DEFAULT NULL,
   firstname  VARCHAR(255) DEFAULT NULL,
@@ -8,18 +11,14 @@ CREATE TABLE partners (
   name       VARCHAR(255) DEFAULT NULL,
 );
 
+CREATE SEQUENCE "STORAGE_SEQ" START WITH 1;
 CREATE TABLE storages (
-  id      BIGINT PRIMARY KEY AUTO_INCREMENT NOT NULL,
+  id      BIGINT DEFAULT STORAGE_SEQ.nextval PRIMARY KEY NOT NULL,
   version INT(11)      DEFAULT NULL,
   name    VARCHAR(255) DEFAULT NULL
 );
 
-CREATE TABLE batch_test (
-  id      BIGINT PRIMARY KEY AUTO_INCREMENT NOT NULL,
-  col1    VARCHAR(255)      DEFAULT NULL,
-  col2    VARCHAR(255) DEFAULT NULL
-);
-
+CREATE SEQUENCE "users_id_seq" START WITH 1;
 CREATE TABLE users (
   id          BIGINT PRIMARY KEY AUTO_INCREMENT NOT NULL,
   email       VARCHAR(255) DEFAULT NULL,
@@ -30,13 +29,7 @@ CREATE TABLE users (
   username    VARCHAR(255) DEFAULT NULL,
 );
 
-CREATE TABLE product_types (
-  id bigint PRIMARY KEY AUTO_INCREMENT NOT NULL,
-  version int(11) DEFAULT NULL,
-  description varchar(255) DEFAULT NULL,
-  type varchar(255) DEFAULT NULL,
-);
-
+CREATE SEQUENCE "product_seq" START WITH 1;
 CREATE TABLE products (
   id          BIGINT PRIMARY KEY AUTO_INCREMENT NOT NULL,
   version     INT(11)      DEFAULT NULL,
@@ -49,6 +42,7 @@ CREATE TABLE products (
   FOREIGN KEY (parent_id) REFERENCES products (id)
 );
 
+CREATE SEQUENCE "authority_seq" START WITH 1;
 CREATE TABLE authorities (
   id BIGINT PRIMARY KEY AUTO_INCREMENT NOT NULL,
   version  INT(11) DEFAULT NULL,
@@ -58,8 +52,9 @@ CREATE TABLE authorities (
   FOREIGN KEY (username) REFERENCES users (id)
 );
 
+CREATE SEQUENCE "DEAL_SEQ" START WITH 1;
 CREATE TABLE deals (
-  id                    BIGINT PRIMARY KEY AUTO_INCREMENT NOT NULL,
+  id                    BIGINT DEFAULT DEAL_SEQ.nextval PRIMARY KEY NOT NULL,
   version               INT(11)      DEFAULT NULL,
   insert_ts             DATETIME     DEFAULT NULL,
   update_ts             DATETIME     DEFAULT NULL,
@@ -74,8 +69,9 @@ CREATE TABLE deals (
   FOREIGN KEY (user_login) REFERENCES users (id)
 );
 
+CREATE SEQUENCE "DEALDETAIL_SEQ" START WITH 1;
 CREATE TABLE deal_details (
-  id          BIGINT PRIMARY KEY AUTO_INCREMENT NOT NULL,
+  id          BIGINT DEFAULT DEALDETAIL_SEQ.nextval PRIMARY KEY NOT NULL,
   version     INT(11)        DEFAULT NULL,
   insert_ts   DATETIME       DEFAULT NULL,
   update_ts   DATETIME       DEFAULT NULL,
@@ -90,8 +86,9 @@ CREATE TABLE deal_details (
   FOREIGN KEY (product_id) REFERENCES products (id)
 );
 
+CREATE SEQUENCE "ORDER_SEQ" START WITH 1;
 CREATE TABLE orders (
-  id                BIGINT PRIMARY KEY AUTO_INCREMENT NOT NULL,
+  id                BIGINT DEFAULT ORDER_SEQ.nextval PRIMARY KEY NOT NULL,
   version           INT(11)      DEFAULT NULL,
   insert_ts         DATETIME     DEFAULT NULL,
   update_ts         DATETIME     DEFAULT NULL,
@@ -107,8 +104,9 @@ CREATE TABLE orders (
   FOREIGN KEY (partner_id) REFERENCES partners (id)
 );
 
+CREATE SEQUENCE "ORDERDETAIL_SEQ" START WITH 1;
 CREATE TABLE order_detail (
-  id         BIGINT PRIMARY KEY AUTO_INCREMENT NOT NULL,
+  id         BIGINT DEFAULT ORDERDETAIL_SEQ.nextval PRIMARY KEY NOT NULL,
   version    INT(11)        DEFAULT NULL,
   insert_ts  DATETIME       DEFAULT NULL,
   update_ts  DATETIME       DEFAULT NULL,
@@ -121,6 +119,7 @@ CREATE TABLE order_detail (
   FOREIGN KEY (order_id) REFERENCES orders (id)
 );
 
+CREATE SEQUENCE "phone_seq" START WITH 1;
 CREATE TABLE phones (
   id         BIGINT PRIMARY KEY AUTO_INCREMENT NOT NULL,
   version    INT(11)      DEFAULT NULL,
@@ -134,6 +133,7 @@ CREATE TABLE phones (
   FOREIGN KEY (partner_id) REFERENCES partners (id)
 );
 
+CREATE SEQUENCE "remainingproducts_seq" START WITH 1;
 CREATE TABLE products_in_stock (
   id         BIGINT PRIMARY KEY AUTO_INCREMENT NOT NULL,
   version    INT(11)        DEFAULT NULL,

@@ -53,7 +53,7 @@ public class RootContextConfiguration {
     @Inject
     InlineQueryLogEntryCreator queryLog;
 
-    @Bean
+    //@Bean
     public DataSource dataSource() {
         DriverManagerDataSource dataSource = new DriverManagerDataSource();
         dataSource.setDriverClassName(env.getProperty("jdbc.driverClassName"));

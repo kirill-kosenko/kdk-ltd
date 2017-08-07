@@ -23,11 +23,12 @@
         </root>
         <logger name="kdk.ltd" level="info" />
         <logger name="org.apache" level="info" />
-        <logger name="org.hibernate" level="info" />
-        <logger name="org.hibernate.SQL" level="debug" />
+        <logger name="org.hibernate" level="warn" />
+        <logger name="org.hibernate.SQL" level="info" />
         <logger name="org.hibernate.stat" level="info" />
         <logger name="org.springframework" level="info" />
-        <logger name="org.hibernate.engine.jdbc.batch.internal.BatchingBatch" level="debug" />
+        <logger name="org.hibernate.engine.jdbc.batch.internal.BatchingBatch" level="info" />
+        <logger name="net.ttddyy.dsproxy.listener" level="debug"/>
     </loggers>
 </configuration>
 

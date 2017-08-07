@@ -18,11 +18,11 @@ import org.junit.runner.RunWith;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.jdbc.Sql;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import javax.transaction.Transactional;
 import java.math.BigDecimal;
 import java.util.Arrays;
 import java.util.Collections;
@@ -54,7 +54,8 @@ public class RemainingProductsServiceImplTest {
 
     @Test                                      //TODO: add product and storage
     public void findOneTest() {
-        RemainingProducts inStock = remainingProductsService.findOne(1L);
+        RemainingProducts inStock = remainingProductsService.findOne(
+                1L);
         Assert.assertNotNull(inStock);
     }
 
@@ -74,14 +75,15 @@ public class RemainingProductsServiceImplTest {
 
     @Test
     public void updateProductsInStockTest() {
-        DealDetail detail1 =
-                new DealDetail(productRepository.getOne(3L), 50, new BigDecimal(-12000), storageRepository.getOne(4L));
+        RemainingProducts rmp1 =
+                new RemainingProducts(productRepository.getOne(3L), storageRepository.getOne(4L), 50, new BigDecimal(-12000));
 
-        DealDetail detail2 =
-                new DealDetail(productRepository.getOne(3L), -40, new BigDecimal(12000), storageRepository.getOne(4L));
-//        remainingProductsService.saveOrUpdate(Arrays.asList(detail1, detail2));
+        RemainingProducts rmp2 =
+                new RemainingProducts(productRepository.getOne(3L), storageRepository.getOne(4L), -40, new BigDecimal(12000));
+        remainingProductsService.saveOrUpdate(Arrays.asList(rmp1, rmp2));
         em.flush();
-        RemainingProducts inStock = remainingProductsService.findOne(1L);
+        RemainingProducts inStock = remainingProductsService.findOne(
+                1L);
 
         Assert.assertEquals(new Integer(63), inStock.getQuantity());
         Assert.assertEquals(new BigDecimal(19200), inStock.getSum());
@@ -92,7 +94,9 @@ public class RemainingProductsServiceImplTest {
         DealDetail detail =
                 new DealDetail(productRepository.getOne(3L), -60, new BigDecimal(19200), storageRepository.getOne(4L));
 
-//        remainingProductsService.saveOrUpdate(Collections.singletonList(detail));
+        remainingProductsService.saveOrUpdate(Collections.singletonList(
+                new RemainingProducts(detail.getProduct(), detail.getStorage(), detail.getQuantity(), detail.getSum())
+        ));
         em.flush();
     }
 

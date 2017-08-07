@@ -1,20 +1,16 @@
 package kdk.ltd.site.root.services.impl;
 
 import kdk.ltd.site.root.dto.DealSearchCriteria;
-import kdk.ltd.site.root.dto.OrderDto;
 import kdk.ltd.site.root.entities.Order;
 import kdk.ltd.site.root.repositories.OrderRepository;
-import kdk.ltd.site.root.repositories.ProductRepository;
 import kdk.ltd.site.root.services.DealService;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.inject.Inject;
-import java.util.LinkedList;
 import java.util.List;
 
 @Service

@@ -10,17 +10,18 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.springframework.context.annotation.Profile;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.jdbc.Sql;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import javax.transaction.Transactional;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.Arrays;
@@ -66,9 +67,9 @@ public class DealServiceImplTest {
     @Before
     public void setUp() {
         DealDetail detail1 =
-                new DealDetail(productRepository.getOne(3L), 50, new BigDecimal(-12000));
+                new DealDetail(productRepository.getOne(3L), 50, new BigDecimal(-12000), storageRepository.getOne(4L));
         DealDetail detail2 =
-                new DealDetail(productRepository.getOne(4L), 10, new BigDecimal(-1200));
+                new DealDetail(productRepository.getOne(4L), 10, new BigDecimal(-1200), storageRepository.getOne(4L));
         deal =
                 new Deal(
                         GenericDeal.Type.PURCHASE,
@@ -106,7 +107,7 @@ public class DealServiceImplTest {
     @Test
     public void saveTest() {
         service.save(deal);
-        Deal actual = service.find(6L);
+        Deal actual = service.find(deal.getId());
 
         Assert.assertEquals(deal, actual);
     }
@@ -138,7 +139,8 @@ public class DealServiceImplTest {
 
         service.save(deal);
 
-        RemainingProducts inStock = remainingProductsRepository.findOne(1L);
+        RemainingProducts inStock = remainingProductsRepository.findOne(
+                1L);
 
         Assert.assertEquals(detail1.getStorage().getId(),
                 inStock.getStorage().getId());
@@ -163,7 +165,7 @@ public class DealServiceImplTest {
                 50,
                 new BigDecimal(-10750),
                 storageRepository.getOne(4L));
-        detail.setId(2147L);
+        detail.setId(1L);
         detail.setVersion(0);
         DealDetail detail1 = new DealDetail(
                 productRepository.getOne(4L),
@@ -171,7 +173,7 @@ public class DealServiceImplTest {
                 new BigDecimal(-1150),
                 storageRepository.getOne(4L)
         );
-        detail1.setId(2148L);
+        detail1.setId(2L);
         detail1.setVersion(0);
 
         deal.addAll(Arrays.asList(detail, detail1));

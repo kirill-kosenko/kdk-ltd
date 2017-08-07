@@ -4,9 +4,10 @@ import kdk.ltd.site.root.entities.*;
 import kdk.ltd.site.root.repositories.RemainingProductsRepository;
 import kdk.ltd.site.root.services.RemainingProductsService;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.inject.Inject;
-import javax.transaction.Transactional;
+
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.*;

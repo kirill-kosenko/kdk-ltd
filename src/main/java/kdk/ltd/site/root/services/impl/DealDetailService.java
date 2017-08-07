@@ -1,18 +1,16 @@
 package kdk.ltd.site.root.services.impl;
 
 import kdk.ltd.site.root.entities.Deal;
-import kdk.ltd.site.root.entities.PersistableObject;
+import kdk.ltd.site.root.entities.DealDetail;
 import kdk.ltd.site.root.entities.RemainingProducts;
+import kdk.ltd.site.root.repositories.DealDetailRepository;
 import kdk.ltd.site.root.repositories.DealRepository;
+import kdk.ltd.site.root.services.DetailService;
 import kdk.ltd.site.root.services.RemainingProductsService;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import kdk.ltd.site.root.entities.DealDetail;
-import kdk.ltd.site.root.repositories.DealDetailRepository;
-import kdk.ltd.site.root.services.DetailService;
 
 import javax.inject.Inject;
-
 import java.util.Collection;
 import java.util.Collections;
 import java.util.List;

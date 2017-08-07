@@ -29,8 +29,8 @@ INSERT INTO products VALUES (10,0, null, 'Чернослив', 'шт', null, nul
 
 INSERT INTO users VALUES (1,'nikeya444@gmail.com',0x01,0x01,0x01,'$2a$06$N3cKWUV/INEqXQQYnY3V9exW7m.G7LVql3YSCtFdCYNSOSw0C55t6','kkm');
 
-INSERT INTO storages VALUES (1, 0, 'Storage 1');
-INSERT INTO storages VALUES (2, 0, 'Storage 2');
-INSERT INTO storages VALUES (3, 0, 'Storage 3');
-INSERT INTO storages VALUES (4, 0, 'Storage 4');
-INSERT INTO storages VALUES (5, 0, 'Storage 5');
+INSERT INTO storages(version, name) VALUES (0, 'Storage 1');
+INSERT INTO storages(version, name) VALUES (0, 'Storage 2');
+INSERT INTO storages(version, name) VALUES (0, 'Storage 3');
+INSERT INTO storages(version, name) VALUES (0, 'Storage 4');
+INSERT INTO storages(version, name) VALUES (0, 'Storage 5');

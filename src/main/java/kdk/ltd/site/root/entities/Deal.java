@@ -26,7 +26,7 @@ import java.util.List;
 @Table(name = "deals")
 public class Deal extends GenericDeal {
 
-    private State state;
+    private State state = State.STARTED;
 
     @OneToMany(mappedBy = "deal", fetch = FetchType.LAZY)
     private List<DealDetail> details = new ArrayList<>();
